@@ -2,7 +2,21 @@
  * Zentrale Stammdaten. Nur Angaben, die belegt sind – nichts erfunden.
  * Offene Pflichtangaben fuer das Impressum stehen in `legal` (undefined = noch ergaenzen).
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://monvex.de').replace(/\/$/, '');
+const DEFAULT_SITE_URL = 'https://monvex.de';
+
+/** Toleriert eine falsch gesetzte Env-Variable (ohne https://, mit Leerzeichen, leer) statt den Build abzubrechen. */
+function resolveSiteUrl(raw: string | undefined) {
+  const v = (raw ?? '').trim();
+  if (!v) return DEFAULT_SITE_URL;
+  const withProtocol = /^https?:\/\//i.test(v) ? v : `https://${v}`;
+  try {
+    return new URL(withProtocol).origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
+export const SITE_URL = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const company = {
   name: 'MONVEX',
