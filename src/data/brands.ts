@@ -8,11 +8,11 @@
  *    Ohne Datei erzeugt die Seite ein Wortmarken-Logo und ein generatives Key-Visual (`art`).
  *  - `website`: optional. Solange leer, zeigt die Seite "Website folgt" statt eines Links.
  *  - `type`: 'own' = eigene Marke, 'managed' = von MONVEX geführte Marke.
- *    Die Einstufung der drei Startmarken ist ein Platzhalter und bitte zu bestaetigen.
+ *    Die Einstufung (own/managed) ist eine Annahme und bitte zu bestaetigen.
  */
 export type BrandType = 'own' | 'managed';
 export type BrandStatus = 'live' | 'building' | 'planned';
-export type BrandArt = 'route' | 'bloom' | 'rim' | 'monogram';
+export type BrandArt = 'route' | 'bloom' | 'rim' | 'horizon' | 'pulse' | 'monogram';
 
 export type Brand = {
   slug: string;
@@ -22,6 +22,10 @@ export type Brand = {
   tagline: string;
   description: string;
   highlights: string[];
+  /** Kürzel im Logo-Chip (sonst Initialen des Namens). */
+  monogram?: string;
+  /** Wortmarke in zwei Teilen (fett + leicht), sonst aus dem Namen abgeleitet. */
+  wordmark?: [string, string];
   logo?: string;
   image?: string;
   website?: string;
@@ -50,19 +54,38 @@ export const brandStatusLabel: Record<BrandStatus, string> = {
 
 export const brands: Brand[] = [
   {
-    slug: 'metropol-tours',
-    name: 'Metropol Tours',
-    category: 'Travel • Mobility • Bus',
-    tags: ['Travel', 'Mobility', 'Bus'],
-    tagline: 'Unterwegs. Verbunden. Verlässlich.',
+    slug: 'boundforfuture',
+    name: 'Boundforfuture',
+    category: 'Werbeagentur • Marke • Kommunikation',
+    tags: ['Werbeagentur', 'Marke'],
+    tagline: 'Nächster Stopp Zukunft.',
     description:
-      'Reise- und Busvermittlung mit digitalem Fokus: Verbindungen, Gruppenreisen und Mobilitätsangebote aus einer Hand.',
-    highlights: ['Reisevermittlung', 'Busvermittlung', 'Mobilitätsangebote'],
-    website: undefined,
-    status: 'building',
+      'Werbeagentur für Markenaufbau, Kommunikation und digitale Kampagnen: Ideen, die Marken nach vorn bringen.',
+    highlights: ['Markenaufbau', 'Kommunikation & Kampagnen', 'Digitales Marketing'],
+    monogram: 'BF',
+    wordmark: ['BOUND', 'FOR FUTURE'],
+    website: 'https://boundforfuture.com',
+    status: 'live',
     type: 'own',
-    art: 'route',
-    theme: { bg: '#0B1A2C', bg2: '#12345A', fg: '#F4F7FB', muted: '#9FB3CC', accent: '#F5B63A' },
+    art: 'horizon',
+    theme: { bg: '#0E0F14', bg2: '#1D1F2E', fg: '#F5F6F0', muted: '#A3A7B8', accent: '#C8F03C' },
+  },
+  {
+    slug: 'goklinik',
+    name: 'GoKlinik',
+    category: 'Digitale Gesundheit • Plattform',
+    tags: ['Digitale Gesundheit', 'Plattform'],
+    tagline: 'Gesundheit, einfach digital.',
+    description:
+      'Digitale Gesundheitsplattform: Online-Anfragen, Patienten-App und klare Prozesse rund um Praxis und Apotheke.',
+    highlights: ['Online-Anfragen', 'Patienten-App', 'Digitale Prozesse'],
+    monogram: 'GK',
+    wordmark: ['GO', 'KLINIK'],
+    website: 'https://goklinik.de',
+    status: 'live',
+    type: 'own',
+    art: 'pulse',
+    theme: { bg: '#0A2E33', bg2: '#0E5A62', fg: '#F2FAFA', muted: '#9CC7CB', accent: '#4FD8D0' },
   },
   {
     slug: 'rose-cafe',
@@ -77,22 +100,24 @@ export const brands: Brand[] = [
     status: 'live',
     type: 'managed',
     art: 'bloom',
-    theme: { bg: '#F6E2DF', bg2: '#EFC9C6', fg: '#3A1219', muted: '#8B5A5F', accent: '#C2314B' },
+    theme: { bg: '#F8EAE4', bg2: '#EFCFCB', fg: '#2B1A17', muted: '#8B5E5A', accent: '#B8465B' },
   },
   {
-    slug: 'mtc-autoservice',
-    name: 'MTC Autoservice',
-    category: 'Automotive • Service',
-    tags: ['Automotive', 'Service'],
-    tagline: 'Präzision. Rund ums Fahrzeug.',
+    slug: 'busvermittlung',
+    name: 'Busvermittlung',
+    category: 'Travel • Mobility • Bus',
+    tags: ['Travel', 'Mobility', 'Bus'],
+    tagline: 'Kommt bald.',
     description:
-      'Automotive-Servicemarke für Wartung, Pflege und Betreuung: verlässliche Abläufe, sauber dokumentiert.',
-    highlights: ['Fahrzeugservice', 'Wartung & Pflege', 'Klare Abläufe'],
+      'Digitale Busvermittlung für Verbindungen, Gruppenreisen und Mobilitätsangebote. In Vorbereitung.',
+    highlights: ['Busvermittlung', 'Gruppenreisen', 'Mobilitätsangebote'],
+    monogram: 'BV',
+    wordmark: ['BUS', 'VERMITTLUNG'],
     website: undefined,
-    status: 'live',
-    type: 'managed',
-    art: 'rim',
-    theme: { bg: '#14171B', bg2: '#22272E', fg: '#F1F3F5', muted: '#98A1AB', accent: '#22C1B0' },
+    status: 'planned',
+    type: 'own',
+    art: 'route',
+    theme: { bg: '#0B1A2C', bg2: '#12345A', fg: '#F4F7FB', muted: '#9FB3CC', accent: '#F5B63A' },
   },
 ];
 

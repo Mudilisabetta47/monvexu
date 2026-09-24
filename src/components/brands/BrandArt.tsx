@@ -104,6 +104,65 @@ function Rim({ t }: { t: Brand['theme'] }) {
   );
 }
 
+function Horizon({ t }: { t: Brand['theme'] }) {
+  return (
+    <g>
+      <g style={layer(-6)} opacity=".5">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <line key={i} x1={i * 56} y1="0" x2={i * 56} y2="210" stroke={t.fg} strokeOpacity=".06" />
+        ))}
+      </g>
+      <g style={layer(8)}>
+        <clipPath id="sky"><rect x="0" y="0" width="640" height="210" /></clipPath>
+        <g clipPath="url(#sky)">
+          {[150, 112, 78].map((r, i) => (
+            <circle key={r} cx="320" cy="210" r={r} fill={i === 2 ? t.accent : 'none'} stroke={t.accent} strokeOpacity={i === 2 ? 1 : 0.35 - i * 0.05} className={i === 0 ? 'animate-pulse-ring' : ''} style={{ transformOrigin: '320px 210px' }} />
+          ))}
+        </g>
+        <line x1="0" y1="210" x2="640" y2="210" stroke={t.fg} strokeOpacity=".35" />
+      </g>
+      <g style={layer(16)} fill="none" stroke={t.fg} strokeOpacity=".28">
+        <path d="M-40 480 L320 210 M140 480 L320 210 M500 480 L320 210 M680 480 L320 210" />
+        <path d="M320 480 L320 210" stroke={t.accent} strokeOpacity=".9" strokeWidth="2" strokeDasharray="10 14" className="animate-flow" />
+      </g>
+      <g style={layer(24)}>
+        <line x1="470" y1="250" x2="470" y2="345" stroke={t.fg} strokeOpacity=".6" strokeWidth="3" />
+        <rect x="440" y="222" width="60" height="38" rx="8" fill={t.accent} />
+        <path d="M456 241h26m-9-9l9 9-9 9" stroke={t.bg} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      </g>
+    </g>
+  );
+}
+
+function Pulse({ t }: { t: Brand['theme'] }) {
+  return (
+    <g>
+      <g style={layer(-6)} opacity=".5">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <line key={i} x1={i * 56} y1="0" x2={i * 56} y2="480" stroke={t.fg} strokeOpacity=".06" />
+        ))}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <line key={i} x1="0" y1={i * 52} x2="640" y2={i * 52} stroke={t.fg} strokeOpacity=".06" />
+        ))}
+      </g>
+      <g transform="translate(320 190)">
+        <g style={layer(12)}>
+          {[120, 90].map((r, i) => (
+            <circle key={r} r={r} fill="none" stroke={t.accent} strokeOpacity={0.3 - i * 0.1} className="animate-pulse-ring" style={{ animationDelay: `${i * 0.9}s` }} />
+          ))}
+          <rect x="-16" y="-52" width="32" height="104" rx="10" fill={t.accent} />
+          <rect x="-52" y="-16" width="104" height="32" rx="10" fill={t.accent} />
+          <rect x="-16" y="-16" width="32" height="32" fill={t.accent} />
+        </g>
+      </g>
+      <g style={layer(22)} fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M0 262 H210 l16 -40 l24 84 l22 -60 l14 20 H640" stroke={t.fg} strokeOpacity=".3" strokeWidth="2" />
+        <path d="M0 262 H210 l16 -40 l24 84 l22 -60 l14 20 H640" stroke={t.accent} strokeWidth="2.5" strokeDasharray="4 24" className="animate-flow" />
+      </g>
+    </g>
+  );
+}
+
 function Monogram({ b }: { b: Brand }) {
   const t = b.theme;
   const initials = b.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
@@ -138,6 +197,8 @@ export function BrandArt({ brand, className }: { brand: Brand; className?: strin
       {brand.art === 'route' && <Route t={t} />}
       {brand.art === 'bloom' && <Bloom t={t} />}
       {brand.art === 'rim' && <Rim t={t} />}
+      {brand.art === 'horizon' && <Horizon t={t} />}
+      {brand.art === 'pulse' && <Pulse t={t} />}
       {brand.art === 'monogram' && <Monogram b={brand} />}
     </svg>
   );

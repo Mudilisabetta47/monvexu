@@ -7,7 +7,7 @@ import { brands, brandTypeLabel } from '@/data/brands';
 
 export const metadata: Metadata = {
   title: 'Marken – das MONVEX Portfolio',
-  description: 'Alle Marken der MONVEX Dachmarke: Travel & Mobility, Gastronomie und Automotive Service – eigene und geführte Marken im Überblick.',
+  description: 'Alle Marken der MONVEX Dachmarke: Werbeagentur Boundforfuture, GoKlinik, Rose Café und Busvermittlung – eigene und geführte Marken im Überblick.',
   alternates: { canonical: '/brands' },
 };
 

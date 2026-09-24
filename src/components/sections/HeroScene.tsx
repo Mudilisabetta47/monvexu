@@ -109,7 +109,7 @@ export function HeroScene({ progress }: { progress: MotionValue<number> }) {
           >
             <div className="glass animate-float flex items-center gap-3 rounded-2xl px-4 py-3 shadow-card" style={{ animationDelay: c.delay }}>
               <span className="relative grid h-9 w-9 place-items-center rounded-xl text-[.7rem] font-semibold" style={{ background: b.theme.bg, color: b.theme.accent }}>
-                {b.name.split(' ').map((w) => w[0]).join('').slice(0, 2)}
+                {b.monogram ?? b.name.split(' ').map((w) => w[0]).join('').slice(0, 2)}
               </span>
               <span className="leading-tight">
                 <span className="block text-[.9rem] font-semibold tracking-tight">{b.name}</span>

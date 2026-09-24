@@ -30,7 +30,7 @@ const PILLARS = [
 
 export function Ecosystem() {
   const [active, setActive] = useState<string | null>(null);
-  const ghosts = 2;
+  const ghosts = 1;
   const nodes = layout(brands.length + ghosts).map((n, i) => ({ ...n, brand: brands[i] }));
 
   return (

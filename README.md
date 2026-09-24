@@ -48,7 +48,7 @@ Leistungen: `src/data/services.ts` · Prozess: `src/data/process.ts` · Firmenda
 2. **Kontaktformular aktivieren** – `.env.example` nach `.env.local` (bzw. in Vercel unter *Environment Variables*) kopieren und `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` setzen. Ohne diese Werte zeigt das Formular eine freundliche Fehlermeldung, statt Anfragen zu verlieren. Der Endpunkt (`src/app/api/contact/route.ts`) hat Validierung, Honeypot und einfaches Rate-Limit.
 3. **Domain** – `NEXT_PUBLIC_SITE_URL` setzen (Sitemap, OpenGraph, JSON-LD).
 4. **Marken-Websites** – `website` in `brands.ts` eintragen, sobald die URLs feststehen.
-5. **Einstufung prüfen** – ob Metropol Tours / Rose Café / MTC Autoservice als „eigene“ oder „geführte“ Marke geführt werden (`type` in `brands.ts`, `kind` in `projects.ts`).
+5. **Einstufung prüfen** – ob Boundforfuture / GoKlinik / Rose Café / Busvermittlung als „eigene“ oder „geführte“ Marke geführt werden (`type` in `brands.ts`, `kind` in `projects.ts`).
 
 ## Deployment
 

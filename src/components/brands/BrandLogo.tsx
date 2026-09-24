@@ -11,8 +11,8 @@ export function BrandLogo({ brand, className, color }: { brand: Brand; className
   if (brand.logo) {
     return <Image src={brand.logo} alt={`${brand.name} Logo`} width={160} height={40} className={cn('h-8 w-auto', className)} />;
   }
-  const [first, ...rest] = brand.name.split(' ');
-  const initials = brand.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+  const [first, ...rest] = brand.wordmark ? [brand.wordmark[0], brand.wordmark[1]] : brand.name.split(' ');
+  const initials = brand.monogram ?? brand.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   return (
     <span className={cn('inline-flex items-center gap-2.5', className)} style={{ color: fg }}>
       <span

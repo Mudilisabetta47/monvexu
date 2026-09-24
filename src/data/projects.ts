@@ -7,7 +7,7 @@
  *   managed-brand  geführte Marke
  *   project        eigenes Projekt / digitales Produkt
  *   client         Kundenprojekt
- * Die Einstufung der drei Startprojekte ist ein Platzhalter und bitte zu bestaetigen.
+ * Die Einstufung der Startprojekte ist ein Platzhalter und bitte zu bestaetigen.
  */
 export type ProjectKind = 'own-brand' | 'managed-brand' | 'project' | 'client';
 
@@ -31,12 +31,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'metropol-tours',
-    title: 'Metropol Tours',
+    slug: 'boundforfuture',
+    title: 'Boundforfuture',
     kind: 'own-brand',
-    scope: 'Markenaufbau · Digitale Plattform',
-    summary: 'Digitale Präsenz und Vertriebsstruktur für Reise- und Busvermittlung.',
-    brandSlug: 'metropol-tours',
+    scope: 'Werbeagentur · Markenkommunikation',
+    summary: 'Werbeagentur für Markenaufbau, Kommunikation und digitale Kampagnen. Nächster Stopp: Zukunft.',
+    brandSlug: 'boundforfuture',
+  },
+  {
+    slug: 'goklinik',
+    title: 'GoKlinik',
+    kind: 'own-brand',
+    scope: 'Digitale Gesundheit · Plattform',
+    summary: 'Digitale Gesundheitsplattform mit Patienten-App, Online-Anfragen und klaren Abläufen.',
+    brandSlug: 'goklinik',
   },
   {
     slug: 'rose-cafe',
@@ -45,13 +53,5 @@ export const projects: Project[] = [
     scope: 'Markenauftritt · Digitale Präsenz',
     summary: 'Ein Markenauftritt, der Atmosphäre und Gastfreundschaft digital übersetzt.',
     brandSlug: 'rose-cafe',
-  },
-  {
-    slug: 'mtc-autoservice',
-    title: 'MTC Autoservice',
-    kind: 'managed-brand',
-    scope: 'Digitale Präsenz · Servicekommunikation',
-    summary: 'Klare, verlässliche Darstellung von Leistungen und Abläufen rund ums Fahrzeug.',
-    brandSlug: 'mtc-autoservice',
   },
 ];
