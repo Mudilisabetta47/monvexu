@@ -15,9 +15,9 @@ const config: Config = {
         ember: { DEFAULT: '#FF4A1C', deep: '#C8340C', soft: 'rgba(255,74,28,.10)' },
       },
       fontFamily: {
-        sans: ['var(--font-geist)', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        sans: ['var(--font-geist-sans)', 'Helvetica Neue', 'Arial', 'sans-serif'],
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'Menlo', 'monospace'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'Menlo', 'monospace'],
       },
       fontSize: {
         eyebrow: ['.72rem', { letterSpacing: '.2em', lineHeight: '1' }],

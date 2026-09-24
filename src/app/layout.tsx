@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import localFont from 'next/font/local';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import { Providers } from '@/components/layout/Providers';
 import { Nav } from '@/components/layout/Nav';
@@ -12,9 +14,15 @@ import { JsonLd } from '@/components/ui/JsonLd';
 import { SEO, organizationSchema } from '@/lib/seo';
 import { SITE_URL, company } from '@/data/site';
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' });
-const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
-const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], variable: '--font-serif', display: 'swap' });
+// Alle Schriften sind selbst gehostet: der Build braucht kein Netzwerk, Besucher keine Drittanbieter-Requests.
+const serif = localFont({
+  src: [
+    { path: './fonts/InstrumentSerif-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/InstrumentSerif-Italic.woff2', weight: '400', style: 'italic' },
+  ],
+  variable: '--font-serif',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,7 +56,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="de" className={`${geist.variable} ${mono.variable} ${serif.variable}`}>
+    <html lang="de" className={`${GeistSans.variable} ${GeistMono.variable} ${serif.variable}`}>
       <body>
         <JsonLd data={organizationSchema()} />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[400] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-white">
