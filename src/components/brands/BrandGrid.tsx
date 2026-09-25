@@ -42,7 +42,7 @@ export function BrandGrid() {
         <AnimatePresence mode="popLayout">
           {list.map((b, i) => (
             <m.div key={b.slug} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3, ease: EASE }} className="xl:[&:nth-child(3n+2)]:mt-12">
-              <BrandCard brand={b} index={i} tall />
+              <BrandCard brand={b} index={i} tall headingLevel="h2" />
             </m.div>
           ))}
         </AnimatePresence>

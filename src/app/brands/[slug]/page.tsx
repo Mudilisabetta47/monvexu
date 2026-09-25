@@ -75,7 +75,7 @@ export default async function BrandPage({ params }: { params: Promise<Params> })
               <p className="eyebrow">Die Marke</p>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-6 text-[clamp(1.8rem,1.1rem+2.4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.04em]">{b.tagline}</p>
+              <h2 className="mt-6 text-[clamp(1.8rem,1.1rem+2.4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.04em]">{b.tagline}</h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-8 max-w-xl text-lead text-graphite">{b.description}</p>

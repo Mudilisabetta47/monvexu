@@ -56,6 +56,7 @@ export const nav: NavItem[] = [
   { label: 'Unternehmen', href: '/#unternehmen' },
   { label: 'Brands', href: '/#brands' },
   { label: 'Services', href: '/#services' },
+  { label: 'Werbeagentur', href: '/werbeagentur' },
   { label: 'Projects', href: '/#projects' },
   { label: 'Contact', href: '/#kontakt' },
 ];

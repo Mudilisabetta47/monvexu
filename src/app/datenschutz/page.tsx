@@ -4,6 +4,7 @@ import { company, legal } from '@/data/site';
 
 export const metadata: Metadata = {
   title: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung der MONVEX UG: Informationen zur Verarbeitung personenbezogener Daten, Kontaktformular, Hosting und Ihren Rechten.',
   alternates: { canonical: '/datenschutz' },
   robots: { index: true, follow: true },
 };

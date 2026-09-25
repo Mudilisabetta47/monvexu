@@ -47,6 +47,7 @@ const config: Config = {
           '80%,100%': { transform: 'scale(2.4)', opacity: '0' },
         },
         blink: { '50%': { opacity: '0' } },
+        rise: { from: { opacity: '0', transform: 'translate3d(0,18px,0)' }, to: { opacity: '1', transform: 'none' } },
         cube: { from: { transform: 'rotateX(-22deg) rotateY(0deg)' }, to: { transform: 'rotateX(-22deg) rotateY(360deg)' } },
         spinSlow: { to: { transform: 'rotate(360deg)' } },
         scrollHint: {
@@ -60,6 +61,7 @@ const config: Config = {
         float: 'float 7s ease-in-out infinite',
         'pulse-ring': 'pulseRing 2.8s cubic-bezier(.16,1,.3,1) infinite',
         blink: 'blink 1.1s steps(1) infinite',
+        rise: 'rise .9s cubic-bezier(.16,1,.3,1) both',
         cube: 'cube 26s linear infinite',
         'spin-slow': 'spinSlow 40s linear infinite',
         'scroll-hint': 'scrollHint 2.2s cubic-bezier(.65,0,.35,1) infinite',

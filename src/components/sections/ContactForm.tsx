@@ -36,7 +36,7 @@ function Field({ id, label, error, required, children }: { id: string; label: st
   );
 }
 
-export function ContactForm() {
+export function ContactForm({ topic }: { topic?: string }) {
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Errors>({});
   const [serverMsg, setServerMsg] = useState('');
@@ -46,6 +46,7 @@ export function ContactForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries()) as Record<string, string>;
+    if (topic) data.topic = topic;
 
     const next: Errors = {};
     if (!data.name?.trim()) next.name = 'Bitte nennen Sie uns Ihren Namen.';

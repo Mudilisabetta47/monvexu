@@ -14,7 +14,8 @@ import { EASE } from '@/lib/motion';
  * Grosse Markenkarte mit eigener Farbwelt. Beim Hover: 3D-Neigung, Visual parallax,
  * Text schiebt herein, Cursor wird zum "Ansehen"-Label.
  */
-export function BrandCard({ brand, index = 0, tall = false }: { brand: Brand; index?: number; tall?: boolean }) {
+export function BrandCard({ brand, index = 0, tall = false, headingLevel = 'h3' }: { brand: Brand; index?: number; tall?: boolean; headingLevel?: 'h2' | 'h3' }) {
+  const Heading = headingLevel;
   const t = brand.theme;
   return (
     <m.div
@@ -49,7 +50,7 @@ export function BrandCard({ brand, index = 0, tall = false }: { brand: Brand; in
             <p className="font-mono text-[.72rem] uppercase tracking-[.18em]" style={{ color: t.accent }}>
               {brand.category}
             </p>
-            <h3 className="mt-3 text-[clamp(2rem,1.4rem+2.4vw,3.4rem)] font-semibold leading-[.95] tracking-[-0.045em]">{brand.name}</h3>
+            <Heading className="mt-3 text-[clamp(2rem,1.4rem+2.4vw,3.4rem)] font-semibold leading-[.95] tracking-[-0.045em]">{brand.name}</Heading>
             <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-700 ease-out group-hover:grid-rows-[1fr] [@media(hover:none)]:grid-rows-[1fr]">
               <div className="overflow-hidden">
                 <p className="mt-4 max-w-md translate-y-3 text-[.98rem] leading-relaxed opacity-0 transition-all duration-700 ease-out group-hover:translate-y-0 group-hover:opacity-100 [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100" style={{ color: t.muted }}>
