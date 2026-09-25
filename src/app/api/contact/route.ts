@@ -59,7 +59,7 @@ export async function POST(req: Request) {
   }
 
   const text = [
-    `Neue Anfrage über monvex.de`,
+    `Neue Anfrage über monvex-group.de`,
     ``,
     `Name:        ${name}`,
     `Unternehmen: ${company || '–'}`,

@@ -2,7 +2,7 @@
  * Zentrale Stammdaten. Nur Angaben, die belegt sind – nichts erfunden.
  * Offene Pflichtangaben fuer das Impressum stehen in `legal` (undefined = noch ergaenzen).
  */
-const DEFAULT_SITE_URL = 'https://monvex.de';
+const DEFAULT_SITE_URL = 'https://www.monvex-group.de';
 
 /** Toleriert eine falsch gesetzte Env-Variable (ohne https://, mit Leerzeichen, leer) statt den Build abzubrechen. */
 function resolveSiteUrl(raw: string | undefined) {
