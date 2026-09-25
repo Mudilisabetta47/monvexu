@@ -4,6 +4,7 @@ import { Marquee } from '@/components/ui/Marquee';
 import { Ecosystem } from '@/components/sections/Ecosystem';
 import { BrandsPreview } from '@/components/sections/BrandsPreview';
 import { Services } from '@/components/sections/Services';
+import { AgencyTeaser } from '@/components/sections/AgencyTeaser';
 import { Process } from '@/components/sections/Process';
 import { Business } from '@/components/sections/Business';
 import { SelectedWork } from '@/components/sections/SelectedWork';
@@ -26,6 +27,7 @@ export default function Home() {
       <Ecosystem />
       <BrandsPreview />
       <Services />
+      <AgencyTeaser />
       <Process />
       <Business />
       <SelectedWork />

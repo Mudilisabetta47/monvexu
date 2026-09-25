@@ -4,6 +4,7 @@ import { company, legal } from '@/data/site';
 
 export const metadata: Metadata = {
   title: 'Impressum',
+  description: 'Impressum der MONVEX UG (haftungsbeschränkt), Kirchbachstraße 200, 28211 Bremen: Anbieterkennzeichnung und rechtliche Hinweise.',
   alternates: { canonical: '/impressum' },
   robots: { index: true, follow: true },
 };

@@ -42,6 +42,31 @@ Alles ist datenbasiert. In [`src/data/brands.ts`](src/data/brands.ts) ein Objekt
 
 Leistungen: `src/data/services.ts` · Prozess: `src/data/process.ts` · Firmendaten & Impressum-Pflichtangaben: `src/data/site.ts`
 
+## Werbeagentur-Bereich (SEO-Landingpage-System)
+
+Routen: `/werbeagentur`, `/werbeagentur/leistungen[/<leistung>]`, `/werbeagentur/branchen`, `/werbeagentur/<branche>`,
+`/werbeagentur/<branche>/<unterbranche | region>` (z. B. `/werbeagentur/fahrschulen/bremen`, `/werbeagentur/anwaelte/steuerberater`).
+
+Datenquellen unter `src/data/agency/`:
+
+| Datei | Inhalt |
+|---|---|
+| `services.ts` | Leistungskatalog + 12 Leistungsseiten |
+| `industries/*.ts` | eine Branche je Objekt (Probleme, Lösungen, Umsetzungen, FAQ, Hinweise); Registry in `industries/index.ts` |
+| `regions.ts` | Bundesländer/Städte mit echten Orten und individuellem Text je Branche × Region (`notes`) |
+| `regional-steps.ts` | ortsbezogener „erster Schritt“ je Branche × Region |
+
+**Anti-Doorway-Regel:** Eine Seite wird nur veröffentlicht (Route, Sitemap, Links), wenn sie eigenen Content hat.
+Eine Region erscheint bei einer Branche erst, wenn `region.notes[<branche>]` existiert. Nicht registrierte Branchen
+(`industryPipeline`) haben weder Seite noch Sitemap-Eintrag.
+
+**Neue Branche:** Datei in `industries/` anlegen, in `industries/index.ts` eintragen.
+**Neue Region für eine Branche:** in `regions.ts` einen Eintrag ergänzen (bzw. `notes.<branche>` schreiben), Slug in `industry.regions` aufnehmen, ggf. Schritt in `regional-steps.ts`.
+
+**Prüfung** (Server muss laufen): `npm run build && npm start` und in einem zweiten Terminal `npm run verify:seo`
+(`BASE_URL=http://localhost:3000`). Geprüft werden Sitemap-URLs, Title/Description/H1-Eindeutigkeit, Canonical, OpenGraph,
+JSON-LD, interne Links, Waisenseiten, LocalBusiness-Regel und die Textähnlichkeit zwischen Regionalseiten.
+
 ## Vor dem Livegang
 
 1. **Impressum ergänzen** – in `src/data/site.ts` (`legal`): Geschäftsführung, Registergericht/-nummer, E-Mail, ggf. Telefon und USt-IdNr. Fehlende Angaben werden auf `/impressum` und `/datenschutz` sichtbar als „bitte ergänzen“ markiert. Rechtstexte bitte juristisch prüfen lassen.

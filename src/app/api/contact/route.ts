@@ -41,6 +41,7 @@ export async function POST(req: Request) {
   const email = oneLine(str(body.email, 200));
   const phone = oneLine(str(body.phone, 60));
   const message = str(body.message, 5000);
+  const topic = oneLine(str(body.topic, 200));
 
   if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 10 || body.consent !== 'yes') {
     return NextResponse.json({ error: 'invalid', message: 'Bitte prüfen Sie Ihre Angaben.' }, { status: 400 });
@@ -58,12 +59,13 @@ export async function POST(req: Request) {
   }
 
   const text = [
-    `Neue Anfrage über monvex.de`,
+    `Neue Anfrage über monvex-group.de`,
     ``,
     `Name:        ${name}`,
     `Unternehmen: ${company || '–'}`,
     `E-Mail:      ${email}`,
     `Telefon:     ${phone || '–'}`,
+    ...(topic ? [`Thema:       ${topic}`] : []),
     ``,
     message,
   ].join('\n');
@@ -72,7 +74,7 @@ export async function POST(req: Request) {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from, to: [to], reply_to: email, subject: `MONVEX Anfrage: ${name}${company ? ` (${company})` : ''}`, text }),
+      body: JSON.stringify({ from, to: [to], reply_to: email, subject: `MONVEX Anfrage${topic ? ` [${topic}]` : ''}: ${name}${company ? ` (${company})` : ''}`, text }),
     });
     if (!res.ok) {
       console.error('[contact] Resend-Fehler', res.status, await res.text().catch(() => ''));
