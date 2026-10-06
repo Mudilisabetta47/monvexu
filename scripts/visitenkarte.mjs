@@ -16,7 +16,7 @@ import { chromium } from 'playwright-core';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'design/visitenkarte/out');
 fs.mkdirSync(outDir, { recursive: true });
-const cfg = JSON.parse(fs.readFileSync(path.join(root, 'design/visitenkarte/card.config.json'), 'utf8'));
+const config = JSON.parse(fs.readFileSync(path.join(root, 'design/visitenkarte/card.config.json'), 'utf8'));
 
 // Logo-Pfade aus der einzigen Quelle (logo-paths.ts) lesen
 const lp = fs.readFileSync(path.join(root, 'src/components/ui/logo-paths.ts'), 'utf8');
@@ -25,15 +25,15 @@ const MARK = { ink: grab('MARK', 'ink'), ember: grab('MARK', 'ember') };
 const WORD = { ink: grab('WORDMARK', 'ink'), ember: grab('WORDMARK', 'ember') };
 const font = (f) => `file://${path.join(root, 'node_modules/geist/dist/fonts', f)}`;
 
-const qr = await QRCode.toString(cfg.websiteUrl, { type: 'svg', margin: 0, color: { dark: '#0B0B0D', light: '#0000' }, errorCorrectionLevel: 'M' });
+const qr = await QRCode.toString(config.company.websiteUrl, { type: 'svg', margin: 0, color: { dark: '#0B0B0D', light: '#0000' }, errorCorrectionLevel: 'M' });
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-const rows = [
-  cfg.phone && ['T', cfg.phone],
-  cfg.email && ['E', cfg.email],
-  cfg.website && ['W', cfg.website],
-].filter(Boolean);
-
-const html = `<!doctype html><html lang="de"><meta charset="utf-8"><style>
+const makeHtml = (cfg) => {
+  const rows = [
+    cfg.phone && ['T', cfg.phone],
+    cfg.email && ['E', cfg.email],
+    cfg.website && ['W', cfg.website],
+  ].filter(Boolean);
+  return `<!doctype html><html lang="de"><meta charset="utf-8"><style>
 @font-face{font-family:G;src:url(${font('geist-sans/Geist-Variable.woff2')});font-weight:100 900}
 @font-face{font-family:GM;src:url(${font('geist-mono/GeistMono-Regular.woff2')});font-weight:400}
 @page{size:91mm 61mm;margin:0}
@@ -85,23 +85,26 @@ body{font-family:G,sans-serif;-webkit-print-color-adjust:exact;print-color-adjus
   </div>
 </div>
 </body></html>`;
+};
 
-const htmlPath = path.join(outDir, 'visitenkarte.html');
-fs.writeFileSync(htmlPath, html);
 
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
-const page = await browser.newPage({ viewport: { width: 344, height: 231 }, deviceScaleFactor: 1 });
-await page.goto('file://' + htmlPath);
-await page.evaluate(() => document.fonts.ready);
-await page.pdf({ path: path.join(outDir, 'monvex-visitenkarte-druck.pdf'), width: '91mm', height: '61mm', printBackground: true, preferCSSPageSize: true });
-
-// PNG-Vorschauen: auf Endformat 85x55 beschnitten, 600 dpi-nah (1004 px Breite)
 const mm = 96 / 25.4;
-const big = await browser.newPage({ viewport: { width: Math.round(91 * mm), height: Math.round(61 * mm) * 2 + 2 }, deviceScaleFactor: 1004 / (85 * mm) });
-await big.goto('file://' + htmlPath);
-await big.evaluate(() => document.fonts.ready);
-for (const [i, name] of ['vorderseite', 'rueckseite'].entries()) {
-  await big.screenshot({ path: path.join(outDir, `monvex-visitenkarte-${name}.png`), clip: { x: 3 * mm, y: i * 61 * mm + 3 * mm, width: 85 * mm, height: 55 * mm } });
+for (const person of config.people) {
+  const cfg = { ...config.company, ...person };
+  const htmlPath = path.join(outDir, `${person.slug}.html`);
+  fs.writeFileSync(htmlPath, makeHtml(cfg));
+  const page = await browser.newPage({ viewport: { width: 344, height: 231 } });
+  await page.goto('file://' + htmlPath);
+  await page.evaluate(() => document.fonts.ready);
+  await page.pdf({ path: path.join(outDir, `monvex-visitenkarte-${person.slug}-druck.pdf`), width: '91mm', height: '61mm', printBackground: true, preferCSSPageSize: true });
+  const big = await browser.newPage({ viewport: { width: Math.round(91 * mm), height: Math.round(61 * mm) * 2 + 2 }, deviceScaleFactor: 1004 / (85 * mm) });
+  await big.goto('file://' + htmlPath);
+  await big.evaluate(() => document.fonts.ready);
+  for (const [i, name] of ['vorderseite', 'rueckseite'].entries()) {
+    await big.screenshot({ path: path.join(outDir, `monvex-visitenkarte-${person.slug}-${name}.png`), clip: { x: 3 * mm, y: i * 61 * mm + 3 * mm, width: 85 * mm, height: 55 * mm } });
+  }
+  fs.unlinkSync(htmlPath);
 }
 await browser.close();
 console.log('OK →', outDir);
