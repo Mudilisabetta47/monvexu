@@ -10,18 +10,217 @@
       "qrSub": "www.monvex-group.de/werbeagentur",
       "backTitle": "Alles aus einer Hand.",
       "services": [
-        ["Webdesign & Websites", "Modern, mobil, mit klarem Weg zur Anfrage.", "Monitor"],
-        ["SEO & lokale Suche", "Gefunden werden, wenn Kunden in Ihrer Nähe suchen.", "Search"],
-        ["Google Ads", "Anzeigen mit Ziel: passende Anfragen statt bloßer Klicks.", "MousePointerClick"],
-        ["Social Media & Content", "Beiträge, Kurzvideos und Grafiken, die zu Ihnen passen.", "Smartphone"],
-        ["Logo & Branding", "Eine Marke, die erkennbar und einheitlich auftritt.", "Palette"],
-        ["Print & Fahrzeug", "Flyer, Visitenkarten, Plakate und Fahrzeugbeschriftung.", "Printer"]
+        [
+          "Webdesign & Websites",
+          "Modern, mobil, mit klarem Weg zur Anfrage.",
+          "Monitor"
+        ],
+        [
+          "SEO & lokale Suche",
+          "Gefunden werden, wenn Kunden in Ihrer Nähe suchen.",
+          "Search"
+        ],
+        [
+          "Google Ads",
+          "Anzeigen mit Ziel: passende Anfragen statt bloßer Klicks.",
+          "MousePointerClick"
+        ],
+        [
+          "Social Media & Content",
+          "Beiträge, Kurzvideos und Grafiken, die zu Ihnen passen.",
+          "Smartphone"
+        ],
+        [
+          "Logo & Branding",
+          "Eine Marke, die erkennbar und einheitlich auftritt.",
+          "Palette"
+        ],
+        [
+          "Print & Fahrzeug",
+          "Flyer, Visitenkarten, Plakate und Fahrzeugbeschriftung.",
+          "Printer"
+        ]
       ],
       "industriesTitle": "Für Betriebe mit Anspruch",
-      "industries": ["Fahrschulen", "Kanzleien", "Praxen", "Handwerk", "Gastronomie", "Immobilien"],
-      "steps": ["Erstgespräch", "Konzept", "Umsetzung", "Betreuung"],
+      "industries": [
+        "Fahrschulen",
+        "Kanzleien",
+        "Praxen",
+        "Handwerk",
+        "Gastronomie",
+        "Immobilien"
+      ],
+      "steps": [
+        "Erstgespräch",
+        "Konzept",
+        "Umsetzung",
+        "Betreuung"
+      ],
       "ctaTitle": "Sprechen wir darüber.",
-      "contact": { "name": "Mudi Hassun", "title": "Sales Manager", "email": "mudi@monvex-group.de", "phone": "" }
+      "contact": {
+        "name": "Mudi Hassun",
+        "title": "Sales Manager",
+        "email": "mudi@monvex-group.de",
+        "phone": ""
+      }
+    },
+    {
+      "slug": "fahrschulen",
+      "template": "offer",
+      "eyebrow": "Für Fahrschulen in Bremen",
+      "headline": "Findet Ihre Fahrschule neue Fahrschüler – oder *die nebenan?*",
+      "lead": "Wer den Führerschein machen will, sucht auf dem Handy und meldet sich dort an, wo es am einfachsten geht.",
+      "checks": [
+        [
+          "MapPin",
+          "Google-Profil",
+          "Werden Sie bei „Fahrschule in meiner Nähe“ gefunden?"
+        ],
+        [
+          "Smartphone",
+          "Website auf dem Handy",
+          "Überzeugt sie in Sekunden, und ist alles lesbar?"
+        ],
+        [
+          "UserPlus",
+          "Anmeldung",
+          "Wie viele Hürden liegen zwischen Interessent und Anmeldung?"
+        ]
+      ],
+      "badgeTop": "Kostenlos",
+      "badgeMain": "Website-Check",
+      "offer": "Wir prüfen Ihr Google-Profil, Ihre Website und Ihren Anmeldeweg. Sie erhalten drei konkrete Verbesserungen, ohne Verpflichtung.",
+      "qrUrl": "https://www.monvex-group.de/werbeagentur/fahrschulen/bremen?utm_source=flyer&utm_medium=print&utm_campaign=fahrschulen-bremen",
+      "qrLabel": "QR scannen. Check anfordern.",
+      "qrSub": "www.monvex-group.de/werbeagentur/fahrschulen",
+      "backTitle": "So läuft der *Check.*",
+      "steps": [
+        [
+          "Anfordern",
+          "QR-Code scannen oder anrufen und kurz Ihre Fahrschule nennen."
+        ],
+        [
+          "Wir prüfen",
+          "Wir schauen uns Google-Profil, Website und Anmeldeweg Ihrer Fahrschule an."
+        ],
+        [
+          "Sie entscheiden",
+          "Sie erhalten drei konkrete Verbesserungen. Ob Sie mit uns arbeiten, entscheiden allein Sie."
+        ]
+      ],
+      "bonusTitle": "Was Fahrschulen von uns bekommen",
+      "bonus": [
+        [
+          "MapPin",
+          "Lokal gefunden",
+          "Google-Profil und Seiten für Ihr Einzugsgebiet."
+        ],
+        [
+          "Smartphone",
+          "Mobile Website",
+          "Schnell, klar, mit Klassen und Preisübersicht."
+        ],
+        [
+          "UserPlus",
+          "Online-Anmeldung",
+          "Interessenten melden sich in wenigen Schritten an."
+        ],
+        [
+          "Car",
+          "Fahrzeug-Design",
+          "Einheitliche Beschriftung mit QR-Code zur Anmeldung."
+        ]
+      ],
+      "trust": [
+        [
+          "Rocket",
+          "Wir betreiben selbst digitale Marken, darunter Boundforfuture und GoKlinik."
+        ],
+        [
+          "Handshake",
+          "Persönlich aus Bremen: Termine vor Ort sind möglich."
+        ]
+      ],
+      "ctaTitle": "Sprechen wir darüber."
+    },
+    {
+      "slug": "kanzleien",
+      "template": "offer",
+      "eyebrow": "Für Kanzleien in Bremen",
+      "headline": "Wie gut findet man Ihre Kanzlei, wenn jemand *einen Anwalt sucht?*",
+      "lead": "Mandanten suchen nach ihrem Problem, nicht nach Kanzleinamen, und entscheiden nach Vertrauen und Erreichbarkeit.",
+      "checks": [
+        [
+          "Search",
+          "Rechtsgebiete",
+          "Finden Mandanten Sie bei den Themen, die Sie tatsächlich bearbeiten?"
+        ],
+        [
+          "ShieldCheck",
+          "Vertrauen",
+          "Zeigt Ihr Auftritt Qualifikation, Schwerpunkte und Seriosität?"
+        ],
+        [
+          "CalendarCheck",
+          "Erstkontakt",
+          "Ist die Erstberatung auf dem Handy diskret und einfach anzufragen?"
+        ]
+      ],
+      "badgeTop": "Kostenlos",
+      "badgeMain": "Website-Check",
+      "offer": "Wir prüfen Ihre Website, Ihr Google-Profil und Ihren Erstkontakt. Sie erhalten drei konkrete Verbesserungen, sachlich und ohne Verpflichtung.",
+      "qrUrl": "https://www.monvex-group.de/werbeagentur/anwaelte/bremen?utm_source=flyer&utm_medium=print&utm_campaign=kanzleien-bremen",
+      "qrLabel": "QR scannen. Check anfordern.",
+      "qrSub": "www.monvex-group.de/werbeagentur/anwaelte",
+      "backTitle": "So läuft der *Check.*",
+      "steps": [
+        [
+          "Anfordern",
+          "QR-Code scannen oder anrufen und kurz Ihre Kanzlei nennen."
+        ],
+        [
+          "Wir prüfen",
+          "Wir schauen uns Website, Google-Profil und Erstkontakt Ihrer Kanzlei an."
+        ],
+        [
+          "Sie entscheiden",
+          "Sie erhalten drei konkrete Verbesserungen. Ob Sie mit uns arbeiten, entscheiden allein Sie."
+        ]
+      ],
+      "bonusTitle": "Was Kanzleien von uns bekommen",
+      "bonus": [
+        [
+          "Scale",
+          "Rechtsgebiete-Seiten",
+          "Hilfreiche Seiten für Ihre Kernthemen."
+        ],
+        [
+          "MapPin",
+          "Lokale Sichtbarkeit",
+          "Gepflegtes Google-Profil und klare Standortdaten."
+        ],
+        [
+          "CalendarCheck",
+          "Erstberatung online",
+          "Terminanfrage, diskret und datensparsam."
+        ],
+        [
+          "Palette",
+          "Kanzleimarke",
+          "Logo, Corporate Design und Geschäftsausstattung."
+        ]
+      ],
+      "trust": [
+        [
+          "Rocket",
+          "Wir betreiben selbst digitale Marken, darunter Boundforfuture und GoKlinik."
+        ],
+        [
+          "Handshake",
+          "Persönlich aus Bremen. Sachlich und im Rahmen des Berufsrechts."
+        ]
+      ],
+      "ctaTitle": "Sprechen wir darüber."
     }
   ],
   "company": {
@@ -30,5 +229,11 @@
     "street": "Kirchbachstraße 200",
     "city": "28211 Bremen",
     "tagline": "Build. Brand. Scale."
+  },
+  "contact": {
+    "name": "Mudi Hassun",
+    "title": "Sales Manager",
+    "email": "mudi@monvex-group.de",
+    "phone": ""
   }
 }
