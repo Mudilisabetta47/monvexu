@@ -42,8 +42,10 @@ export async function POST(req: Request) {
   const phone = oneLine(str(body.phone, 60));
   const message = str(body.message, 5000);
   const topic = oneLine(str(body.topic, 200));
+  const isCheck = body.kind === 'check';
+  const siteUrl = oneLine(str(body.siteUrl, 200));
 
-  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 10 || body.consent !== 'yes') {
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || (!isCheck && message.length < 10) || body.consent !== 'yes') {
     return NextResponse.json({ error: 'invalid', message: 'Bitte prüfen Sie Ihre Angaben.' }, { status: 400 });
   }
 
@@ -59,15 +61,15 @@ export async function POST(req: Request) {
   }
 
   const text = [
-    `Neue Anfrage über monvex-group.de`,
+    isCheck ? `Neue Anfrage: KOSTENLOSER WEBSITE-CHECK (über monvex-group.de)` : `Neue Anfrage über monvex-group.de`,
     ``,
     `Name:        ${name}`,
     `Unternehmen: ${company || '–'}`,
     `E-Mail:      ${email}`,
     `Telefon:     ${phone || '–'}`,
     ...(topic ? [`Thema:       ${topic}`] : []),
-    ``,
-    message,
+    ...(isCheck ? [`Website:     ${siteUrl || '–'}`] : []),
+    ...(message ? ['', message] : []),
   ].join('\n');
 
   try {
