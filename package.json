@@ -10,7 +10,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "verify:seo": "node scripts/verify-seo.mjs",
-    "card": "node scripts/visitenkarte.mjs"
+    "card": "node scripts/visitenkarte.mjs",
+    "flyer": "node scripts/flyer.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",

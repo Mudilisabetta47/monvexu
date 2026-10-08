@@ -1,0 +1,34 @@
+{
+  "flyers": [
+    {
+      "slug": "werbeagentur",
+      "eyebrow": "Werbeagentur · Bremen",
+      "headline": "Wir machen Ihre Marke *sichtbar.*",
+      "lead": "Webdesign, SEO, Google Ads, Branding und Print: Ihre Werbeagentur aus Bremen. Persönlich, modern und mit dem Ziel, dass am Ende Anfragen stehen.",
+      "qrUrl": "https://www.monvex-group.de/werbeagentur",
+      "qrLabel": "Jetzt unverbindlich anfragen",
+      "qrSub": "www.monvex-group.de/werbeagentur",
+      "backTitle": "Alles aus einer Hand.",
+      "services": [
+        ["Webdesign & Websites", "Modern, mobil, mit klarem Weg zur Anfrage."],
+        ["SEO & lokale Suche", "Gefunden werden, wenn Kunden in Ihrer Nähe suchen."],
+        ["Google Ads", "Anzeigen mit Ziel: passende Anfragen statt bloßer Klicks."],
+        ["Social Media & Content", "Beiträge, Kurzvideos und Grafiken, die zu Ihnen passen."],
+        ["Logo & Branding", "Eine Marke, die erkennbar und einheitlich auftritt."],
+        ["Print & Fahrzeug", "Flyer, Visitenkarten, Plakate und Fahrzeugbeschriftung."]
+      ],
+      "industriesTitle": "Für Betriebe mit Anspruch",
+      "industries": ["Fahrschulen", "Kanzleien", "Praxen", "Handwerk", "Gastronomie", "Immobilien"],
+      "steps": ["Erstgespräch", "Konzept", "Umsetzung", "Betreuung"],
+      "ctaTitle": "Sprechen wir darüber.",
+      "contact": { "name": "Mohammed Al Bakhit", "title": "Geschäftsführer", "email": "mudi@monvex-group.de", "phone": "" }
+    }
+  ],
+  "company": {
+    "website": "www.monvex-group.de",
+    "legalName": "MONVEX UG (haftungsbeschränkt)",
+    "street": "Kirchbachstraße 200",
+    "city": "28211 Bremen",
+    "tagline": "Build. Brand. Scale."
+  }
+}
