@@ -10,12 +10,12 @@
       "qrSub": "www.monvex-group.de/werbeagentur",
       "backTitle": "Alles aus einer Hand.",
       "services": [
-        ["Webdesign & Websites", "Modern, mobil, mit klarem Weg zur Anfrage."],
-        ["SEO & lokale Suche", "Gefunden werden, wenn Kunden in Ihrer Nähe suchen."],
-        ["Google Ads", "Anzeigen mit Ziel: passende Anfragen statt bloßer Klicks."],
-        ["Social Media & Content", "Beiträge, Kurzvideos und Grafiken, die zu Ihnen passen."],
-        ["Logo & Branding", "Eine Marke, die erkennbar und einheitlich auftritt."],
-        ["Print & Fahrzeug", "Flyer, Visitenkarten, Plakate und Fahrzeugbeschriftung."]
+        ["Webdesign & Websites", "Modern, mobil, mit klarem Weg zur Anfrage.", "Monitor"],
+        ["SEO & lokale Suche", "Gefunden werden, wenn Kunden in Ihrer Nähe suchen.", "Search"],
+        ["Google Ads", "Anzeigen mit Ziel: passende Anfragen statt bloßer Klicks.", "MousePointerClick"],
+        ["Social Media & Content", "Beiträge, Kurzvideos und Grafiken, die zu Ihnen passen.", "Smartphone"],
+        ["Logo & Branding", "Eine Marke, die erkennbar und einheitlich auftritt.", "Palette"],
+        ["Print & Fahrzeug", "Flyer, Visitenkarten, Plakate und Fahrzeugbeschriftung.", "Printer"]
       ],
       "industriesTitle": "Für Betriebe mit Anspruch",
       "industries": ["Fahrschulen", "Kanzleien", "Praxen", "Handwerk", "Gastronomie", "Immobilien"],

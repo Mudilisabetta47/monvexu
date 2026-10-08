@@ -9,6 +9,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright-core';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import * as Lucide from 'lucide-react';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'design/flyer/out');
@@ -22,6 +25,9 @@ const WORD = { ink: grab('WORDMARK', 'ink'), ember: grab('WORDMARK', 'ember') };
 const fontUrl = (f) => `file://${path.join(root, f)}`;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const accent = (s) => esc(s).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+/** Lucide-Symbol als statisches SVG (Konturstärke/Farbe anpassbar). */
+const icon = (name, size, color, stroke = 1.7) => renderToStaticMarkup(createElement(Lucide[name], { size, color, strokeWidth: stroke, absoluteStrokeWidth: false }));
 
 const W = 154, H = 216; // mm inkl. 3 mm Beschnitt je Seite
 
@@ -57,34 +63,36 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .back{background:#F6F5F1;color:#0B0B0D}
 .back .bar{position:absolute;left:0;top:0;right:0;height:5.2mm;background:#0B0B0D}
 .back .bar::after{content:"";position:absolute;right:0;top:0;height:100%;width:34mm;background:#FF4A1C}
-.back .in{position:absolute;left:14mm;right:14mm;top:15mm;bottom:0}
+.back .in{position:absolute;left:14mm;right:14mm;top:15mm}
 .back .logo{width:30mm;display:block}
-.back h2{margin-top:5mm;font-weight:600;font-size:24pt;line-height:1;letter-spacing:-.045em}
+.back h2{margin-top:6mm;font-weight:600;font-size:26pt;line-height:1;letter-spacing:-.045em}
 .back h2 em{color:#FF4A1C}
-.svc{margin-top:5mm;display:grid;grid-template-columns:1fr 1fr;gap:2.6mm}
-.svc div{background:#fff;border:.2mm solid rgba(11,11,13,.1);border-radius:2.4mm;padding:2.8mm 3.6mm 3mm}
-.svc .n{font:400 5.4pt GM,monospace;letter-spacing:.2em;color:#FF4A1C}
-.svc b{display:block;margin-top:1.2mm;font-size:9.4pt;font-weight:600;letter-spacing:-.025em}
-.svc p{margin-top:.8mm;font-size:7.1pt;line-height:1.35;color:#55575D}
-.ind{margin-top:5mm}
+.svc{margin-top:11mm;display:grid;grid-template-columns:1fr 1fr;gap:9mm 7mm}
+.svc .r{display:flex;gap:4mm;align-items:flex-start}
+.svc .ic{flex:none;width:12.5mm;height:12.5mm;border-radius:3.4mm;background:#0B0B0D;display:grid;place-items:center}
+.svc .ic svg{display:block}
+.svc .r:nth-child(4n+1) .ic,.svc .r:nth-child(4n+2) .ic{background:#0B0B0D}
+.svc b{display:block;font-size:10pt;font-weight:600;letter-spacing:-.025em;line-height:1.15;padding-top:.4mm}
+.svc p{margin-top:1mm;font-size:7.4pt;line-height:1.38;color:#55575D}
+.ind{margin-top:11mm;border-top:.2mm solid rgba(11,11,13,.14);padding-top:5mm}
 .ind .t{font-size:5.8pt;letter-spacing:.22em;color:#55575D}
-.ind ul{margin-top:2.4mm;list-style:none;display:flex;flex-wrap:wrap;gap:1.4mm}
-.ind li{border:.2mm solid rgba(11,11,13,.22);border-radius:10mm;padding:1.1mm 2.6mm;font-size:7pt}
-.steps{margin-top:5mm;display:flex;align-items:center;gap:2mm;font-size:7.6pt;font-weight:500}
+.ind p{margin-top:2.4mm;font-size:9.4pt;font-weight:500;line-height:1.55;letter-spacing:-.01em}
+.ind p i{color:#FF4A1C;font-style:normal;padding:0 1.3mm}
+.steps{margin-top:9mm;display:flex;align-items:center;gap:2mm;font-size:8pt;font-weight:500}
 .steps span{display:flex;align-items:center;gap:1.8mm;white-space:nowrap}
-.steps span i{display:grid;place-items:center;width:4.6mm;height:4.6mm;border-radius:50%;background:#0B0B0D;color:#fff;font:400 5.4pt GM,monospace;font-style:normal}
+.steps span i{display:grid;place-items:center;width:4.6mm;height:4.6mm;border-radius:50%;background:#FF4A1C;color:#fff;font:400 5.4pt GM,monospace;font-style:normal}
 .steps hr{flex:1;border:0;border-top:.2mm dashed rgba(11,11,13,.3)}
-.contact{position:absolute;left:0;right:0;bottom:10mm;background:#0B0B0D;color:#fff;border-radius:3.6mm;padding:5mm 7mm;display:flex;justify-content:space-between;align-items:flex-end;gap:6mm}
-.contact h3{font-weight:600;font-size:15pt;letter-spacing:-.04em}
-.contact h3 em{color:#FF4A1C}
-.contact .who{margin-top:3.6mm;font-size:9.4pt;font-weight:600}
-.contact .role{margin-top:.8mm;font:400 5.4pt GM,monospace;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.contact dl{margin-top:3mm;font-size:8.4pt;line-height:1.55;color:rgba(255,255,255,.85)}
-.contact dl div{display:flex;gap:2.4mm}
-.contact dt{font:500 5.6pt GM,monospace;color:#FF4A1C;width:2.4mm;padding-top:.5mm}
-.contact .addr{text-align:right;font-size:6.8pt;line-height:1.5;color:rgba(255,255,255,.62)}
-.contact .addr strong{display:block;color:#fff;font-weight:600}
-.contact .addr svg{width:8mm;height:8mm;margin:0 0 2.6mm auto;display:block}
+.foot{position:absolute;left:0;right:0;bottom:0;height:50mm;background:#0B0B0D;color:#fff;padding:7.5mm 14mm 10mm;display:flex;justify-content:space-between;gap:8mm}
+.foot::before{content:"";position:absolute;left:0;top:0;width:34mm;height:1.2mm;background:#FF4A1C}
+.foot h3{font-weight:600;font-size:17pt;letter-spacing:-.04em;line-height:1}
+.foot h3 em{color:#FF4A1C}
+.foot .who{margin-top:4.4mm;font-size:9.6pt;font-weight:600}
+.foot .role{margin-top:.9mm;font:400 5.4pt GM,monospace;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.foot .mk{margin-top:5mm;width:7.5mm;height:7.5mm;display:block}
+.foot ul{list-style:none;font-size:8.4pt;line-height:1.3;color:rgba(255,255,255,.9);display:flex;flex-direction:column;gap:3.2mm;padding-top:.6mm}
+.foot li{display:flex;align-items:center;gap:3mm}
+.foot li .ci{flex:none;width:6.6mm;height:6.6mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.28);display:grid;place-items:center}
+.foot li small{display:block;font-size:6.6pt;color:rgba(255,255,255,.55);margin-top:.4mm}
 </style><body>
 <section class="page front">
   <div class="grid"></div><div class="glow"></div>
@@ -102,17 +110,22 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
   <div class="in">
     <svg class="logo" viewBox="0 0 271.5 40"><path d="${WORD.ember}" fill="#FF4A1C"/><path d="${WORD.ink}" fill="#0B0B0D"/></svg>
     <h2>${accent(f.backTitle.replace(/Hand\./, '*Hand.*'))}</h2>
-    <div class="svc">${f.services.map(([t, d], i) => `<div><span class="n">${String(i + 1).padStart(2, '0')}</span><b>${esc(t)}</b><p>${esc(d)}</p></div>`).join('')}</div>
-    <div class="ind"><div class="t mono">${esc(f.industriesTitle)}</div><ul>${f.industries.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    <div class="svc">${f.services.map(([t, d, ic]) => `<div class="r"><span class="ic">${icon(ic, 21, '#FFFFFF', 1.6)}</span><div><b>${esc(t)}</b><p>${esc(d)}</p></div></div>`).join('')}</div>
+    <div class="ind"><span class="t mono">${esc(f.industriesTitle)}</span><p>${f.industries.map(esc).join('<i>·</i>')}</p></div>
     <div class="steps">${f.steps.map((s, i) => `${i ? '<hr>' : ''}<span><i>${i + 1}</i>${esc(s)}</span>`).join('')}</div>
-    <div class="contact">
-      <div>
-        <h3>${accent(f.ctaTitle.replace(/darüber\./, '*darüber.*'))}</h3>
-        <div class="who">${esc(f.contact.name)}</div><div class="role">${esc(f.contact.title)}</div>
-        <dl>${f.contact.phone ? `<div><dt>T</dt><dd>${esc(f.contact.phone)}</dd></div>` : ''}${f.contact.email ? `<div><dt>E</dt><dd>${esc(f.contact.email)}</dd></div>` : ''}<div><dt>W</dt><dd>${esc(co.website)}</dd></div></dl>
-      </div>
-      <div class="addr"><svg viewBox="6 6 52 52"><path d="${MARK.ember}" fill="#FF4A1C"/><path d="${MARK.ink}" fill="#fff"/></svg><strong>${esc(co.legalName)}</strong>${esc(co.street)}<br>${esc(co.city)}</div>
+  </div>
+  <div class="foot">
+    <div>
+      <h3>${accent(f.ctaTitle.replace(/darüber\./, '*darüber.*'))}</h3>
+      <div class="who">${esc(f.contact.name)}</div><div class="role">${esc(f.contact.title)}</div>
+      <svg class="mk" viewBox="6 6 52 52"><path d="${MARK.ember}" fill="#FF4A1C"/><path d="${MARK.ink}" fill="#fff"/></svg>
     </div>
+    <ul>
+      ${f.contact.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.phone)}</span></li>` : ''}
+      ${f.contact.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.email)}</span></li>` : ''}
+      <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+    </ul>
   </div>
 </section>
 </body></html>`;
