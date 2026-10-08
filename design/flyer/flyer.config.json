@@ -1,68 +1,87 @@
 {
   "flyers": [
     {
-      "slug": "werbeagentur",
-      "eyebrow": "Werbeagentur · Bremen",
-      "headline": "Wir machen Ihre Marke *sichtbar.*",
-      "lead": "Webdesign, SEO, Google Ads, Branding und Print: Ihre Werbeagentur aus Bremen. Persönlich, modern und mit dem Ziel, dass am Ende Anfragen stehen.",
-      "qrUrl": "https://www.monvex-group.de/werbeagentur",
-      "qrLabel": "Jetzt unverbindlich anfragen",
-      "qrSub": "www.monvex-group.de/werbeagentur",
-      "backTitle": "Alles aus einer Hand.",
-      "services": [
+      "slug": "allgemein",
+      "template": "offer",
+      "eyebrow": "Für Betriebe in Bremen und Umgebung",
+      "headline": "Findet man Ihr Unternehmen im Netz – oder *nur die Konkurrenz?*",
+      "lead": "Kunden suchen heute auf dem Handy und entscheiden in Sekunden, wen sie anrufen oder anschreiben.",
+      "checks": [
         [
-          "Webdesign & Websites",
-          "Modern, mobil, mit klarem Weg zur Anfrage.",
-          "Monitor"
+          "MapPin",
+          "Google-Profil",
+          "Werden Sie gefunden, wenn jemand in Ihrer Nähe sucht?"
         ],
         [
-          "SEO & lokale Suche",
-          "Gefunden werden, wenn Kunden in Ihrer Nähe suchen.",
-          "Search"
+          "Smartphone",
+          "Website auf dem Handy",
+          "Überzeugt sie in Sekunden und führt sie zur Anfrage?"
         ],
         [
-          "Google Ads",
-          "Anzeigen mit Ziel: passende Anfragen statt bloßer Klicks.",
-          "MousePointerClick"
-        ],
-        [
-          "Social Media & Content",
-          "Beiträge, Kurzvideos und Grafiken, die zu Ihnen passen.",
-          "Smartphone"
-        ],
-        [
-          "Logo & Branding",
-          "Eine Marke, die erkennbar und einheitlich auftritt.",
-          "Palette"
-        ],
-        [
-          "Print & Fahrzeug",
-          "Flyer, Visitenkarten, Plakate und Fahrzeugbeschriftung.",
-          "Printer"
+          "MessageSquare",
+          "Kontaktweg",
+          "Wie leicht wird aus einem Besucher eine Anfrage?"
         ]
       ],
-      "industriesTitle": "Für Betriebe mit Anspruch",
-      "industries": [
-        "Fahrschulen",
-        "Kanzleien",
-        "Praxen",
-        "Handwerk",
-        "Gastronomie",
-        "Immobilien"
-      ],
+      "badgeTop": "Kostenlos",
+      "badgeMain": "Website-Check",
+      "offer": "Wir prüfen Ihr Google-Profil, Ihre Website und Ihren Kontaktweg. Sie erhalten drei konkrete Verbesserungen, ohne Verpflichtung.",
+      "qrUrl": "https://www.monvex-group.de/werbeagentur?utm_source=flyer&utm_medium=print&utm_campaign=allgemein-bremen",
+      "qrLabel": "QR scannen. Check anfordern.",
+      "qrSub": "www.monvex-group.de/werbeagentur",
+      "backTitle": "So läuft der *Check.*",
       "steps": [
-        "Erstgespräch",
-        "Konzept",
-        "Umsetzung",
-        "Betreuung"
+        [
+          "Anfordern",
+          "QR-Code scannen oder anrufen und kurz Ihr Unternehmen nennen."
+        ],
+        [
+          "Wir prüfen",
+          "Wir schauen uns Google-Profil, Website und Kontaktweg Ihres Unternehmens an."
+        ],
+        [
+          "Sie entscheiden",
+          "Sie erhalten drei konkrete Verbesserungen. Ob Sie mit uns arbeiten, entscheiden allein Sie."
+        ]
       ],
-      "ctaTitle": "Sprechen wir darüber.",
-      "contact": {
-        "name": "Mudi Hassun",
-        "title": "Sales Manager",
-        "email": "mudi@monvex-group.de",
-        "phone": ""
-      }
+      "bonusTitle": "Was Sie von uns bekommen",
+      "bonus": [
+        [
+          "Monitor",
+          "Website & Landingpages",
+          "Modern, mobil, mit klarem Weg zur Anfrage."
+        ],
+        [
+          "Search",
+          "SEO & Google Ads",
+          "Gefunden werden, wenn Kunden suchen."
+        ],
+        [
+          "Palette",
+          "Logo & Branding",
+          "Ein Auftritt, der erkennbar und einheitlich ist."
+        ],
+        [
+          "Printer",
+          "Print & Fahrzeug",
+          "Flyer, Visitenkarten und Fahrzeugbeschriftung."
+        ]
+      ],
+      "trust": [
+        [
+          "Building2",
+          "Für Fahrschulen, Kanzleien, Praxen, Handwerk, Gastronomie und mehr."
+        ],
+        [
+          "Rocket",
+          "Wir betreiben selbst digitale Marken, darunter Boundforfuture und GoKlinik."
+        ],
+        [
+          "Handshake",
+          "Persönlich aus Bremen: Termine vor Ort sind möglich."
+        ]
+      ],
+      "ctaTitle": "Sprechen wir darüber."
     },
     {
       "slug": "fahrschulen",
