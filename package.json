@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "verify:seo": "node scripts/verify-seo.mjs",
     "card": "node scripts/visitenkarte.mjs",
-    "flyer": "node scripts/flyer.mjs"
+    "flyer": "node scripts/flyer.mjs",
+    "verify:qr": "node scripts/verify-qr.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
@@ -29,7 +30,9 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.1.6",
+    "jsqr": "^1.4.0",
     "playwright-core": "^1.63.0",
+    "pngjs": "^7.0.0",
     "postcss": "^8.5.1",
     "qrcode": "^1.5.4",
     "tailwindcss": "^3.4.17",

@@ -26,14 +26,14 @@
       "badgeTop": "Kostenlos",
       "badgeMain": "Website-Check",
       "offer": "Wir prüfen Ihr Google-Profil, Ihre Website und Ihren Kontaktweg. Sie erhalten drei konkrete Verbesserungen, ohne Verpflichtung.",
-      "qrUrl": "https://www.monvex-group.de/werbeagentur?utm_source=flyer&utm_medium=print&utm_campaign=allgemein-bremen",
+      "qrUrl": "https://www.monvex-group.de/check?utm_source=flyer",
       "qrLabel": "QR scannen. Check anfordern.",
-      "qrSub": "www.monvex-group.de/werbeagentur",
+      "qrSub": "www.monvex-group.de/check",
       "backTitle": "So läuft der *Check.*",
       "steps": [
         [
           "Anfordern",
-          "QR-Code scannen oder anrufen und kurz Ihr Unternehmen nennen."
+          "QR-Code scannen[ oder anrufen] und kurz Ihr Unternehmen nennen."
         ],
         [
           "Wir prüfen",
@@ -109,14 +109,14 @@
       "badgeTop": "Kostenlos",
       "badgeMain": "Website-Check",
       "offer": "Wir prüfen Ihr Google-Profil, Ihre Website und Ihren Anmeldeweg. Sie erhalten drei konkrete Verbesserungen, ohne Verpflichtung.",
-      "qrUrl": "https://www.monvex-group.de/werbeagentur/fahrschulen/bremen?utm_source=flyer&utm_medium=print&utm_campaign=fahrschulen-bremen",
+      "qrUrl": "https://www.monvex-group.de/check/fahrschulen?utm_source=flyer",
       "qrLabel": "QR scannen. Check anfordern.",
-      "qrSub": "www.monvex-group.de/werbeagentur/fahrschulen",
+      "qrSub": "www.monvex-group.de/check/fahrschulen",
       "backTitle": "So läuft der *Check.*",
       "steps": [
         [
           "Anfordern",
-          "QR-Code scannen oder anrufen und kurz Ihre Fahrschule nennen."
+          "QR-Code scannen[ oder anrufen] und kurz Ihre Fahrschule nennen."
         ],
         [
           "Wir prüfen",
@@ -188,14 +188,14 @@
       "badgeTop": "Kostenlos",
       "badgeMain": "Website-Check",
       "offer": "Wir prüfen Ihre Website, Ihr Google-Profil und Ihren Erstkontakt. Sie erhalten drei konkrete Verbesserungen, sachlich und ohne Verpflichtung.",
-      "qrUrl": "https://www.monvex-group.de/werbeagentur/anwaelte/bremen?utm_source=flyer&utm_medium=print&utm_campaign=kanzleien-bremen",
+      "qrUrl": "https://www.monvex-group.de/check/kanzleien?utm_source=flyer",
       "qrLabel": "QR scannen. Check anfordern.",
-      "qrSub": "www.monvex-group.de/werbeagentur/anwaelte",
+      "qrSub": "www.monvex-group.de/check/kanzleien",
       "backTitle": "So läuft der *Check.*",
       "steps": [
         [
           "Anfordern",
-          "QR-Code scannen oder anrufen und kurz Ihre Kanzlei nennen."
+          "QR-Code scannen[ oder anrufen] und kurz Ihre Kanzlei nennen."
         ],
         [
           "Wir prüfen",

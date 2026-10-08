@@ -12,10 +12,10 @@ import { cn } from '@/lib/cn';
 type Status = 'idle' | 'sending' | 'success' | 'error';
 type Errors = Partial<Record<'name' | 'email' | 'message' | 'consent', string>>;
 
-const fieldBase =
+export const fieldBase =
   'peer w-full border-0 border-b border-ink/20 bg-transparent px-0 pb-3 pt-6 text-[1.05rem] text-ink outline-none transition-colors placeholder-transparent focus:border-ink focus-visible:outline-none';
 
-function Field({ id, label, error, required, children }: { id: string; label: string; error?: string; required?: boolean; children: React.ReactNode }) {
+export function Field({ id, label, error, required, children }: { id: string; label: string; error?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <div className="relative">
       {children}
