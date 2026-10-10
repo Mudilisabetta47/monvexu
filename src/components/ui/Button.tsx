@@ -16,6 +16,7 @@ type Props = {
   className?: string;
   arrow?: boolean;
   magnetic?: boolean;
+  tabIndex?: number;
 };
 
 const variants = {
@@ -25,7 +26,7 @@ const variants = {
   ghost: 'text-ink hover:bg-ink/5',
 } as const;
 
-export function Button({ children, href, onClick, type = 'button', variant = 'primary', disabled, className, arrow = true, magnetic = true }: Props) {
+export function Button({ children, href, onClick, type = 'button', variant = 'primary', disabled, className, arrow = true, magnetic = true, tabIndex }: Props) {
   const cls = cn(
     'group relative inline-flex items-center gap-3 rounded-full py-2 pl-6 pr-2 text-[.95rem] font-medium tracking-tight transition-colors duration-500 ease-out disabled:pointer-events-none disabled:opacity-50',
     !arrow && 'pr-6',
@@ -51,19 +52,19 @@ export function Button({ children, href, onClick, type = 'button', variant = 'pr
   let el: ReactNode;
   if (href && /^https?:/.test(href)) {
     el = (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls} tabIndex={tabIndex}>
         {inner}
       </a>
     );
   } else if (href) {
     el = (
-      <Link href={href} className={cls}>
+      <Link href={href} className={cls} tabIndex={tabIndex}>
         {inner}
       </Link>
     );
   } else {
     el = (
-      <button type={type} onClick={onClick} disabled={disabled} className={cls}>
+      <button type={type} onClick={onClick} disabled={disabled} className={cls} tabIndex={tabIndex}>
         {inner}
       </button>
     );
