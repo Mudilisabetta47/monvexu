@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { useScroll, useTransform } from 'framer-motion';
 import { m } from 'framer-motion';
+import { company } from '@/data/site';
 import { Button } from '@/components/ui/Button';
 import { SplitText } from '@/components/ui/SplitText';
 import { HeroScene } from './HeroScene';
@@ -41,7 +42,7 @@ export function Hero() {
                 <span className="absolute inset-0 animate-pulse-ring rounded-full bg-ember" />
                 <span className="relative h-2 w-2 rounded-full bg-ember" />
               </span>
-              MONVEX UG (haftungsbeschränkt) · Bremen
+              {company.legalName} · Bremen
             </m.p>
 
             <h1 className="mt-7" aria-label="MONVEX – Building what's next.">

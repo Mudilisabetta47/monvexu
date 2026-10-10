@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { WORDMARK } from '@/components/ui/logo-paths';
+import { company } from '@/data/site';
 
 export const alt = 'MONVEX – Building what’s next.';
 export const size = { width: 1200, height: 630 };
@@ -10,7 +11,7 @@ export default function OgImage() {
   return new ImageResponse(
     (
       <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#F6F5F1', padding: 80, color: '#0B0B0D', fontFamily: 'sans-serif' }}>
-        <div style={{ display: 'flex', fontSize: 24, color: '#55575D', letterSpacing: 4 }}>MONVEX UG (HAFTUNGSBESCHRÄNKT)</div>
+        <div style={{ display: 'flex', fontSize: 24, color: '#55575D', letterSpacing: 4 }}>{company.legalName.toUpperCase()}</div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <svg width={ww} height={(ww * WORDMARK.height) / WORDMARK.width} viewBox={`0 0 ${WORDMARK.width} ${WORDMARK.height}`}>
             <path d={WORDMARK.ember} fill="#FF4A1C" />

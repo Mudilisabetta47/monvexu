@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright-core';
+import { legalName } from './company-name.mjs';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as Lucide from 'lucide-react';
@@ -93,6 +94,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .foot ul{list-style:none;font-size:9.4pt;line-height:1.25;color:#fff;display:flex;flex-direction:column;gap:${hasPhone ? 1.9 : 2.8}mm;padding-top:.4mm}
 .foot li{display:flex;align-items:center;gap:3mm}
 .foot li .ci{flex:none;width:6.8mm;height:6.8mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.28);display:grid;place-items:center}
+.foot li .cn{display:block;font-size:8.3pt;white-space:nowrap}
 .foot li small{display:block;font-size:7.8pt;color:rgba(255,255,255,.8);margin-top:.4mm}
 </style><body>
 <section class="page front">
@@ -125,7 +127,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
       ${f.contact.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.phone)}</span></li>` : ''}
       ${f.contact.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.email)}</span></li>` : ''}
       <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
-      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span><span class="cn">${esc(legalName)}</span><small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
     </ul>
   </div>
 </section>
@@ -182,14 +184,14 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .st .n{flex:none;width:11mm;font-weight:600;font-size:21pt;line-height:.9;letter-spacing:-.06em;color:#FF4A1C}
 .st b{display:block;font-size:11.4pt;font-weight:600;letter-spacing:-.025em}
 .st p{margin-top:.6mm;font-size:9pt;line-height:1.32;color:#34363B}
-.bn{margin-top:4.6mm;border-top:.2mm solid rgba(11,11,13,.14);padding-top:5mm}
+.bn{margin-top:1.6mm;border-top:.2mm solid rgba(11,11,13,.14);padding-top:4mm}
 .bn .t{font-size:6.8pt;letter-spacing:.2em;color:#3F4147}
-.bg{margin-top:3.4mm;display:grid;grid-template-columns:1fr 1fr;gap:4.4mm 6mm}
+.bg{margin-top:3.6mm;display:grid;grid-template-columns:1fr 1fr;gap:5.6mm 6mm}
 .bg .r{display:flex;gap:3.4mm;align-items:flex-start}
 .bg .ic{flex:none;width:10.5mm;height:10.5mm;border-radius:3mm;background:#0B0B0D;display:grid;place-items:center}
 .bg b{display:block;font-size:10.4pt;font-weight:600;letter-spacing:-.025em;line-height:1.15;padding-top:.3mm}
 .bg p{margin-top:.5mm;font-size:8.4pt;line-height:1.3;color:#34363B}
-.tr{margin-top:4.2mm;display:flex;flex-direction:column;gap:1.6mm}
+.tr{margin-top:6mm;display:flex;flex-direction:column;gap:2mm}
 .tr div{display:flex;gap:2.6mm;align-items:center;font-size:8.8pt;font-weight:500}
 .tr .ti{flex:none;width:5.6mm;height:5.6mm;border-radius:50%;background:rgba(255,74,28,.12);display:grid;place-items:center}
 .foot{position:absolute;left:0;right:0;bottom:0;height:46mm;background:#0B0B0D;color:#fff;padding:6mm 14mm 8mm;display:flex;justify-content:space-between;gap:8mm}
@@ -202,6 +204,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .foot ul{list-style:none;font-size:9.4pt;line-height:1.25;color:#fff;display:flex;flex-direction:column;gap:${hasPhone ? 1.9 : 2.8}mm;padding-top:.4mm}
 .foot li{display:flex;align-items:center;gap:3mm}
 .foot li .ci{flex:none;width:6.8mm;height:6.8mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.28);display:grid;place-items:center}
+.foot li .cn{display:block;font-size:8.3pt;white-space:nowrap}
 .foot li small{display:block;font-size:7.8pt;color:rgba(255,255,255,.8);margin-top:.4mm}
 </style><body>
 <section class="page front">
@@ -235,7 +238,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
       ${ct.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(ct.phone)}</span></li>` : ''}
       ${ct.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(ct.email)}</span></li>` : ''}
       <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
-      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span><span class="cn">${esc(legalName)}</span><small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
     </ul>
   </div>
 </section>

@@ -2,13 +2,12 @@
   "company": {
     "website": "www.monvex-group.de",
     "websiteUrl": "https://www.monvex-group.de",
-    "legalName": "MONVEX UG (haftungsbeschränkt)",
     "street": "Kirchbachstraße 200",
     "city": "28211 Bremen",
     "tagline": "Build. Brand. Scale."
   },
   "people": [
-    { "slug": "mudi-hassun", "name": "Mudi Hassun", "title": "Sales Manager", "phone": "", "email": "mudi@monvex-group.de" },
-    { "slug": "eda-sahan", "name": "Eda Sahan", "title": "Managerin", "phone": "", "email": "" }
+    { "slug": "mudi-hassun", "name": "Mudi Hassun", "title": "Sales Manager", "phone": "0421 499 58 207", "email": "mudi@monvex-group.de" },
+    { "slug": "eda-sahan", "name": "Eda Sahan", "title": "Managerin", "phone": "0421 499 58 207", "email": "" }
   ]
 }

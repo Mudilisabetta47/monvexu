@@ -12,6 +12,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright-core';
+import { legalName } from './company-name.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'design/visitenkarte/out');
@@ -80,7 +81,7 @@ body{font-family:G,sans-serif;-webkit-print-color-adjust:exact;print-color-adjus
   <div class="contact">${rows.map(([k, v]) => `<div><b>${k}</b><span>${esc(v)}</span></div>`).join('')}</div>
   <div class="qr">${qr}</div><div class="qrl">Website</div>
   <div class="foot">
-    <div class="a"><strong>${esc(cfg.legalName)}</strong><br>${esc(cfg.street)} · ${esc(cfg.city)}</div>
+    <div class="a"><strong>${esc(legalName)}</strong><br>${esc(cfg.street)} · ${esc(cfg.city)}</div>
     <svg class="m" viewBox="6 6 52 52"><path d="${MARK.ember}" fill="#FF4A1C"/><path d="${MARK.ink}" fill="#0B0B0D"/></svg>
   </div>
 </div>
