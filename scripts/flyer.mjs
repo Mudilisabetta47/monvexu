@@ -94,6 +94,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .foot ul{list-style:none;font-size:9.4pt;line-height:1.25;color:#fff;display:flex;flex-direction:column;gap:${hasPhone ? 1.9 : 2.8}mm;padding-top:.4mm}
 .foot li{display:flex;align-items:center;gap:3mm}
 .foot li .ci{flex:none;width:6.8mm;height:6.8mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.28);display:grid;place-items:center}
+.foot li .cn{display:block;font-size:8.3pt;white-space:nowrap}
 .foot li small{display:block;font-size:7.8pt;color:rgba(255,255,255,.8);margin-top:.4mm}
 </style><body>
 <section class="page front">
@@ -126,7 +127,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
       ${f.contact.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.phone)}</span></li>` : ''}
       ${f.contact.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.email)}</span></li>` : ''}
       <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
-      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span><span class="cn">${esc(legalName)}</span><small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
     </ul>
   </div>
 </section>
@@ -203,6 +204,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .foot ul{list-style:none;font-size:9.4pt;line-height:1.25;color:#fff;display:flex;flex-direction:column;gap:${hasPhone ? 1.9 : 2.8}mm;padding-top:.4mm}
 .foot li{display:flex;align-items:center;gap:3mm}
 .foot li .ci{flex:none;width:6.8mm;height:6.8mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.28);display:grid;place-items:center}
+.foot li .cn{display:block;font-size:8.3pt;white-space:nowrap}
 .foot li small{display:block;font-size:7.8pt;color:rgba(255,255,255,.8);margin-top:.4mm}
 </style><body>
 <section class="page front">
@@ -236,7 +238,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
       ${ct.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(ct.phone)}</span></li>` : ''}
       ${ct.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(ct.email)}</span></li>` : ''}
       <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
-      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span><span class="cn">${esc(legalName)}</span><small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
     </ul>
   </div>
 </section>
