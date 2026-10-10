@@ -5,7 +5,7 @@ import { useScroll, useTransform } from 'framer-motion';
 import { m } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { SplitText } from '@/components/ui/SplitText';
-import { HeroScene } from './HeroScene';
+import { MoonSlider } from './MoonSlider';
 import { EASE } from '@/lib/motion';
 
 const LETTERS = 'MONVEX'.split('');
@@ -19,7 +19,6 @@ export function Hero() {
   const textScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
   const textBlur = useTransform(scrollYProgress, [0, 0.7], ['blur(0px)', 'blur(10px)']);
   const sceneY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const sceneProgress = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
 
   return (
     <section ref={ref} id="top" className="relative isolate overflow-hidden">
@@ -97,9 +96,9 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.6, ease: EASE, delay: 0.5 }}
-            className="relative lg:absolute lg:-right-6 lg:top-1/2 lg:-mt-[350px] lg:w-[58%] xl:-right-2"
+            className="relative lg:absolute lg:-right-6 lg:top-1/2 lg:-mt-[345px] lg:w-[44%] xl:right-8"
           >
-            <HeroScene progress={sceneProgress} />
+            <MoonSlider />
           </m.div>
         </div>
 
