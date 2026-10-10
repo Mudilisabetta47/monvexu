@@ -2,7 +2,7 @@ import { brands } from '@/data/brands';
 import { SITE_URL, company } from '@/data/site';
 
 export const SEO = {
-  title: 'MONVEX – Werbeagentur & Dachmarke für Marken und digitale Geschäftsmodelle',
+  title: 'MONVEX – Werbeagentur & Dachmarke aus Bremen',
   description:
     'MONVEX UG aus Bremen: Werbeagentur und Dachmarke für Webdesign, Markenentwicklung, Softwareentwicklung, E-Commerce, Online-Marketing sowie Travel & Mobility.',
   keywords: [

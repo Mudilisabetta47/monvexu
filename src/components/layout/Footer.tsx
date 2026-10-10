@@ -53,6 +53,7 @@ export function Footer() {
             <FooterLink href={`${AGENCY_BASE}/fahrschulen`}>Für Fahrschulen</FooterLink>
             <FooterLink href={`${AGENCY_BASE}/anwaelte`}>Für Anwälte</FooterLink>
             <FooterLink href={`${AGENCY_BASE}/branchen`}>Alle Branchen</FooterLink>
+            <FooterLink href="/website-check">KI-Website-Check</FooterLink>
           </FooterCol>
 
           <FooterCol title="Rechtliches">

@@ -41,7 +41,13 @@ export default function Datenschutz() {
         </p>
       </div>
       <div>
-        <h2>5. Ihre Rechte</h2>
+        <h2>5. KI-Website-Check</h2>
+        <p>
+          Wenn Sie den KI-Website-Check nutzen, verarbeiten wir die von Ihnen eingegebene Website-Adresse und rufen die öffentlich erreichbare Startseite sowie robots.txt und sitemap.xml dieser Website ab. Daraus werden technische Merkmale und ein kurzer Textauszug ausgewertet. Für die KI-Einschätzung übermitteln wir diese Auswertung (nicht Ihre IP-Adresse) an einen KI-Dienstleister (Anthropic). Es werden keine weiteren personenbezogenen Daten von Ihnen benötigt; Ihre IP-Adresse wird kurzfristig zur Missbrauchsabwehr (Begrenzung der Anfragen) verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (Bereitstellung der angefragten Funktion). Ergebnisse werden von uns nicht gespeichert. Bitte geben Sie nur Adressen von Websites ein, für deren Prüfung Sie berechtigt sind.
+        </p>
+      </div>
+      <div>
+        <h2>6. Ihre Rechte</h2>
         <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
         <ul>
           <li>Auskunft (Art. 15 DSGVO)</li>
@@ -56,7 +62,7 @@ export default function Datenschutz() {
         </p>
       </div>
       <div>
-        <h2>6. Aktualität</h2>
+        <h2>7. Aktualität</h2>
         <p>Wir passen diese Erklärung an, wenn sich die Website oder die Rechtslage ändert. Es gilt die jeweils hier veröffentlichte Fassung.</p>
       </div>
     </LegalPage>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { CalendarCheck, Check, MapPin, MessageSquare, Search, ShieldCheck, Smartphone, UserPlus, type LucideIcon } from 'lucide-react';
 import { CheckForm } from '@/components/sections/CheckForm';
 import type { CheckVariant } from '@/data/check';
@@ -42,7 +43,9 @@ export function CheckPage({ v }: { v: CheckVariant }) {
             })}
           </ul>
 
-          <ol className="mt-12 border-t border-line">
+          <p className="mt-8 rounded-2xl border border-line bg-white p-4 text-[.92rem] text-graphite">Lieber sofort ein Ergebnis? Der <Link href="/website-check" className="link-u font-semibold text-ink">KI-Website-Check</Link> prüft Ihre Adresse automatisch in 30 Sekunden.</p>
+
+          <ol className="mt-8 border-t border-line">
             {STEPS.map(([t, d], i) => (
               <li key={t} className="flex gap-5 border-b border-line py-4">
                 <span className="w-6 text-[1.5rem] font-semibold leading-none tracking-[-0.06em] text-ember">{i + 1}</span>
