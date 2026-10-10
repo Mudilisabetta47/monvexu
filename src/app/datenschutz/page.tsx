@@ -19,6 +19,7 @@ export default function Datenschutz() {
           <br />
           <strong>{company.legalName}</strong>, {company.address.street}, {company.address.zip} {company.address.city}, {company.address.country}
           <br />
+          {legal.phone && <>Telefon: {legal.phone}<br /></>}
           E-Mail: <Missing what="E-Mail-Adresse" value={legal.email} />
         </p>
       </div>

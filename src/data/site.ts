@@ -33,21 +33,31 @@ export const company = {
   },
 } as const;
 
-/** Impressum-Pflichtangaben, die noch nicht vorliegen. Hier eintragen – die Seite zeigt sie automatisch. */
+/**
+ * Impressum-Pflichtangaben. Quelle: Handelsregister-Anmeldung vom 23.09.2026 (Amtsgericht Bremen, "HRB neu").
+ * Bewusst NICHT enthalten: Geburtsdatum und Wohnort der Geschäftsführung (gehören nicht ins Impressum).
+ * Nach der Eintragung: `registerNumber` (z. B. 'HRB 12345 HB') setzen und `registerPending` auf false stellen.
+ */
 export const legal: {
   managingDirector?: string;
+  /** Vertretungsregel laut Anmeldung (Einzelvertretung bei einem Geschäftsführer). */
+  representation?: string;
   registerCourt?: string;
   registerNumber?: string;
+  /** true = Eintragung beantragt, Nummer noch nicht vergeben. */
+  registerPending: boolean;
   vatId?: string;
   email?: string;
   phone?: string;
 } = {
-  managingDirector: undefined,
-  registerCourt: undefined,
+  managingDirector: 'Mohammed Al Bakhit',
+  representation: 'Der Geschäftsführer ist einzelvertretungsberechtigt.',
+  registerCourt: 'Amtsgericht Bremen',
   registerNumber: undefined,
+  registerPending: true,
   vatId: undefined,
-  email: undefined,
-  phone: undefined,
+  email: 'mudi@monvex-group.de',
+  phone: '0421 499 58 207',
 };
 
 export type NavItem = { label: string; href: string };

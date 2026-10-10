@@ -1,5 +1,5 @@
 import { brands } from '@/data/brands';
-import { SITE_URL, company } from '@/data/site';
+import { SITE_URL, company, legal } from '@/data/site';
 
 export const SEO = {
   title: 'MONVEX – Werbeagentur & Dachmarke für Marken und digitale Geschäftsmodelle',
@@ -38,6 +38,8 @@ export function organizationSchema() {
         logo: `${SITE_URL}/brand/monvex-mark.svg`,
         slogan: company.tagline,
         foundingDate: company.founded,
+        ...(legal.email ? { email: legal.email } : {}),
+        ...(legal.phone ? { telephone: `+49${legal.phone.replace(/\s/g, '').replace(/^0/, '')}` } : {}),
         description: SEO.description,
         address: {
           '@type': 'PostalAddress',
