@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, m } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -16,6 +16,13 @@ export function CheckForm({ topic }: { topic: string }) {
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Errors>({});
   const [serverMsg, setServerMsg] = useState('');
+
+  // Adresse aus dem KI-Website-Check übernehmen (?url=…)
+  useEffect(() => {
+    const u = new URLSearchParams(window.location.search).get('url');
+    const el = document.getElementById('ck-site') as HTMLInputElement | null;
+    if (u && el && !el.value) el.value = u.slice(0, 200);
+  }, []);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

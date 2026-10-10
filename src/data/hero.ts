@@ -41,7 +41,7 @@ export const heroSlides: HeroSlide[] = [
     lead: 'Webdesign, SEO, Google Ads, Branding und Print: Ihre Werbeagentur aus Bremen. Persönlich, modern und mit dem Ziel, dass am Ende Anfragen stehen.',
     phase: 0.52,
     primary: { label: 'Zur Werbeagentur', href: '/werbeagentur' },
-    secondary: { label: 'Kostenloser Website-Check', href: '/check' },
+    secondary: { label: 'KI-Website-Check', href: '/website-check' },
   },
   {
     id: 'lab',

@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/brands`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     ...brands.map((b) => ({ url: `${SITE_URL}/brands/${b.slug}`, lastModified, changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...allAgencyUrls().map((u) => ({ url: `${SITE_URL}${u.path}`, lastModified, changeFrequency: u.changeFrequency, priority: u.priority })),
+    { url: `${SITE_URL}/website-check`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/impressum`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${SITE_URL}/datenschutz`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
   ];
