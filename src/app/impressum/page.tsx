@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { LegalPage, Missing } from '@/components/layout/LegalPage';
-import { company, legal } from '@/data/site';
+import { IN_FORMATION, company, legal } from '@/data/site';
 
 const STAND = 'Oktober 2026';
 
 export const metadata: Metadata = {
   title: 'Impressum',
-  description: 'Impressum der MONVEX UG (haftungsbeschränkt), Kirchbachstraße 200, 28211 Bremen: Anbieter, Vertretung, Kontakt, Handelsregister und rechtliche Hinweise.',
+  description: 'Impressum der MONVEX UG (haftungsbeschränkt) i. G., Kirchbachstraße 200, 28211 Bremen: Anbieter, Vertretung, Kontakt, Handelsregister und rechtliche Hinweise.',
   alternates: { canonical: '/impressum' },
   robots: { index: true, follow: true },
 };
@@ -59,7 +59,7 @@ export default function Impressum() {
       <div>
         <h2>Registereintrag</h2>
         <p>
-          Eintragung im Handelsregister.
+          {IN_FORMATION ? 'Die Gesellschaft befindet sich in Gründung (i. G.); die Eintragung im Handelsregister ist beantragt.' : 'Eintragung im Handelsregister.'}
           <br />
           Registergericht: <Missing what="Registergericht" value={legal.registerCourt} />
           <br />

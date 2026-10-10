@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright-core';
+import { legalName } from './company-name.mjs';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as Lucide from 'lucide-react';
@@ -125,7 +126,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
       ${f.contact.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.phone)}</span></li>` : ''}
       ${f.contact.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(f.contact.email)}</span></li>` : ''}
       <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
-      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
     </ul>
   </div>
 </section>
@@ -235,7 +236,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
       ${ct.phone ? `<li><span class="ci">${icon('Phone', 13, '#FF4A1C', 1.8)}</span><span>${esc(ct.phone)}</span></li>` : ''}
       ${ct.email ? `<li><span class="ci">${icon('Mail', 13, '#FF4A1C', 1.8)}</span><span>${esc(ct.email)}</span></li>` : ''}
       <li><span class="ci">${icon('Globe', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.website)}</span></li>
-      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(co.legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
+      <li><span class="ci">${icon('MapPin', 13, '#FF4A1C', 1.8)}</span><span>${esc(legalName)}<small>${esc(co.street)} · ${esc(co.city)}</small></span></li>
     </ul>
   </div>
 </section>

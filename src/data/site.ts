@@ -18,9 +18,18 @@ function resolveSiteUrl(raw: string | undefined) {
 
 export const SITE_URL = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
+/**
+ * true, solange die Gesellschaft nicht im Handelsregister eingetragen ist (Anmeldung vom 23.09.2026).
+ * Dann führt der Firmenname den Zusatz "i. G." (in Gründung) – überall: Website, Impressum, Flyer, Visitenkarten.
+ * NACH DER EINTRAGUNG: auf false setzen und `legal.registerNumber` eintragen.
+ */
+export const IN_FORMATION = true;
+
+const BASE_NAME = 'MONVEX UG (haftungsbeschränkt)';
+
 export const company = {
   name: 'MONVEX',
-  legalName: 'MONVEX UG (haftungsbeschränkt)',
+  legalName: IN_FORMATION ? `${BASE_NAME}\u00a0i.\u00a0G.` : BASE_NAME,
   legalForm: 'Unternehmergesellschaft (haftungsbeschränkt)',
   seat: 'Bremen, Deutschland',
   founded: '2026',
@@ -54,7 +63,7 @@ export const legal: {
   representation: 'Der Geschäftsführer ist einzelvertretungsberechtigt.',
   registerCourt: 'Amtsgericht Bremen',
   registerNumber: undefined,
-  registerPending: true,
+  registerPending: IN_FORMATION,
   vatId: undefined,
   email: 'mudi@monvex-group.de',
   phone: '0421 499 58 207',
