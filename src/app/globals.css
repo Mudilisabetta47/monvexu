@@ -154,3 +154,5 @@
 .mx-range:hover::-webkit-slider-thumb { transform: scale(1.15); }
 .mx-range:focus-visible { outline: none; }
 .mx-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(255,74,28,.3), 0 4px 14px rgba(255,74,28,.55); }
+
+@keyframes mx-fill { from { width: 0; } to { width: 100%; } }

@@ -14,13 +14,21 @@ import { EASE } from '@/lib/motion';
 import { cn } from '@/lib/cn';
 
 export function Nav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const [onDark, setOnDark] = useState(pathname === '/');
   const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 24));
+  useMotionValueEvent(scrollY, 'change', (v) => {
+    setScrolled(v > 24);
+    setOnDark(pathname === '/' && v < window.innerHeight * 0.62);
+  });
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setOnDark(pathname === '/' && window.scrollY < window.innerHeight * 0.62);
+  }, [pathname]);
+  const dark = onDark || open;
 
   useEffect(() => {
     if (!open) return;
@@ -45,16 +53,20 @@ export function Nav() {
           transition={{ duration: 1, ease: EASE, delay: 0.2 }}
           className={cn(
             'mx-auto flex max-w-[1380px] items-center justify-between rounded-full border py-2 pl-4 pr-2 transition-all duration-700 ease-out sm:pl-5',
-            scrolled || open || pathname !== '/' ? 'glass border-white/80 shadow-card' : 'border-transparent bg-transparent',
+            dark
+              ? 'border-white/15 bg-white/[.07] shadow-[0_10px_40px_-14px_rgba(0,0,0,.6)] backdrop-blur-xl'
+              : scrolled || pathname !== '/'
+                ? 'glass border-white/80 shadow-card'
+                : 'border-transparent bg-transparent',
           )}
         >
           <Link href="/" aria-label="MONVEX – Startseite" data-cursor="Home">
-            <MonvexLogo className="h-[26px]" />
+            <MonvexLogo className="h-[26px]" invert={dark} />
           </Link>
 
           <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="group relative rounded-full px-4 py-2 text-[.92rem] font-medium text-graphite transition-colors hover:text-ink">
+              <Link key={item.href} href={item.href} className={cn("group relative rounded-full px-4 py-2 text-[.92rem] font-medium transition-colors", dark ? "text-white/70 hover:text-white" : "text-graphite hover:text-ink")}>
                 <span className="relative">
                   {item.label}
                   <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-ember transition-transform duration-500 ease-out group-hover:scale-x-100" />
@@ -65,7 +77,7 @@ export function Nav() {
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">
-              <Button href="/#kontakt" magnetic={false} className="!py-1.5 !pl-5 !pr-1.5 text-[.88rem] [&>span:last-child]:!h-9 [&>span:last-child]:!w-9">
+              <Button href="/#kontakt" magnetic={false} variant={dark ? 'light' : 'primary'} className="!py-1.5 !pl-5 !pr-1.5 text-[.88rem] [&>span:last-child]:!h-9 [&>span:last-child]:!w-9">
                 Kontakt aufnehmen
               </Button>
             </div>
@@ -75,7 +87,7 @@ export function Nav() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
-              className="relative grid h-11 w-11 place-items-center rounded-full bg-ink text-white transition-colors hover:bg-ember lg:hidden"
+              className={cn("relative grid h-11 w-11 place-items-center rounded-full transition-colors lg:hidden", dark ? "bg-white text-ink hover:bg-ember hover:text-white" : "bg-ink text-white hover:bg-ember")}
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
