@@ -13,7 +13,8 @@
     "card": "node scripts/visitenkarte.mjs",
     "flyer": "node scripts/flyer.mjs",
     "verify:qr": "node scripts/verify-qr.mjs",
-    "verify:products": "node scripts/verify-products.mjs"
+    "verify:products": "node scripts/verify-products.mjs",
+    "product-og": "node scripts/product-og.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",

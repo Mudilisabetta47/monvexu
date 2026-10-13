@@ -8,6 +8,7 @@ import { Reveal } from '@/components/ui/Reveal';
 import { BrowserFrame, BusWordmark } from './Frames';
 import { StatusChip } from './Chips';
 import Image from 'next/image';
+import { Tilt } from '@/components/ui/Tilt';
 import { productBySlug } from '@/data/products';
 
 const p = productBySlug('busos');
@@ -50,7 +51,12 @@ export function BusOSShowcase({ id = 'busos' }: { id?: string }) {
 
         {/* Bildkomposition */}
         <div className="relative lg:col-span-7">
-          <div className="relative mx-auto max-w-[760px] pb-6 sm:pb-16 lg:pb-14">
+          <Tilt max={3.5} glare={false} className="relative mx-auto max-w-[760px] pb-6 sm:pb-16 lg:pb-14">
+            {['OPS Center', 'Angebot als PDF', 'Fahrer-App'].map((c, i) => (
+              <span key={c} aria-hidden className={`absolute z-30 hidden animate-float rounded-full border bg-white/90 px-3.5 py-2 text-[.78rem] font-semibold shadow-card backdrop-blur lg:block ${['-top-8 right-[8%]', 'bottom-0 left-[44%]', '-top-8 left-[34%]'][i]}`} style={{ borderColor: p.theme.line, color: p.theme.accent, animationDelay: `${-i * 2.1}s`, transform: `translateZ(60px)` }}>
+                {c}
+              </span>
+            ))}
             <m.div style={{ y: yMain }} className="relative z-10">
               <BrowserFrame label="MONVEX BusOS · Demo-Betrieb" img={{ src: '/products/busos/desktop.webp', alt: 'MONVEX BusOS Desktop mit Modulen und OPS-Live-Übersicht im Demo-Betrieb', width: 1440, height: 900, priority: false }} />
             </m.div>
@@ -62,7 +68,7 @@ export function BusOSShowcase({ id = 'busos' }: { id?: string }) {
                 <Image src="/products/busos/angebot.webp" alt="Beispielangebot als PDF mit fiktiven Daten" width={900} height={1271} sizes="18vw" className="block h-auto w-full" />
               </figure>
             </m.div>
-          </div>
+          </Tilt>
         </div>
       </div>
     </article>

@@ -41,6 +41,18 @@ const easy = text(await (await fetch(BASE + '/produkte/easykfz24')).text());
 ok(/keine Behörde/i.test(easy), 'EasyKFZ24: Hinweis „keine Behörde“');
 ok(!/betrieben von|Betreiber|Inhaber/i.test(easy), 'EasyKFZ24: kein Betreiber-/Eigentumsanspruch behauptet');
 
+// Phase 2: Teilen-Bilder, Story, Querverweise
+for (const f of ['/products/og.jpg', '/products/busos/og.jpg', '/products/easykfz24/og.jpg']) {
+  const r = await fetch(BASE + f);
+  ok(r.status === 200 && /image\/jpeg/.test(r.headers.get('content-type') ?? ''), `Open-Graph-Bild ${f}`);
+}
+for (const [path, n] of [['/produkte/busos', 3], ['/produkte/easykfz24', 3]]) {
+  const h = await (await fetch(BASE + path)).text();
+  ok((h.match(/aria-roledescription|<ol class="space-y-16/g) ?? []).length >= 1 && (h.match(/<li class="grid gap-8 lg:grid-cols-12/g) ?? []).length === n, `${path}: Produkt-Story mit ${n} Schritten`);
+}
+const bus = await (await fetch(BASE + '/werbeagentur/busunternehmen')).text();
+ok(bus.includes('href="/produkte/busos"'), 'Branchenseite Busunternehmen verlinkt MONVEX BusOS');
+
 // Navigation im Browser
 const b = await chromium.launch({ executablePath: process.env.CHROME_PATH ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
 const p = await (await b.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
@@ -48,10 +60,12 @@ const errs = []; p.on('pageerror', (e) => errs.push(e.message));
 await p.goto(BASE + '/', { waitUntil: 'networkidle' }); await p.waitForTimeout(1500);
 const nav = p.locator('nav[aria-label="Hauptnavigation"]');
 ok((await nav.locator('a', { hasText: 'Produkte' }).count()) === 1, 'Navigation: Punkt „Produkte“ vorhanden');
+ok((await nav.locator('a', { hasText: 'Technologie' }).count()) === 1, 'Navigation: Punkt „Technologie“ vorhanden');
 const box = await nav.locator('a', { hasText: 'Produkte' }).boundingBox();
 await p.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 5 }); await p.waitForTimeout(900);
 ok(await p.locator('#mega-products').isVisible(), 'Mega-Menü „Produkte“ öffnet beim Hover');
 ok((await p.locator('#mega-products img').count()) >= 2, 'Mega-Menü zeigt zwei Produktvorschauen');
+ok((await p.locator('#mega-products a[href="/produkte/busos#demo"]').count()) === 1 && (await p.locator('#mega-products a[href="https://easykfz24.de/"][rel="noopener noreferrer"]').count()) === 1, 'Mega-Menü: Schnellzugriffe Demo anfragen und easykfz24.de');
 await p.keyboard.press('Escape'); await p.waitForTimeout(500);
 ok((await p.locator('#mega-products').count()) === 0, 'Escape schließt das Mega-Menü');
 await p.mouse.move(40, 600); await p.waitForTimeout(300);

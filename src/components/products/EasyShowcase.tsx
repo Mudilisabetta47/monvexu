@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { Tilt } from '@/components/ui/Tilt';
 import { SplitText } from '@/components/ui/SplitText';
 import { Reveal } from '@/components/ui/Reveal';
 import { BrowserFrame, EasyWordmark, PhoneFrame } from './Frames';
@@ -26,14 +27,19 @@ export function EasyShowcase({ id = 'easykfz24' }: { id?: string }) {
       <div className="relative grid items-center gap-12 lg:grid-cols-12">
         {/* Bild links, Text rechts: Gegenbewegung zu BusOS */}
         <div className="relative order-2 lg:order-1 lg:col-span-7">
-          <div className="relative mx-auto max-w-[760px] pb-4 sm:pb-8">
+          <Tilt max={3.5} glare={false} className="relative mx-auto max-w-[760px] pb-4 sm:pb-8">
+            {['Neuzulassung', 'Ummeldung', 'Abmeldung'].map((c, i) => (
+              <span key={c} aria-hidden className={`absolute z-30 hidden animate-float rounded-full border bg-white/90 px-3.5 py-2 text-[.78rem] font-semibold shadow-card backdrop-blur lg:block ${['-top-8 left-[8%]', 'bottom-2 left-[8%]', '-top-8 left-[34%]'][i]}`} style={{ borderColor: p.theme.line, color: p.theme.accent, animationDelay: `${-i * 2.1}s`, transform: `translateZ(60px)` }}>
+                {c}
+              </span>
+            ))}
             <m.div style={{ y: yDesk }} className="relative z-10 sm:w-[88%]">
               <BrowserFrame label="easykfz24.de" img={{ src: '/products/easykfz24/desktop.webp', alt: 'EasyKFZ24: Seite zu Kfz-Kennzeichen mit Konfigurator für Fahrzeugart und Wunschkennzeichen', width: 1800, height: 813, sizes: '(min-width:1024px) 50vw, 92vw' }} />
             </m.div>
             <m.div style={{ y: yPhone }} className="relative z-20 mx-auto mt-8 w-fit sm:absolute sm:-bottom-10 sm:-right-2 sm:mt-0 lg:-right-4">
               <PhoneFrame img={{ src: '/products/easykfz24/mobile.webp', alt: 'EasyKFZ24 auf dem Smartphone: Kennzeichen-Konfigurator', width: 640, height: 1302 }} />
             </m.div>
-          </div>
+          </Tilt>
         </div>
 
         <div className="order-1 lg:order-2 lg:col-span-5">

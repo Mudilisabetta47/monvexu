@@ -199,9 +199,17 @@ function ProductsPanel({ onNavigate }: PanelProps) {
             ))}
           </ul>
         </div>
-        <Link href="/produkte" onClick={onNavigate} className="mt-5 flex items-center justify-between rounded-full bg-ink px-4 py-3 text-[.9rem] font-medium text-white transition-colors hover:bg-ember">
-          Alle Produkte <ArrowUpRight size={15} />
-        </Link>
+        <div className="mt-5 grid gap-2">
+          <Link href="/produkte/busos#demo" onClick={onNavigate} className="flex items-center justify-between rounded-full border border-line bg-white px-4 py-2.5 text-[.86rem] font-medium transition-colors hover:border-ink">
+            BusOS-Demo anfragen <ArrowUpRight size={14} />
+          </Link>
+          <a href="https://easykfz24.de/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-full border border-line bg-white px-4 py-2.5 text-[.86rem] font-medium transition-colors hover:border-ink">
+            easykfz24.de besuchen <ArrowUpRight size={14} />
+          </a>
+          <Link href="/produkte" onClick={onNavigate} className="flex items-center justify-between rounded-full bg-ink px-4 py-3 text-[.9rem] font-medium text-white transition-colors hover:bg-ember">
+            Alle Produkte <ArrowUpRight size={15} />
+          </Link>
+        </div>
       </div>
     </div>
   );

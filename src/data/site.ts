@@ -76,6 +76,7 @@ export const nav: NavItem[] = [
   { label: 'Produkte', href: '/produkte', mega: 'products' },
   { label: 'Leistungen', href: '/werbeagentur', mega: 'agency' },
   { label: 'Brands', href: '/#brands', mega: 'brands' },
+  { label: 'Technologie', href: '/#technologie' },
   { label: 'Unternehmen', href: '/#unternehmen' },
   { label: 'Kontakt', href: '/#kontakt' },
 ];

@@ -19,9 +19,9 @@ export function BrowserFrame({ img, label, className, tone = 'light' }: { img: I
 }
 
 /** Smartphone-Rahmen. Der untere Rand des Screenshots wird weich ausgeblendet (Aufnahme ist bewusst oberhalb von Preiszeilen beschnitten). */
-export function PhoneFrame({ img, className, fade = true }: { img: Img; className?: string; fade?: boolean }) {
+export function PhoneFrame({ img, className, fade = true, ratio }: { img: Img; className?: string; fade?: boolean; ratio?: number }) {
   return (
-    <figure className={cn('relative aspect-[9/19] w-[200px] shrink-0 rounded-[38px] bg-[#0A1433] p-[7px] shadow-[0_40px_70px_-20px_rgba(10,20,51,.55),inset_0_0_0_1.5px_rgba(255,255,255,.12)] sm:w-[230px]', className)}>
+    <figure style={ratio ? { aspectRatio: String(ratio) } : undefined} className={cn('relative aspect-[9/19] w-[200px] shrink-0 rounded-[38px] bg-[#0A1433] p-[7px] shadow-[0_40px_70px_-20px_rgba(10,20,51,.55),inset_0_0_0_1.5px_rgba(255,255,255,.12)] sm:w-[230px]', className)}>
       <span aria-hidden className="absolute left-1/2 top-[11px] z-10 h-[15px] w-[62px] -translate-x-1/2 rounded-full bg-[#0A1433]" />
       <div className="relative h-full w-full overflow-hidden rounded-[31px] bg-white">
         <Image src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="240px" className="block h-auto w-full" />

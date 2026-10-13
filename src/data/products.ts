@@ -3,7 +3,8 @@
  *
  * WAHRHEITSREGEL: Aussagen über Funktionen stammen aus belegten Quellen (Stand 13.10.2026):
  *  - BusOS: Modulkatalog `MONVEXUGOXZ/src/lib/modules.ts` (Flag `implemented`) und die Modul-Dokumentation.
- *    Das Produkt ist intern lauffähig und getestet, aber NICHT öffentlich verfügbar. Alle Bilder zeigen einen
+ *    Das Produkt ist intern lauffähig und getestet, aber NICHT öffentlich verfügbar. Öffentliche Darstellung als
+ *    „in Entwicklung“ inkl. Demo-Bildern vom Inhaber freigegeben (13.10.2026). Alle Bilder zeigen einen
  *    fiktiven Demo-Betrieb ("Demo Busunternehmen Beta", Beispiel-Kunden).
  *  - EasyKFZ24: öffentlich erreichbare Live-Seite https://easykfz24.de (Texte, Leistungen, Farben).
  * Keine Preise, keine Kennzahlen, keine Kundenreferenzen. Neue Funktion erst eintragen, wenn sie belegt ist.

@@ -1,6 +1,6 @@
 # Testbericht: Produktintegration MONVEX BusOS und EasyKFZ24
 
-Stand: 13.10.2026 · Branch `feature/produkte` · **nicht veröffentlicht, nicht gemergt**
+Stand: 13.10.2026 · Branch `feature/produkte` · Phase 1 + Phase 2 · **nicht veröffentlicht, nicht gemergt**
 
 ## Umfang (Phase 1)
 
@@ -12,12 +12,24 @@ Stand: 13.10.2026 · Branch `feature/produkte` · **nicht veröffentlicht, nicht
 | SEO | eigene Titles/Descriptions, Canonical, Open-Graph-Bild, JSON-LD (SoftwareApplication/WebApplication, FAQPage, BreadcrumbList, ItemList), Sitemap |
 | Externe Links | alle `https`, `target="_blank"`, `rel="noopener noreferrer"`; Ziel `https://easykfz24.de/` plus die fünf Leistungs-Deeplinks und `/kennzeichen` (alle HTTP 200 geprüft) |
 
+## Phase 2 (Premium-Verfeinerung)
+
+| Bereich | Umsetzung |
+|---|---|
+| Scrollanimation | Pinned Produkt-Story auf `/produkte/busos` (OPS Center → Charter → Connect) und `/produkte/easykfz24` (Vorgang → Kennzeichen → Auftrag): Bühne bleibt stehen, Text und Mockup wechseln weich. Unter lg und bei „Bewegung reduzieren“ gestapelte Darstellung ohne Pinning |
+| Mockups | Neue Handy-Screens für EasyKFZ24 (aus Live-Aufnahmen, Preiszeilen und Aktionshinweise entfernt), Handy-Rahmen mit passendem Seitenverhältnis, 3D-Neigung zum Cursor in den Startseiten-Showcases, schwebende Chips mit realen Modul-/Leistungsnamen |
+| Mega-Menü | Schnellzugriffe: BusOS-Demo anfragen, easykfz24.de besuchen (extern, sicher), Alle Produkte; Navigation um „Technologie“ erweitert |
+| SEO | gestaltete Teilen-Bilder (1200×630) für `/produkte`, BusOS, EasyKFZ24 (`npm run product-og`), Querverweis von `/werbeagentur/busunternehmen` auf BusOS |
+| Mobil | Story gestapelt, Nav bei 1024–1279 px ohne Kontakt-Button (verhindert Abschneiden) |
+
+Gemessen (lokaler Produktionsserver, Chrome): LCP 40–150 ms Desktop, 360–460 ms mobil (4× CPU-Drosselung, 4G), CLS 0. Echte Messwerte im Internet liegen höher; empfohlen: PageSpeed Insights nach dem Livegang.
+
 ## Tests
 
 | Prüfung | Ergebnis |
 |---|---|
 | `tsc --noEmit`, `next lint`, `next build` (95 Seiten) | bestanden |
-| `npm run verify:products` (33 Prüfungen: Seiten, Canonical, OG, H1, JSON-LD, Sitemap, Mega-Menü, Links, Aussagen-Wächter) | bestanden |
+| `npm run verify:products` (42 Prüfungen: Seiten, Canonical, OG, H1, JSON-LD, Sitemap, Mega-Menü, Story, Links, Aussagen-Wächter) | bestanden |
 | `npm run verify:seo` (81 Sitemap-URLs, 80 interne Link-Ziele, Dubletten, Ähnlichkeit) | bestanden |
 | Horizontaler Überlauf bei 390, 430, 768, 1024, 1440, 1920, 2560 px (4 Seiten je Breite) | keiner |
 | JavaScript-Fehler in der Konsole | keine |
@@ -39,6 +51,6 @@ Nicht getestet: echte Geräte (nur Chrome-Emulation), Safari/Firefox.
 
 ## Offene Freigaben
 
-1. Darf BusOS öffentlich als Produkt in Entwicklung gezeigt werden? Dürfen die Demo-Screenshots öffentlich genutzt werden?
+1. ~~BusOS öffentlich zeigen~~ – vom Inhaber am 13.10.2026 freigegeben (als „in Entwicklung“, mit Demo-Bildern). Die Freigabe zum Veröffentlichen der Website (Merge) steht noch aus.
 2. Betreiber/Eigentümer von EasyKFZ24 klären (Impressum auf easykfz24.de).
 3. Darf „MONVEX entwickelt EasyKFZ24“ so stehen?

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, Check, Clock } from 'lucide-react';
+import { ArrowUpRight, Clock } from 'lucide-react';
 import { AgencyCta } from '@/components/agency/AgencyCta';
 import { Breadcrumbs } from '@/components/agency/Breadcrumbs';
 import { Block, FaqList } from '@/components/agency/Sections';
 import { BrowserFrame, BusWordmark, PhoneFrame } from '@/components/products/Frames';
 import { StatusChip } from '@/components/products/Chips';
+import { ProductStory } from '@/components/products/ProductStory';
 import { Button } from '@/components/ui/Button';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Reveal } from '@/components/ui/Reveal';
@@ -21,24 +22,6 @@ export const metadata: Metadata = productMetadata(p, PATH);
 
 const available = busosModules.filter((m) => m.state === 'available');
 const planned = busosModules.filter((m) => m.state === 'development');
-
-function Deep({ index, title, text, points, flip, children }: { index: string; title: string; text: string; points: string[]; flip?: boolean; children: React.ReactNode }) {
-  return (
-    <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-      <div className={flip ? 'lg:order-2 lg:col-span-5' : 'lg:col-span-5'}>
-        <p className="font-mono text-[.7rem] tracking-[.2em]" style={{ color: p.theme.accent }}>{index}</p>
-        <h3 className="mt-4 text-[clamp(1.8rem,1.2rem+2vw,3rem)] font-semibold leading-[1] tracking-[-0.04em]" style={{ color: p.theme.ink }}>{title}</h3>
-        <p className="mt-4 max-w-md text-lead text-graphite">{text}</p>
-        <ul className="mt-6 grid gap-2.5">
-          {points.map((x) => (
-            <li key={x} className="flex gap-3 leading-snug"><Check size={17} className="mt-0.5 shrink-0" style={{ color: p.theme.accent }} />{x}</li>
-          ))}
-        </ul>
-      </div>
-      <div className={flip ? 'lg:order-1 lg:col-span-7' : 'lg:col-span-7'}>{children}</div>
-    </div>
-  );
-}
 
 export default function BusOSPage() {
   const crumbs = [{ name: 'MONVEX', path: '/' }, { name: 'Produkte', path: '/produkte' }, { name: p.name, path: PATH }];
@@ -127,37 +110,62 @@ export default function BusOSPage() {
         </ol>
       </Block>
 
-      {/* 5 Module im Detail */}
+      {/* 5 Produkt-Story: scrollgesteuert (ab lg), sonst gestapelt */}
       <Block id="module-detail">
-        <div className="space-y-24 sm:space-y-32">
-          <Deep index="OPS Center" title="Die Leitstelle Ihres Betriebs." text="Heutige und morgige Fahrten, Zuweisung und Konflikte auf einen Blick." points={['Fahrten nach Status filtern: geplant, unterwegs, verspätet, Störung', 'Konflikt-Hinweise, etwa doppelt belegte Fahrzeuge oder fehlende Fahrer', 'Zuweisung von Fahrzeug und Fahrer', 'Live-Lage mit simulierten Demo-Positionen. Echte GPS-Anbindung ist in Entwicklung']}>
-            <BrowserFrame label="OPS Center · Demo-Betrieb" img={{ src: '/products/busos/ops-center.webp', alt: 'OPS Center von MONVEX BusOS mit Kennzahlen und Fahrtenliste im Demo-Betrieb', width: 1440, height: 900 }} />
-          </Deep>
-
-          <Deep flip index="Charter Management" title="Vom Angebot zum PDF." text="Anfragen kalkulieren, Angebote erstellen und als PDF versenden." points={['Kalkulation mit nachvollziehbarer Preisbildung', 'Angebotsdokument mit Versionen und Verlauf', 'Angebote als PDF, Annahme und Ablehnung werden dokumentiert', 'Aufträge entstehen aus dem Angebot']}>
-            <div className="grid items-end gap-5 sm:grid-cols-[1.25fr_.75fr]">
-              <BrowserFrame label="Kunden · Demo-Betrieb" img={{ src: '/products/busos/kunden.webp', alt: 'Kundenverwaltung in MONVEX BusOS mit fiktiven Beispielkunden', width: 1440, height: 900, sizes: '(min-width:1024px) 34vw, 90vw' }} />
-              <figure className="mx-auto w-[78%] overflow-hidden rounded-[10px] border border-black/10 bg-white shadow-[0_40px_70px_-24px_rgba(11,37,64,.45)] sm:w-full">
-                <Image src="/products/busos/angebot.webp" alt="Beispielangebot als PDF mit fiktiven Daten" width={900} height={1271} sizes="(min-width:1024px) 20vw, 60vw" className="block h-auto w-full" />
-                <figcaption className="border-t border-black/5 px-3 py-2 text-center text-[.7rem] text-graphite">Beispielangebot, fiktive Daten</figcaption>
-              </figure>
-            </div>
-          </Deep>
-
-          <Deep index="MONVEX Connect" title="Anfragen direkt von Ihrer Website." text="Ein Anfrageformular für Ihre Website, das Anfragen direkt in BusOS bringt." points={['Formular für die eigene Website, Anfragen landen im Posteingang von BusOS', 'Webhooks und Schnittstelle für eigene Anbindungen', 'Domain wird vor der Aktivierung verifiziert', 'WordPress-Plugin: in Erprobung, noch nicht veröffentlicht']}>
-            <div className="flex justify-center rounded-[32px] border p-8 sm:p-12" style={{ borderColor: p.theme.line, background: `linear-gradient(160deg,${p.theme.soft},#fff)` }}>
-              <div className="relative">
-                <PhoneFrame img={{ src: '/products/busos/connect-mobile.webp', alt: 'Anfrageformular von MONVEX Connect auf dem Smartphone, Demo-Website', width: 560, height: 1212 }} />
-                <p className="mt-4 text-center text-[.74rem] text-graphite">Demo-Website eines fiktiven Busunternehmens</p>
-              </div>
-            </div>
-          </Deep>
+        <SectionHead index="03" label="Im Produkt" title={'Drei Bereiche,\ndie *zusammenspielen.*'}>
+          Scrollen Sie durch die Arbeitsumgebung. Alle Bilder stammen aus dem Demo-Betrieb mit fiktiven Daten.
+        </SectionHead>
+        <div className="mt-14">
+          <ProductStory
+            accent={p.theme.accent}
+            ink={p.theme.ink}
+            line={p.theme.line}
+            steps={[
+              {
+                kicker: 'OPS Center',
+                title: 'Die Leitstelle Ihres Betriebs.',
+                text: 'Heutige und morgige Fahrten, Zuweisung und Konflikte auf einen Blick.',
+                points: ['Fahrten nach Status filtern: geplant, unterwegs, verspätet, Störung', 'Konflikt-Hinweise, etwa doppelt belegte Fahrzeuge oder fehlende Fahrer', 'Zuweisung von Fahrzeug und Fahrer', 'Live-Lage mit simulierten Demo-Positionen. Echte GPS-Anbindung ist in Entwicklung'],
+                shape: 'wide',
+                media: <BrowserFrame label="OPS Center · Demo-Betrieb" img={{ src: '/products/busos/ops-center.webp', alt: 'OPS Center von MONVEX BusOS mit Kennzahlen und Fahrtenliste im Demo-Betrieb', width: 1440, height: 900 }} />,
+              },
+              {
+                kicker: 'Charter Management',
+                title: 'Vom Angebot zum PDF.',
+                text: 'Anfragen kalkulieren, Angebote erstellen und als PDF versenden.',
+                points: ['Kalkulation mit nachvollziehbarer Preisbildung', 'Angebotsdokument mit Versionen und Verlauf', 'Angebote als PDF, Annahme und Ablehnung werden dokumentiert', 'Aufträge entstehen aus dem Angebot'],
+                shape: 'wide',
+                media: (
+                  <div className="grid items-end gap-5 sm:grid-cols-[1.25fr_.75fr]">
+                    <BrowserFrame label="Kunden · Demo-Betrieb" img={{ src: '/products/busos/kunden.webp', alt: 'Kundenverwaltung in MONVEX BusOS mit fiktiven Beispielkunden', width: 1440, height: 900, sizes: '(min-width:1024px) 34vw, 90vw' }} />
+                    <figure className="mx-auto w-[78%] overflow-hidden rounded-[10px] border border-black/10 bg-white shadow-[0_40px_70px_-24px_rgba(11,37,64,.45)] sm:w-full">
+                      <Image src="/products/busos/angebot.webp" alt="Beispielangebot als PDF mit fiktiven Daten" width={900} height={1271} sizes="(min-width:1024px) 20vw, 60vw" className="block h-auto w-full" />
+                      <figcaption className="border-t border-black/5 px-3 py-2 text-center text-[.7rem] text-graphite">Beispielangebot, fiktive Daten</figcaption>
+                    </figure>
+                  </div>
+                ),
+              },
+              {
+                kicker: 'MONVEX Connect',
+                title: 'Anfragen direkt von Ihrer Website.',
+                text: 'Ein Anfrageformular für Ihre Website, das Anfragen direkt in BusOS bringt.',
+                points: ['Formular für die eigene Website, Anfragen landen im Posteingang von BusOS', 'Webhooks und Schnittstelle für eigene Anbindungen', 'Domain wird vor der Aktivierung verifiziert', 'WordPress-Plugin: in Erprobung, noch nicht veröffentlicht'],
+                shape: 'tall',
+                media: (
+                  <div className="flex h-full flex-col items-center justify-center">
+                    <PhoneFrame ratio={560 / 1212} className="!w-[220px] lg:!h-[min(64svh,620px)] lg:!w-auto" img={{ src: '/products/busos/connect-mobile.webp', alt: 'Anfrageformular von MONVEX Connect auf dem Smartphone, Demo-Website', width: 560, height: 1212 }} />
+                    <p className="mt-3 text-center text-[.74rem] text-graphite">Demo-Website eines fiktiven Busunternehmens</p>
+                  </div>
+                ),
+              },
+            ]}
+          />
         </div>
       </Block>
 
       {/* 6 Modulübersicht */}
       <Block id="module" tone="white">
-        <SectionHead index="03" label="Module" title={'Was heute geht.\nWas noch *kommt.*'}>
+        <SectionHead index="04" label="Module" title={'Was heute geht.\nWas noch *kommt.*'}>
           Wir kennzeichnen ehrlich, was im Demo-Betrieb nutzbar ist und was sich in Entwicklung befindet.
         </SectionHead>
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
@@ -187,7 +195,7 @@ export default function BusOSPage() {
         <p className="mt-6 max-w-3xl text-[.85rem] leading-relaxed text-mute">Stand der Module: Oktober 2026. Angaben ohne Gewähr für künftige Verfügbarkeit; Funktionen und Reihenfolge können sich ändern.</p>
       </Block>
 
-      <FaqList title="Häufige Fragen zu BusOS" items={busosFaq} index="04" />
+      <FaqList title="Häufige Fragen zu BusOS" items={busosFaq} index="05" />
 
       <AgencyCta id="demo" headline="BusOS-Demo anfragen." text="Sie führen ein Busunternehmen und möchten sehen, wie BusOS arbeitet? Schreiben Sie uns kurz zu Ihrem Betrieb, dann melden wir uns zu einer Demo." topic="MONVEX BusOS – Demo-Anfrage" />
 

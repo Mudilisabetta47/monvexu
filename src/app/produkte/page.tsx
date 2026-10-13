@@ -4,13 +4,16 @@ import { Breadcrumbs } from '@/components/agency/Breadcrumbs';
 import { ProductsSection } from '@/components/sections/ProductsSection';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { products } from '@/data/products';
+import { SITE_URL } from '@/data/site';
 import { agencyMetadata, breadcrumbSchema, webPageSchema } from '@/lib/agency-seo';
 import { productsListSchema } from '@/lib/product-seo';
 
 const PATH = '/produkte';
 const TITLE = 'Produkte: MONVEX BusOS und EasyKFZ24';
 const DESC = 'Eigene Software und Plattformen von MONVEX: MONVEX BusOS für Busunternehmen (in Entwicklung) und EasyKFZ24, die digitale Plattform für Kfz-Zulassung.';
-export const metadata: Metadata = agencyMetadata({ title: TITLE, description: DESC, path: PATH });
+const base = agencyMetadata({ title: TITLE, description: DESC, path: PATH });
+const og = { url: `${SITE_URL}/products/og.jpg`, width: 1200, height: 630, alt: 'Produkte von MONVEX: BusOS und EasyKFZ24' };
+export const metadata: Metadata = { ...base, openGraph: { ...base.openGraph, images: [og] }, twitter: { ...base.twitter, images: [og.url] } };
 
 export default function ProduktePage() {
   const crumbs = [{ name: 'MONVEX', path: '/' }, { name: 'Produkte', path: PATH }];

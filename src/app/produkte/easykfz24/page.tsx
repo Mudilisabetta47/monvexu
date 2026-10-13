@@ -6,6 +6,7 @@ import { Breadcrumbs } from '@/components/agency/Breadcrumbs';
 import { Block, FaqList } from '@/components/agency/Sections';
 import { BrowserFrame, EasyWordmark, PhoneFrame } from '@/components/products/Frames';
 import { StatusChip } from '@/components/products/Chips';
+import { ProductStory } from '@/components/products/ProductStory';
 import { Button } from '@/components/ui/Button';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Reveal } from '@/components/ui/Reveal';
@@ -128,9 +129,31 @@ export default function EasyKfzPage() {
         </ul>
       </Block>
 
+      {/* Story: so fühlt es sich an (echte Aufnahmen von easykfz24.de) */}
+      <Block>
+        <SectionHead index="03" label="Im Produkt" title={'So fühlt sich\n*EasyKFZ24* an.'}>
+          Drei Stationen aus der mobilen Plattform. Alle Aufnahmen stammen von easykfz24.de.
+        </SectionHead>
+        <div className="mt-14">
+          <ProductStory
+            accent={p.theme.accent}
+            ink={p.theme.ink}
+            line={p.theme.line}
+            steps={[
+              { kicker: 'Vorgang wählen', title: 'Fahrzeug und Vorgang auswählen.', text: 'Auto, E-Kennzeichen, H-Kennzeichen, Traktor, Motorrad oder Leichtkraftrad und dazu anmelden, ummelden oder abmelden.', points: ['Sechs Fahrzeugarten zur Auswahl', 'Vorgang mit einem Tipp wechseln', 'Wunschkennzeichen direkt eintippen'], shape: 'tall',
+                media: <PhoneFrame ratio={600 / 1092} className="!w-[210px] lg:!h-[min(66svh,640px)] lg:!w-auto" img={{ src: '/products/easykfz24/step-vorgang.webp', alt: 'EasyKFZ24 auf dem Smartphone: Auswahl von Vorgang und Fahrzeugart', width: 600, height: 1092 }} /> },
+              { kicker: 'Kennzeichen', title: 'Das Kennzeichen im Schild.', text: 'Der Konfigurator zeigt das Wunschkennzeichen direkt im Schild, mit allen Ortskennzeichen von A bis Z.', points: ['Ortskennzeichen suchen und ansehen', 'Wunschkombination im Schild eintippen', 'Verfügbarkeit wird bei der Reservierung geprüft'], shape: 'tall',
+                media: <PhoneFrame ratio={640 / 1302} className="!w-[210px] lg:!h-[min(66svh,640px)] lg:!w-auto" img={{ src: '/products/easykfz24/mobile.webp', alt: 'EasyKFZ24 auf dem Smartphone: Kennzeichen-Konfigurator', width: 640, height: 1302 }} /> },
+              { kicker: 'Auftrag', title: 'Der Auftrag in Schritten.', text: 'Die Auftragsstrecke führt Schritt für Schritt durch Leistung, Daten und Unterlagen.', points: ['Geführte Strecke mit Fortschrittsanzeige', 'Unterlagen werden online hochgeladen', 'Danach lässt sich der Status abrufen'], shape: 'tall',
+                media: <PhoneFrame ratio={600 / 862} className="!w-[210px] lg:!h-[min(66svh,640px)] lg:!w-auto" img={{ src: '/products/easykfz24/step-auftrag.webp', alt: 'EasyKFZ24 auf dem Smartphone: Auftragsstrecke mit Fortschrittsanzeige', width: 600, height: 862 }} /> },
+            ]}
+          />
+        </div>
+      </Block>
+
       {/* 4 Ablauf */}
       <Block id="ablauf">
-        <SectionHead index="03" label="Ablauf" title={'So funktioniert\ndas *grundsätzlich.*'} />
+        <SectionHead index="04" label="Ablauf" title={'So funktioniert\ndas *grundsätzlich.*'} />
         <ol className="mt-14 grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
           {easyFlow.map((s, i) => (
             <Reveal as="li" key={s.n} delay={i * 0.05} className="bg-paper">
@@ -148,7 +171,7 @@ export default function EasyKfzPage() {
       <Block tone="white">
         <div className="grid items-center gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow flex items-center gap-3"><span className="text-ember">04</span><span className="h-px w-10 bg-ink/25" />Marke</p>
+            <p className="eyebrow flex items-center gap-3"><span className="text-ember">05</span><span className="h-px w-10 bg-ink/25" />Marke</p>
             <h2 className="mt-6 text-[clamp(2.2rem,1.2rem+4vw,4.6rem)] font-semibold leading-[.96] tracking-[-0.045em]">Eine eigene <span className="serif-i text-ember">Markenwelt.</span></h2>
             <p className="mt-6 max-w-md text-lead text-graphite">EasyKFZ24 tritt eigenständig auf: mit eigenem Zeichen, eigener Schrift und eigenen Farben.</p>
           </div>
@@ -169,7 +192,7 @@ export default function EasyKfzPage() {
         </div>
       </Block>
 
-      <FaqList title="Häufige Fragen zu EasyKFZ24" items={easyFaq} index="05" />
+      <FaqList title="Häufige Fragen zu EasyKFZ24" items={easyFaq} index="06" />
 
       {/* CTA */}
       <section className="py-16 sm:py-24">
