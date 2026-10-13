@@ -11,10 +11,11 @@ type Props = {
   aside?: ReactNode;
   dark?: boolean;
   className?: string;
+  titleClassName?: string;
 };
 
 /** Einheitlicher Sektionskopf: Nummer + Label, grosse Headline, Text und optionale Aktion. */
-export function SectionHead({ index, label, title, children, aside, dark, className }: Props) {
+export function SectionHead({ index, label, title, children, aside, dark, className, titleClassName }: Props) {
   return (
     <div className={cn('grid gap-8 lg:grid-cols-12 lg:items-end', className)}>
       <div className="lg:col-span-8">
@@ -25,7 +26,7 @@ export function SectionHead({ index, label, title, children, aside, dark, classN
             {label}
           </p>
         </Reveal>
-        <SplitText text={title} className={cn('mt-6 text-h2 font-semibold', dark && 'text-white')} accentClassName={cn('serif-i', dark ? 'text-ember' : 'text-ember')} />
+        <SplitText text={title} className={cn('mt-6 font-semibold', titleClassName ?? 'text-h2', dark && 'text-white')} accentClassName={cn('serif-i', dark ? 'text-ember' : 'text-ember')} />
       </div>
       {(children || aside) && (
         <div className="lg:col-span-4">

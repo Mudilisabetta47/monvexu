@@ -12,6 +12,7 @@ import { MegaPanel } from './MegaMenu';
 import { getLenis } from './SmoothScroll';
 import { agencyServices, industries, industryPath, servicePath } from '@/data/agency';
 import { brands } from '@/data/brands';
+import { products } from '@/data/products';
 import { company, nav, type MegaId } from '@/data/site';
 import { EASE } from '@/lib/motion';
 import { cn } from '@/lib/cn';
@@ -161,7 +162,7 @@ export function Nav() {
               key={mega}
               id={`mega-${mega}`}
               role="region"
-              aria-label={mega === 'brands' ? 'Marken' : 'Werbeagentur'}
+              aria-label={mega === 'brands' ? 'Marken' : mega === 'products' ? 'Produkte' : 'Leistungen'}
               initial={{ opacity: 0, y: -10, scale: 0.985, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: -8, scale: 0.99, filter: 'blur(4px)', transition: { duration: 0.18 } }}
@@ -196,7 +197,9 @@ export function Nav() {
               {nav.map((item, i) => {
                 const sub = item.mega === mobileSub;
                 const links =
-                  item.mega === 'brands'
+                  item.mega === 'products'
+                    ? [...products.map((pr) => ({ label: pr.name, href: pr.href })), { label: 'Alle Produkte', href: '/produkte' }]
+                    : item.mega === 'brands'
                     ? [...brands.map((b) => ({ label: b.name, href: `/brands/${b.slug}` })), { label: 'Alle Marken', href: '/brands' }]
                     : item.mega === 'agency'
                       ? [

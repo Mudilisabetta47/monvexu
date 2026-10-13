@@ -11,7 +11,7 @@ export function BrandsPreview() {
     <section id="brands" className="relative bg-white py-28 sm:py-40">
       <div className="hairline absolute inset-x-0 top-0" />
       <div className="shell">
-        <SectionHead index="02" label="Portfolio" title={'Unsere\n*Marken*'}>
+        <SectionHead index="03" label="Portfolio" title={'Unsere\n*Marken*'}>
           Kein Projektarchiv, sondern ein Portfolio: Jede Marke hat ihre eigene Welt, ihren eigenen Auftritt – und einen gemeinsamen Unterbau.
         </SectionHead>
 

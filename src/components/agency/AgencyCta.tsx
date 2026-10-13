@@ -4,9 +4,9 @@ import { ContactForm } from '@/components/sections/ContactForm';
 import { company } from '@/data/site';
 
 /** Branchenspezifischer Abschluss mit Formular. `topic` erscheint in der eingehenden Mail. */
-export function AgencyCta({ headline, text, topic }: { headline: string; text: string; topic: string }) {
+export function AgencyCta({ headline, text, topic, id = 'anfrage' }: { headline: string; text: string; topic: string; id?: string }) {
   return (
-    <section id="anfrage" className="relative py-20 sm:py-28">
+    <section id={id} className="relative py-20 sm:py-28">
       <div className="shell">
         <div className="overflow-hidden rounded-[36px] border border-line bg-white p-6 shadow-card sm:p-10 lg:p-14">
           <div className="grid gap-14 lg:grid-cols-12">

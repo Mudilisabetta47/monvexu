@@ -9,7 +9,7 @@ export function Contact() {
       <div className="shell">
         <Reveal>
           <p className="eyebrow flex items-center gap-3">
-            <span className="text-ember">09</span>
+            <span className="text-ember">11</span>
             <span className="h-px w-10 bg-ink/25" />
             Kontakt
           </p>

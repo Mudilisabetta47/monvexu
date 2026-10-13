@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { brands } from '@/data/brands';
 import { SITE_URL } from '@/data/site';
+import { products } from '@/data/products';
 import { CONTENT_UPDATED, allAgencyUrls } from '@/data/agency';
 
 /**
@@ -13,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${SITE_URL}/`, lastModified, changeFrequency: 'monthly', priority: 1 },
     { url: `${SITE_URL}/brands`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SITE_URL}/produkte`, lastModified, changeFrequency: 'monthly', priority: 0.95 },
+    ...products.map((pr) => ({ url: `${SITE_URL}${pr.href}`, lastModified, changeFrequency: 'monthly' as const, priority: 0.9 })),
     ...brands.map((b) => ({ url: `${SITE_URL}/brands/${b.slug}`, lastModified, changeFrequency: 'monthly' as const, priority: 0.7 })),
     ...allAgencyUrls().map((u) => ({ url: `${SITE_URL}${u.path}`, lastModified, changeFrequency: u.changeFrequency, priority: u.priority })),
     { url: `${SITE_URL}/website-check`, lastModified, changeFrequency: 'monthly', priority: 0.8 },

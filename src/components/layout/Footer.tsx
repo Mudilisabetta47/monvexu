@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { brands } from '@/data/brands';
 import { company, legalNav, nav } from '@/data/site';
+import { products } from '@/data/products';
 import { AGENCY_BASE, agencyServices, servicePath } from '@/data/agency';
 import { MonvexLogo } from '@/components/ui/Logo';
 
@@ -9,7 +10,7 @@ export function Footer() {
     <footer className="relative overflow-hidden rounded-t-[36px] bg-ink text-white sm:rounded-t-[56px]">
       <div className="grid-bg-dark pointer-events-none absolute inset-0 opacity-50 [mask-image:linear-gradient(to_bottom,#000,transparent_70%)]" />
       <div className="shell relative pt-20 sm:pt-28">
-        <div className="grid gap-14 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
+        <div className="grid gap-14 lg:grid-cols-[1.4fr_repeat(5,1fr)]">
           <div>
             <MonvexLogo invert className="h-8" />
             <p className="mt-8 max-w-xs text-[clamp(1.6rem,1.2rem+1.4vw,2.4rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
@@ -30,6 +31,15 @@ export function Footer() {
             {nav.map((n) => (
               <FooterLink key={n.href} href={n.href}>
                 {n.label}
+              </FooterLink>
+            ))}
+          </FooterCol>
+
+          <FooterCol title="Produkte">
+            <FooterLink href="/produkte">Alle Produkte</FooterLink>
+            {products.map((pr) => (
+              <FooterLink key={pr.slug} href={pr.href}>
+                {pr.name}
               </FooterLink>
             ))}
           </FooterCol>

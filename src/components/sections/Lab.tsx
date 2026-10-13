@@ -136,7 +136,7 @@ export function Lab() {
             <div className="lg:col-span-5">
               <Reveal>
                 <p className="eyebrow flex items-center gap-3 !text-white/55">
-                  <span className="text-ember">07</span>
+                  <span className="text-ember">09</span>
                   <span className="h-px w-10 bg-white/25" />
                   MONVEX Lab
                 </p>

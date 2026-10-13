@@ -20,7 +20,7 @@ export function About() {
       <div className="shell relative">
         <Reveal>
           <p className="eyebrow flex items-center gap-3">
-            <span className="text-ember">08</span>
+            <span className="text-ember">10</span>
             <span className="h-px w-10 bg-ink/25" />
             Über MONVEX
           </p>

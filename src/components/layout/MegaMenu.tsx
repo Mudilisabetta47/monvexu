@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { brands, brandStatusLabel, brandTypeLabel } from '@/data/brands';
+import Image from 'next/image';
+import { pillars, products } from '@/data/products';
 import { AGENCY_BASE, agencyServices, industries, industryPath, servicePath } from '@/data/agency';
 import { legal, type MegaId } from '@/data/site';
 import { BrandLogo } from '@/components/brands/BrandLogo';
@@ -150,6 +152,62 @@ function AgencyPanel({ onNavigate }: PanelProps) {
   );
 }
 
+/** Mega-Menü „Produkte“: echte Vorschaubilder (BusOS-Demo-Screenshot, EasyKFZ24-Live-Aufnahme). Keine erfundenen Bilder. */
+function ProductsPanel({ onNavigate }: PanelProps) {
+  const previews: Record<string, { src: string; alt: string; w: number; h: number }> = {
+    busos: { src: '/products/busos/desktop.webp', alt: 'Vorschau: MONVEX BusOS Desktop im Demo-Betrieb', w: 1440, h: 900 },
+    easykfz24: { src: '/products/easykfz24/desktop.webp', alt: 'Vorschau: EasyKFZ24 Website', w: 1800, h: 813 },
+  };
+  return (
+    <div className="grid gap-6 lg:grid-cols-[1fr_1fr_.62fr]">
+      {products.map((pr, i) => {
+        const im = previews[pr.slug];
+        return (
+          <Link
+            key={pr.slug}
+            href={pr.href}
+            onClick={onNavigate}
+            className="group relative flex animate-rise flex-col overflow-hidden rounded-[24px] border p-4 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-lift"
+            style={{ background: `linear-gradient(160deg,${pr.theme.soft},${pr.theme.bg})`, borderColor: pr.theme.line, ...rise(i) }}
+          >
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[14px] border border-black/10 bg-white shadow-card">
+              <Image src={im.src} alt={im.alt} width={im.w} height={im.h} sizes="320px" className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] ${pr.slug === 'easykfz24' ? 'object-left-top' : 'object-top'}`} />
+            </div>
+            <div className="mt-4 flex items-start justify-between gap-3 px-1">
+              <div>
+                <p className="text-[1.25rem] font-semibold tracking-[-0.03em]" style={{ color: pr.theme.ink }}>{pr.name}</p>
+                <p className="mt-0.5 text-[.88rem] leading-snug text-graphite">{pr.tagline}</p>
+              </div>
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full transition-transform duration-500 group-hover:rotate-45" style={{ background: pr.theme.accent, color: '#fff' }}>
+                <ArrowUpRight size={16} />
+              </span>
+            </div>
+            <span className="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-white/80 px-2.5 py-1 font-mono text-[.58rem] uppercase tracking-[.14em]" style={{ color: pr.theme.ink }}>
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: pr.status.tone === 'live' ? pr.theme.accent : '#E0A100' }} />
+              {pr.status.label}
+            </span>
+          </Link>
+        );
+      })}
+
+      <div className="flex animate-rise flex-col justify-between rounded-[24px] border border-line bg-paper p-5" style={rise(2)}>
+        <div>
+          <p className="border-b border-line pb-3 font-mono text-[.66rem] uppercase tracking-[.18em] text-graphite">Drei Bereiche</p>
+          <ul className="mt-3 grid gap-0.5">
+            {pillars.map((x) => (
+              <Item key={x.id} href={x.href} onNavigate={onNavigate} i={2}>{x.title}</Item>
+            ))}
+          </ul>
+        </div>
+        <Link href="/produkte" onClick={onNavigate} className="mt-5 flex items-center justify-between rounded-full bg-ink px-4 py-3 text-[.9rem] font-medium text-white transition-colors hover:bg-ember">
+          Alle Produkte <ArrowUpRight size={15} />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export function MegaPanel({ id, onNavigate }: { id: MegaId } & PanelProps) {
+  if (id === 'products') return <ProductsPanel onNavigate={onNavigate} />;
   return id === 'brands' ? <BrandsPanel onNavigate={onNavigate} /> : <AgencyPanel onNavigate={onNavigate} />;
 }
