@@ -29,7 +29,7 @@ Gemessen (lokaler Produktionsserver, Chrome): LCP 40–150 ms Desktop, 360–460
 | Prüfung | Ergebnis |
 |---|---|
 | `tsc --noEmit`, `next lint`, `next build` (95 Seiten) | bestanden |
-| `npm run verify:products` (42 Prüfungen: Seiten, Canonical, OG, H1, JSON-LD, Sitemap, Mega-Menü, Story, Links, Aussagen-Wächter) | bestanden |
+| `npm run verify:products` (64 Prüfungen: Seiten, Canonical, OG, H1, JSON-LD, Sitemap, Mega-Menü, Story, Links, Aussagen-Wächter) | bestanden |
 | `npm run verify:seo` (81 Sitemap-URLs, 80 interne Link-Ziele, Dubletten, Ähnlichkeit) | bestanden |
 | Horizontaler Überlauf bei 390, 430, 768, 1024, 1440, 1920, 2560 px (4 Seiten je Breite) | keiner |
 | JavaScript-Fehler in der Konsole | keine |
