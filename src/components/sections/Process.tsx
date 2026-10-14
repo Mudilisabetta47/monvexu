@@ -27,7 +27,7 @@ export function Process() {
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="eyebrow flex items-center gap-3">
-                <span className="text-ember">04</span>
+                <span className="text-ember">06</span>
                 <span className="h-px w-10 bg-ink/25" />
                 Geschäftsmodell
               </p>

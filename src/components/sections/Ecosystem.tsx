@@ -36,7 +36,7 @@ export function Ecosystem() {
   return (
     <section id="dachmarke" className="relative py-28 sm:py-40">
       <div className="shell">
-        <SectionHead index="01" label="Dachmarke" title={'ONE COMPANY.\nMULTIPLE *BRANDS.*'}>
+        <SectionHead index="02" label="Dachmarke" title={'ONE COMPANY.\nMULTIPLE *BRANDS.*'}>
           MONVEX entwickelt, betreibt und führt Marken, Produkte und Geschäftsmodelle aus unterschiedlichen Bereichen.
         </SectionHead>
 

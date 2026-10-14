@@ -12,6 +12,7 @@ import { MegaPanel } from './MegaMenu';
 import { getLenis } from './SmoothScroll';
 import { agencyServices, industries, industryPath, servicePath } from '@/data/agency';
 import { brands } from '@/data/brands';
+import { products } from '@/data/products';
 import { company, nav, type MegaId } from '@/data/site';
 import { EASE } from '@/lib/motion';
 import { cn } from '@/lib/cn';
@@ -94,7 +95,7 @@ export function Nav() {
             {nav.map((item) => {
               const isOpen = mega === item.mega && !!item.mega;
               const base = cn(
-                'group relative flex items-center gap-1 rounded-full px-4 py-2 text-[.92rem] font-medium transition-colors',
+                'group relative flex items-center gap-1 rounded-full px-3 py-2 text-[.92rem] font-medium transition-colors xl:px-4',
                 dark ? 'text-white/70 hover:text-white' : 'text-graphite hover:text-ink',
                 isOpen && (dark ? '!text-white' : '!text-ink'),
               );
@@ -136,7 +137,7 @@ export function Nav() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden sm:block">
+            <div className="hidden sm:block lg:hidden xl:block">
               <Button href="/#kontakt" magnetic={false} variant={dark ? 'light' : 'primary'} className="!py-1.5 !pl-5 !pr-1.5 text-[.88rem] [&>span:last-child]:!h-9 [&>span:last-child]:!w-9">
                 Kontakt aufnehmen
               </Button>
@@ -161,7 +162,7 @@ export function Nav() {
               key={mega}
               id={`mega-${mega}`}
               role="region"
-              aria-label={mega === 'brands' ? 'Marken' : 'Werbeagentur'}
+              aria-label={mega === 'brands' ? 'Marken' : mega === 'products' ? 'Produkte' : 'Leistungen'}
               initial={{ opacity: 0, y: -10, scale: 0.985, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               exit={{ opacity: 0, y: -8, scale: 0.99, filter: 'blur(4px)', transition: { duration: 0.18 } }}
@@ -196,7 +197,9 @@ export function Nav() {
               {nav.map((item, i) => {
                 const sub = item.mega === mobileSub;
                 const links =
-                  item.mega === 'brands'
+                  item.mega === 'products'
+                    ? [...products.map((pr) => ({ label: pr.name, href: pr.href })), { label: 'Alle Produkte', href: '/produkte' }]
+                    : item.mega === 'brands'
                     ? [...brands.map((b) => ({ label: b.name, href: `/brands/${b.slug}` })), { label: 'Alle Marken', href: '/brands' }]
                     : item.mega === 'agency'
                       ? [

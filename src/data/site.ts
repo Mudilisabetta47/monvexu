@@ -69,16 +69,16 @@ export const legal: {
   phone: '0421 499 58 207',
 };
 
-export type MegaId = 'brands' | 'agency';
+export type MegaId = 'products' | 'brands' | 'agency';
 export type NavItem = { label: string; href: string; /** Öffnet ein Mega-Menü (Desktop) bzw. einen Aufklappbereich (Mobil). */ mega?: MegaId };
 
 export const nav: NavItem[] = [
-  { label: 'Unternehmen', href: '/#unternehmen' },
+  { label: 'Produkte', href: '/produkte', mega: 'products' },
+  { label: 'Leistungen', href: '/werbeagentur', mega: 'agency' },
   { label: 'Brands', href: '/#brands', mega: 'brands' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Werbeagentur', href: '/werbeagentur', mega: 'agency' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Contact', href: '/#kontakt' },
+  { label: 'Technologie', href: '/#technologie' },
+  { label: 'Unternehmen', href: '/#unternehmen' },
+  { label: 'Kontakt', href: '/#kontakt' },
 ];
 
 export const legalNav: NavItem[] = [

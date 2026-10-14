@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic';
 import { Hero } from '@/components/sections/Hero';
 import { Marquee } from '@/components/ui/Marquee';
+import { ProductsSection } from '@/components/sections/ProductsSection';
+import { TechSection } from '@/components/sections/TechSection';
 import { Ecosystem } from '@/components/sections/Ecosystem';
 import { BrandsPreview } from '@/components/sections/BrandsPreview';
 import { Services } from '@/components/sections/Services';
@@ -24,10 +26,12 @@ export default function Home() {
           items={['Marken', 'Produkte', 'Unternehmen', 'Geschäftsmodelle', 'Digital', 'Technology', 'Travel & Mobility']}
         />
       </div>
+      <ProductsSection />
       <Ecosystem />
       <BrandsPreview />
       <Services />
       <AgencyTeaser />
+      <TechSection />
       <Process />
       <Business />
       <SelectedWork />

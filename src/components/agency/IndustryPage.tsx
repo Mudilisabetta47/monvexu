@@ -1,4 +1,5 @@
-import { Check } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight, Check } from 'lucide-react';
 import { AgencyHero } from './AgencyHero';
 import { AgencyCta } from './AgencyCta';
 import { Compliance, ExampleList, FaqList, ProblemGrid, ProcessSteps, RelatedLinks, SolutionGrid, WhyMonvex } from './Sections';
@@ -68,6 +69,20 @@ export function IndustryPage({ industry, parent }: { industry: Industry; parent?
         </div>
       )}
       {hasSubs && <SubIndustryGrid parent={industry} />}
+      {industry.slug === 'busunternehmen' && !parent && (
+        <section className="py-10">
+          <div className="shell">
+            <Link href="/produkte/busos" className="group relative flex flex-col items-start justify-between gap-6 overflow-hidden rounded-[28px] border p-7 transition-shadow duration-500 hover:shadow-lift sm:flex-row sm:items-center sm:p-9" style={{ borderColor: 'rgba(9,106,99,.2)', background: 'linear-gradient(135deg,#E6F6F2,#F6FBFA)' }}>
+              <span>
+                <span className="font-mono text-[.66rem] uppercase tracking-[.18em]" style={{ color: '#096A63' }}>Eigene Software · in Entwicklung</span>
+                <span className="mt-2 block text-[clamp(1.5rem,1.1rem+1.6vw,2.4rem)] font-semibold leading-[1.02] tracking-[-0.04em]" style={{ color: '#0B2540' }}>Software für Busunternehmen: MONVEX BusOS</span>
+                <span className="mt-2 block max-w-xl leading-snug text-[#3C5568]">Wir entwickeln selbst eine Plattform für Charteranfragen, Kalkulation, Angebote und Leitstelle. Demo auf Anfrage.</span>
+              </span>
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full text-white transition-transform duration-500 group-hover:rotate-45" style={{ background: '#096A63' }}><ArrowUpRight size={20} /></span>
+            </Link>
+          </div>
+        </section>
+      )}
       <ProcessSteps index="04" />
       <WhyMonvex index="05" />
       <RegionGrid industry={industry} regions={regions} index="06" />

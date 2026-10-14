@@ -142,7 +142,7 @@ function DesktopTrack() {
           <div className="flex w-[min(42vw,620px)] shrink-0 flex-col justify-center pr-10">
             <Reveal>
               <p className="eyebrow flex items-center gap-3">
-                <span className="text-ember">03</span>
+                <span className="text-ember">04</span>
                 <span className="h-px w-10 bg-ink/25" />
                 Leistungen
               </p>
@@ -193,7 +193,7 @@ export function Services() {
       {/* Mobil / Tablet: nativer Snap-Scroller */}
       <div className="py-24 sm:py-32 lg:hidden">
         <div className="shell">
-          <SectionHead index="03" label="Leistungen" title={'Wir bauen nicht nur *Websites.*'}>
+          <SectionHead index="04" label="Leistungen" title={'Wir bauen nicht nur *Websites.*'}>
             Sechs Felder, ein Ziel: Geschäftsmodelle, die funktionieren – technisch, gestalterisch und wirtschaftlich.
           </SectionHead>
         </div>

@@ -84,7 +84,7 @@ export function SelectedWork() {
     <section id="projects" className="relative bg-white py-28 sm:py-40">
       <div className="hairline absolute inset-x-0 top-0" />
       <div className="shell">
-        <SectionHead index="06" label="Projekte" title={'Selected\n*Work*'}>
+        <SectionHead index="08" label="Projekte" title={'Selected\n*Work*'}>
           Projekte und digitale Produkte – sauber getrennt nach ihrer Beziehung zu MONVEX.
         </SectionHead>
 

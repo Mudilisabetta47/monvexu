@@ -19,7 +19,7 @@ export function Business() {
       <div className="shell">
         <Reveal>
           <p className="eyebrow flex items-center gap-3">
-            <span className="text-ember">05</span>
+            <span className="text-ember">07</span>
             <span className="h-px w-10 bg-ink/25" />
             Für Unternehmen
           </p>
