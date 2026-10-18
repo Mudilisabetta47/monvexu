@@ -7,7 +7,26 @@
     "tagline": "Build. Brand. Scale."
   },
   "people": [
-    { "slug": "mudi-hassun", "name": "Mudi Hassun", "title": "Sales Manager", "phone": "0421 499 58 207", "email": "mudi@monvex-group.de" },
-    { "slug": "eda-sahan", "name": "Eda Sahan", "title": "Managerin", "phone": "0421 499 58 207", "email": "" }
+    {
+      "slug": "mohammed-al-bakhit",
+      "name": "Mohammed Al Bakhit",
+      "title": "Geschäftsführer",
+      "phone": "0421 499 58 207",
+      "email": "mudi@monvex-group.de"
+    },
+    {
+      "slug": "mudi-hassun",
+      "name": "Mudi Hassun",
+      "title": "Sales Manager",
+      "phone": "0421 499 58 207",
+      "email": "mudi@monvex-group.de"
+    },
+    {
+      "slug": "eda-sahan",
+      "name": "Eda Sahan",
+      "title": "Managerin",
+      "phone": "0421 499 58 207",
+      "email": ""
+    }
   ]
 }
