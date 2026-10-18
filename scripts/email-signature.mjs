@@ -8,7 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { legalName } from './company-name.mjs';
+import { legalName, isInFormation } from './company-name.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'design/signatur/out');
@@ -24,7 +24,7 @@ const F = "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;";
 const INK = '#0B0B0D', EMBER = '#FF4A1C', GRAY = '#55575D';
 const nb = (s) => esc(s).replace(/ /g, '&nbsp;');
 
-const register = registerNumber ? `Amtsgericht Bremen, ${esc(registerNumber)}` : 'Amtsgericht Bremen, Eintragung beantragt';
+const register = registerNumber ? `Amtsgericht Bremen, ${esc(registerNumber)}` : isInFormation ? 'Amtsgericht Bremen, Eintragung beantragt' : 'Amtsgericht Bremen';
 
 function signature(p) {
   const url = `https://www.monvex-group.de/website-check?utm_source=email&utm_medium=signatur&utm_campaign=${p.slug}`;
