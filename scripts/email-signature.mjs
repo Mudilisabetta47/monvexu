@@ -73,7 +73,7 @@ function signature(p) {
 </table>`;
 }
 
-const plain = (p) => [`${p.name}`, `${p.title} · MONVEX`, '', p.phone && `T ${p.phone}`, p.email && `E ${p.email}`, `W ${c.website}`, `${c.street}, ${c.city}`, '', 'Bereit für Ihr neues Projekt? Kostenloser Website-Check: https://www.monvex-group.de/website-check', '', `${legalName.replace(/ /g, ' ')} · Sitz: Bremen · ${registerNumber ? `Amtsgericht Bremen, ${registerNumber}` : 'Amtsgericht Bremen, Eintragung beantragt'}`, `Geschäftsführer: ${director}`].filter((x) => x !== false && x !== undefined && x !== null).join('\n');
+const plain = (p) => [`${p.name}`, `${p.title} · MONVEX`, '', p.phone && `T ${p.phone}`, p.email && `E ${p.email}`, `W ${c.website}`, `${c.street}, ${c.city}`, '', 'Bereit für Ihr neues Projekt? Kostenloser Website-Check: https://www.monvex-group.de/website-check', '', `${legalName.replace(/ /g, ' ')} · Sitz: Bremen · ${registerNumber ? `Amtsgericht Bremen, ${registerNumber}` : isInFormation ? 'Amtsgericht Bremen, Eintragung beantragt' : 'Amtsgericht Bremen'}`, `Geschäftsführer: ${director}`].filter((x) => x !== false && x !== undefined && x !== null).join('\n');
 
 const page = `<!doctype html><html lang="de"><meta charset="utf-8"><title>MONVEX E-Mail-Signatur</title><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>

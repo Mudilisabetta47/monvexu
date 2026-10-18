@@ -7,7 +7,7 @@ const STAND = 'Oktober 2026';
 
 export const metadata: Metadata = {
   title: 'Impressum',
-  description: 'Impressum der MONVEX UG (haftungsbeschränkt) i. G., Kirchbachstraße 200, 28211 Bremen: Anbieter, Vertretung, Kontakt, Handelsregister und rechtliche Hinweise.',
+  description: `Impressum der ${company.legalName}, Kirchbachstraße 200, 28211 Bremen: Anbieter, Vertretung, Kontakt, Handelsregister und rechtliche Hinweise.`,
   alternates: { canonical: '/impressum' },
   robots: { index: true, follow: true },
 };
