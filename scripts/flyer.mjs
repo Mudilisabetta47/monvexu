@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright-core';
+import sharp from 'sharp';
 import { legalName } from './company-name.mjs';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -156,6 +157,9 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .badge span{font:500 7pt GM,monospace;letter-spacing:.2em;text-transform:uppercase}
 .badge b{margin-top:1.4mm;font-size:15pt;line-height:.98;font-weight:700;letter-spacing:-.04em}
 .badge::after{content:"";position:absolute;inset:1.6mm;border-radius:50%;border:.25mm dashed rgba(255,255,255,.6)}
+.hook{position:absolute;left:14mm;top:27mm;width:96mm}
+.hook b{display:block;font:400 italic 16.5pt/1.1 IS,serif;letter-spacing:-.015em;color:#FF4A1C}
+.hook span{display:block;margin-top:1.6mm;font-size:9.6pt;line-height:1.35;color:rgba(255,255,255,.9)}
 .front .eb{position:absolute;left:14mm;top:51mm;font-size:7.6pt;letter-spacing:.24em;color:#FF4A1C}
 .front h1{position:absolute;left:14mm;right:14mm;top:59mm;font-weight:600;font-size:34pt;line-height:.98;letter-spacing:-.05em}
 .front h1 em{color:#FF4A1C;font-size:1.06em}
@@ -211,6 +215,7 @@ em{font-family:IS,serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
   <div class="grid"></div><div class="glow"></div>
   <svg class="logo" viewBox="0 0 271.5 40"><path d="${WORD.ember}" fill="#FF4A1C"/><path d="${WORD.ink}" fill="#fff"/></svg>
   <div class="badge"><span>${esc(f.badgeTop)}</span><b>${esc(f.badgeMain).replace('-', '-<br>')}</b></div>
+  ${f.hook ? `<div class="hook"><b>${esc(f.hook[0])}</b><span>${esc(f.hook[1])}</span></div>` : ''}
   <div class="eb mono">${esc(f.eyebrow)}</div>
   <h1>${accent(f.headline)}</h1>
   <p class="lead">${esc(f.lead)}</p>
@@ -255,11 +260,12 @@ for (const f of config.flyers) {
   await page.goto('file://' + htmlPath);
   await page.evaluate(() => document.fonts.ready);
   await page.pdf({ path: path.join(outDir, `monvex-flyer-${f.slug}-druck.pdf`), width: `${W}mm`, height: `${H}mm`, printBackground: true, preferCSSPageSize: true });
-  const big = await browser.newPage({ viewport: { width: Math.round(W * mm), height: Math.round(H * mm) * 2 + 4 }, deviceScaleFactor: 1100 / (148 * mm) });
+  const big = await browser.newPage({ viewport: { width: Math.round(W * mm), height: Math.round(H * mm) * 2 + 4 }, deviceScaleFactor: 2 }); // ganzzahlig: gebrochene Faktoren liefern in neueren Chrome-Versionen verzerrte Aufnahmen
   await big.goto('file://' + htmlPath);
   await big.evaluate(() => document.fonts.ready);
   for (const [i, name] of ['vorderseite', 'rueckseite'].entries()) {
-    await big.screenshot({ path: path.join(outDir, `monvex-flyer-${f.slug}-${name}.png`), clip: { x: 3 * mm, y: i * H * mm + 3 * mm, width: 148 * mm, height: 210 * mm } });
+    const buf = await big.screenshot({ clip: { x: 3 * mm, y: i * H * mm + 3 * mm, width: 148 * mm, height: 210 * mm } });
+    await sharp(buf).resize({ width: 1100 }).png().toFile(path.join(outDir, `monvex-flyer-${f.slug}-${name}.png`));
   }
   fs.unlinkSync(htmlPath);
 }
