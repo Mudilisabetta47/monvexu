@@ -81,7 +81,11 @@
           "Persönlich aus Bremen: Termine vor Ort sind möglich."
         ]
       ],
-      "ctaTitle": "Sprechen wir darüber."
+      "ctaTitle": "Sprechen wir darüber.",
+      "hook": [
+        "Sie haben uns im Briefkasten entdeckt?",
+        "Wir Sie auch. Deshalb möchten wir Ihnen helfen."
+      ]
     },
     {
       "slug": "fahrschulen",
@@ -160,7 +164,11 @@
           "Persönlich aus Bremen: Termine vor Ort sind möglich."
         ]
       ],
-      "ctaTitle": "Sprechen wir darüber."
+      "ctaTitle": "Sprechen wir darüber.",
+      "hook": [
+        "Sie haben uns im Briefkasten entdeckt?",
+        "Wir Ihre Fahrschule auch. Deshalb möchten wir Ihnen helfen."
+      ]
     },
     {
       "slug": "kanzleien",
@@ -239,7 +247,11 @@
           "Persönlich aus Bremen. Sachlich und im Rahmen des Berufsrechts."
         ]
       ],
-      "ctaTitle": "Sprechen wir darüber."
+      "ctaTitle": "Sprechen wir darüber.",
+      "hook": [
+        "Sie haben uns im Briefkasten entdeckt?",
+        "Wir Ihre Kanzlei auch. Deshalb möchten wir Ihnen helfen."
+      ]
     }
   ],
   "company": {

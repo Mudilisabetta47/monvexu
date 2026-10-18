@@ -12,6 +12,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright-core';
+import sharp from 'sharp';
 import { legalName } from './company-name.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -99,11 +100,12 @@ for (const person of config.people) {
   await page.goto('file://' + htmlPath);
   await page.evaluate(() => document.fonts.ready);
   await page.pdf({ path: path.join(outDir, `monvex-visitenkarte-${person.slug}-druck.pdf`), width: '91mm', height: '61mm', printBackground: true, preferCSSPageSize: true });
-  const big = await browser.newPage({ viewport: { width: Math.round(91 * mm), height: Math.round(61 * mm) * 2 + 2 }, deviceScaleFactor: 1004 / (85 * mm) });
+  const big = await browser.newPage({ viewport: { width: Math.round(91 * mm), height: Math.round(61 * mm) * 2 + 2 }, deviceScaleFactor: 4 });
   await big.goto('file://' + htmlPath);
   await big.evaluate(() => document.fonts.ready);
   for (const [i, name] of ['vorderseite', 'rueckseite'].entries()) {
-    await big.screenshot({ path: path.join(outDir, `monvex-visitenkarte-${person.slug}-${name}.png`), clip: { x: 3 * mm, y: i * 61 * mm + 3 * mm, width: 85 * mm, height: 55 * mm } });
+    const buf = await big.screenshot({ clip: { x: 3 * mm, y: i * 61 * mm + 3 * mm, width: 85 * mm, height: 55 * mm } });
+    await sharp(buf).resize({ width: 1004 }).png().toFile(path.join(outDir, `monvex-visitenkarte-${person.slug}-${name}.png`));
   }
   fs.unlinkSync(htmlPath);
 }

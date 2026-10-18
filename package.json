@@ -15,7 +15,8 @@
     "verify:qr": "node scripts/verify-qr.mjs",
     "verify:products": "node scripts/verify-products.mjs",
     "product-og": "node scripts/product-og.mjs",
-    "signatur": "node scripts/email-signature.mjs"
+    "signatur": "node scripts/email-signature.mjs",
+    "print-order": "node scripts/print-order.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
