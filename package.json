@@ -16,7 +16,8 @@
     "verify:products": "node scripts/verify-products.mjs",
     "product-og": "node scripts/product-og.mjs",
     "signatur": "node scripts/email-signature.mjs",
-    "print-order": "node scripts/print-order.mjs"
+    "print-order": "node scripts/print-order.mjs",
+    "spot-uv": "node scripts/spot-uv.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
