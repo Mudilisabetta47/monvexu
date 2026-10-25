@@ -10,6 +10,7 @@ import { Footer } from '@/components/layout/Footer';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { Cursor } from '@/components/layout/Cursor';
 import { ScrollProgress } from '@/components/layout/ScrollProgress';
+import { SiteChrome } from '@/components/layout/SiteChrome';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { SEO, organizationSchema } from '@/lib/seo';
 import { SITE_URL, company } from '@/data/site';
@@ -64,11 +65,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <Providers>
           <SmoothScroll />
-          <Cursor />
-          <ScrollProgress />
-          <Nav />
+          <SiteChrome>
+            <Cursor />
+            <ScrollProgress />
+            <Nav />
+          </SiteChrome>
           <main id="main">{children}</main>
-          <Footer />
+          <SiteChrome>
+            <Footer />
+          </SiteChrome>
         </Providers>
       </body>
     </html>
