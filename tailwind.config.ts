@@ -13,6 +13,19 @@ const config: Config = {
         mute: '#8B8D93',
         line: { DEFAULT: 'rgba(11,11,13,.10)', soft: 'rgba(11,11,13,.06)', dark: 'rgba(255,255,255,.12)' },
         ember: { DEFAULT: '#FF4A1C', deep: '#C8340C', soft: 'rgba(255,74,28,.10)' },
+        // Softwarebereich (/software): eigene Farbwelt, MONVEX-Ember bleibt als Markenakzent
+        sw: {
+          bg: '#FAFBFF',
+          soft: '#F1F3FB',
+          card: '#FFFFFF',
+          ink: '#0C1024',
+          text: '#2B3150',
+          mute: '#5B6178',
+          line: 'rgba(12,16,36,.09)',
+          indigo: '#4F46FF',
+          violet: '#8B5CF6',
+          cyan: '#22D3EE',
+        },
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'Helvetica Neue', 'Arial', 'sans-serif'],
