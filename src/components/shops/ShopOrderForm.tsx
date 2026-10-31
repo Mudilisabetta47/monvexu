@@ -32,11 +32,11 @@ export function ShopOrderForm() {
     const form = e.currentTarget;
     const fd = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
     const next: Record<string, string> = {};
-    if (!fd.name?.trim()) next.name = 'Bitte nennen Sie uns Ihren Namen.';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fd.email ?? '')) next.email = 'Bitte geben Sie eine gültige E-Mail-Adresse an.';
-    if (!fd.shopname?.trim()) next.shopname = 'Wie soll Ihr Shop heißen (auch ein Arbeitstitel)?';
-    if (!fd.consent) next.consent = 'Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.';
-    if (!fd.terms) next.terms = 'Bitte bestätigen Sie, dass Sie den Leistungsumfang gelesen haben.';
+    if (!fd.name?.trim()) next.name = 'Bitte nenn uns deinen Namen.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fd.email ?? '')) next.email = 'Bitte gib eine gültige E-Mail-Adresse an.';
+    if (!fd.shopname?.trim()) next.shopname = 'Wie soll dein Shop heißen (auch ein Arbeitstitel)?';
+    if (!fd.consent) next.consent = 'Bitte stimme der Verarbeitung deiner Angaben zu.';
+    if (!fd.terms) next.terms = 'Bitte bestätige, dass du den Leistungsumfang gelesen hast.';
     setErrors(next);
     if (Object.keys(next).length) return;
 
@@ -73,7 +73,7 @@ export function ShopOrderForm() {
     return (
       <div role="status" className="rounded-3xl border border-line bg-white p-8 sm:p-12">
         <span className="grid h-14 w-14 place-items-center rounded-full bg-ink text-white"><Check size={26} /></span>
-        <h2 className="mt-7 text-[1.8rem] font-semibold tracking-tight">Danke, Ihre Bestellung ist angekommen.</h2>
+        <h2 className="mt-7 text-[1.8rem] font-semibold tracking-tight">Danke, deine Bestellung ist angekommen.</h2>
         <p className="mt-3 max-w-md text-graphite">Wir melden uns per E-Mail mit Bestätigung, Rechnung und offenen Fragen. Erst danach beginnt der Aufbau.</p>
       </div>
     );
@@ -103,12 +103,12 @@ export function ShopOrderForm() {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <L id="sh-shopname" req>Name Ihres Shops</L>
+          <L id="sh-shopname" req>Name deines Shops</L>
           <input id="sh-shopname" name="shopname" className={input} aria-invalid={!!errors.shopname} />
           {errors.shopname && <p role="alert" className="mt-1.5 text-[.82rem] text-ember-deep">{errors.shopname}</p>}
         </div>
         <div>
-          <L id="sh-name" req>Ihr Name</L>
+          <L id="sh-name" req>Dein Name</L>
           <input id="sh-name" name="name" autoComplete="name" className={input} aria-invalid={!!errors.name} />
           {errors.name && <p role="alert" className="mt-1.5 text-[.82rem] text-ember-deep">{errors.name}</p>}
         </div>
@@ -139,7 +139,7 @@ export function ShopOrderForm() {
           <input id="sh-existing" name="existing" className={input} />
         </div>
         <div className="sm:col-span-2">
-          <L id="sh-message">Was ist Ihnen wichtig? (optional)</L>
+          <L id="sh-message">Was ist dir wichtig? (optional)</L>
           <textarea id="sh-message" name="message" rows={4} className={cn(input, 'resize-y')} />
         </div>
       </div>
