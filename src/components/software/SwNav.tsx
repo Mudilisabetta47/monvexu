@@ -128,7 +128,6 @@ export function SwNav({ mainUrl }: { mainUrl: string }) {
                     <span className="min-w-0">
                       <span className="flex items-center gap-2 text-[.95rem] font-semibold text-sw-ink">
                         {p.name.replace('MONVEX ', '')}
-                        <span className="rounded-full bg-sw-soft px-1.5 py-0.5 text-[.58rem] font-semibold uppercase tracking-wider text-sw-mute">Konzept</span>
                       </span>
                       <span className="mt-0.5 block text-[.82rem] leading-snug text-sw-mute">{p.tagline}</span>
                     </span>
@@ -158,7 +157,6 @@ export function SwNav({ mainUrl }: { mainUrl: string }) {
                     <li key={p.slug}>
                       <Link href={swPath.product(p.slug)} className="flex items-center justify-between py-2.5 text-[.98rem] text-sw-text">
                         {p.name}
-                        <span className="text-[.6rem] font-semibold uppercase tracking-wider text-sw-mute">Konzept</span>
                       </Link>
                     </li>
                   ))}

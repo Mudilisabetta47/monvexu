@@ -14,7 +14,7 @@ export function IntegrationMap({ name, icon, accent, items }: { name: string; ic
     return { label, x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry };
   });
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={`${name}: geplante Anbindungen: ${items.join(', ')}`}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={`${name}: typische Anbindungen: ${items.join(', ')}`}>
       <defs>
         <radialGradient id="imap-glow" cx=".5" cy=".5" r=".5">
           <stop offset="0" stopColor={accent} stopOpacity=".22" />

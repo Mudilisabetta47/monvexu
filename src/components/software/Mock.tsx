@@ -6,8 +6,8 @@ import type { MockSpec, Panel } from '@/data/software';
 import { cn } from '@/lib/cn';
 
 /**
- * Konzept-Vorschau: ein gestaltetes Oberflächenbild mit BEISPIELDATEN – keine funktionierende Software.
- * Jedes Fenster trägt sichtbar den Hinweis „Konzept-Vorschau · Beispieldaten“.
+ * Vorschau: ein gestaltetes Oberflächenbild mit BEISPIELDATEN – keine funktionierende Software.
+ * Jedes Fenster trägt sichtbar den Hinweis „Vorschau · Beispieldaten“.
  */
 
 const palette = (a: string, a2: string) => [a, a2, '#c7cce4', '#0c1024'];
@@ -345,7 +345,7 @@ export function SoftwareMock({ spec, name, accent, accent2, className, mini }: P
   const view = spec.views[Math.min(i, spec.views.length - 1)];
   const uid = useId().replace(/:/g, '');
   return (
-    <div className={cn('sw-win', className)} style={{ '--a': accent, '--a2': accent2 } as CSSProperties} role="group" aria-label={`Konzept-Vorschau von ${name}, Beispieldaten`}>
+    <div className={cn('sw-win', className)} style={{ '--a': accent, '--a2': accent2 } as CSSProperties} role="group" aria-label={`Vorschau von ${name}, Beispieldaten`}>
       <div className="sw-win-bar">
         <span className="sw-win-dots" aria-hidden>
           <i />
@@ -355,7 +355,7 @@ export function SoftwareMock({ spec, name, accent, accent2, className, mini }: P
         <span className="min-w-0 flex-1 truncate text-[.68rem] font-semibold text-[#2b3150]">
           {name} <span className="font-normal text-[#646b86]">· {spec.screen}</span>
         </span>
-        <span className="sw-badge">Konzept-Vorschau · Beispieldaten</span>
+        <span className="sw-badge">Vorschau · Beispieldaten</span>
       </div>
       <div className="sw-win-body">
         <div className="sw-side" aria-hidden>

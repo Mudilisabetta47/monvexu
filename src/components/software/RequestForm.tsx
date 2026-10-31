@@ -59,7 +59,7 @@ export function RequestForm({ initialKind, initialProduct }: { initialKind?: Req
       website: fd.website, // Honeypot
       consent: fd.consent,
       topic: `Software: ${k.label}${pr ? ` · ${pr.name}` : ''}`,
-      message: [`Art der Anfrage: ${k.label}`, pr ? `Produkt (Konzept): ${pr.name}` : 'Produkt: keines gewählt / individuelle Lösung', fd.size ? `Größe: ${fd.size}` : '', '', fd.message].filter((l) => l !== '').join('\n'),
+      message: [`Art der Anfrage: ${k.label}`, pr ? `Produkt: ${pr.name}` : 'Produkt: keines gewählt / individuelle Lösung', fd.size ? `Größe: ${fd.size}` : '', '', fd.message].filter((l) => l !== '').join('\n'),
     };
     setStatus('sending');
     setServerMsg('');
@@ -122,7 +122,7 @@ export function RequestForm({ initialKind, initialProduct }: { initialKind?: Req
                   .filter((p) => p.category === c.slug)
                   .map((p) => (
                     <option key={p.slug} value={p.slug}>
-                      {p.name} (Konzept)
+                      {p.name}
                     </option>
                   ))}
               </optgroup>
@@ -195,7 +195,7 @@ export function RequestForm({ initialKind, initialProduct }: { initialKind?: Req
         )}
       </div>
       <p className="mt-5 text-[.8rem] leading-relaxed text-sw-mute">
-        Hinweis: Alle Produkte im Katalog sind Konzepte. Eine „Demo“ ist daher ein Konzept-Walkthrough oder ein Gespräch zum Stand, keine Live-Software.
+        Hinweis: Wir bereiten jede Lösung individuell für Ihr Unternehmen vor. Eine „Demo“ zeigt Ihnen, wie sie für Sie aussehen würde.
       </p>
     </form>
   );

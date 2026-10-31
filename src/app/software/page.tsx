@@ -11,15 +11,15 @@ import { SITE_URL } from '@/data/site';
 import { breadcrumbSchema, catalogSchema, faqSchema, swMetadata, webPageSchema } from '@/lib/software-seo';
 
 const TITLE = 'MONVEX Software: Produktwelt für Unternehmen und Privatpersonen';
-const DESC = 'MONVEX Software: 18 Produktkonzepte für Unternehmen und Privatpersonen, von CRM bis KI-Agent. Offen als Konzept gekennzeichnet, mit Beratung und Umsetzung.';
+const DESC = 'MONVEX Software: 18 Lösungen für Unternehmen und Privatpersonen, von CRM bis KI-Agent. Wir bereiten sie individuell für Ihr Unternehmen vor.';
 export const metadata = swMetadata({ title: TITLE, description: DESC, path: '/software' });
 
 const faq = [
-  { q: 'Welche dieser Programme kann ich heute schon nutzen?', a: 'Die Produkte im Katalog sind Konzepte. Real sind MONVEX BusOS (in Entwicklung, Demo auf Anfrage) und EasyKFZ24, der digitale Zulassungsservice. Beides finden Sie auf der MONVEX-Hauptseite.' },
-  { q: 'Was bedeutet „Demo anfragen“ bei einem Konzept?', a: 'Sie bekommen einen Konzept-Walkthrough: Wir zeigen, wie das Produkt gedacht ist, besprechen Ihren Bedarf und klären, ob und wie wir es für Sie umsetzen können. Es gibt keine Live-Software zum Ausprobieren.' },
-  { q: 'Zeigen die Dashboards echte Kundendaten?', a: 'Nein. Alle Vorschauen verwenden erfundene Beispieldaten und sind als „Konzept-Vorschau · Beispieldaten“ beschriftet. Es gibt keine Kundenreferenzen und keine Bewertungen.' },
-  { q: 'Kann MONVEX eine Software nach meinen Wünschen entwickeln?', a: 'Ja. Neben eigenen Produkten entwickeln wir individuelle Software, Portale und Schnittstellen. Schildern Sie uns Ihr Vorhaben, wir schätzen Aufwand und Vorgehen ein und machen ein Angebot.' },
-  { q: 'Gibt es Preise?', a: 'Für die Konzepte gibt es keine Preise. Bei einer Umsetzung erhalten Sie ein individuelles Angebot.' },
+  { q: 'Sind das fertige Programme, die ich sofort nutzen kann?', a: 'Nein. Wir bereiten jede Lösung individuell für Ihr Unternehmen vor und bauen sie nach Ihren Anforderungen auf. Bereits real sind MONVEX BusOS (in Entwicklung, Demo auf Anfrage) und EasyKFZ24, der digitale Zulassungsservice. Beides finden Sie auf der MONVEX-Hauptseite.' },
+  { q: 'Was bedeutet „Demo anfragen“?', a: 'Wir zeigen Ihnen, wie die Lösung für Ihr Unternehmen aussehen würde, besprechen Ihren Bedarf und klären, wie wir sie umsetzen. Die Vorschauen auf dieser Seite zeigen Beispieldaten.' },
+  { q: 'Zeigen die Dashboards echte Kundendaten?', a: 'Nein. Alle Vorschauen verwenden erfundene Beispieldaten und sind als „Vorschau · Beispieldaten“ beschriftet. Es gibt keine Kundenreferenzen und keine Bewertungen.' },
+  { q: 'Kann MONVEX eine Software nach meinen Wünschen entwickeln?', a: 'Ja, genau das ist unser Angebot. Neben eigenen Produkten entwickeln wir individuelle Software, Portale und Schnittstellen. Schildern Sie uns Ihr Vorhaben, wir schätzen Aufwand und Vorgehen ein und machen ein Angebot.' },
+  { q: 'Was kostet das?', a: 'Preis und Zeitplan hängen vom Umfang ab. Nach dem ersten Gespräch erhalten Sie ein individuelles Angebot.' },
 ];
 
 const audiences = [
@@ -53,7 +53,7 @@ export default function SoftwareHome() {
               Software, die Unternehmen <span className="sw-grad-text">wirklich weiterbringt.</span>
             </h1>
             <p className="mt-7 max-w-xl text-[clamp(1.05rem,.98rem+.4vw,1.28rem)] leading-relaxed text-sw-mute">
-              {total} Produktkonzepte in vier Kategorien, vom CRM bis zum KI-Agenten, vom Familienplaner bis zum Fuhrpark. Entwickelt in Bremen. Wir zeigen offen, was Konzept ist und woran wir bereits bauen.
+              {total} Lösungen in vier Kategorien, vom CRM bis zum KI-Agenten, vom Familienplaner bis zum Fuhrpark. Entwickelt in Bremen und für Ihr Unternehmen vorbereitet.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <SwButton href={swPath.catalog} size="lg">
@@ -65,7 +65,7 @@ export default function SoftwareHome() {
             </div>
             <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
               {[
-                [String(total), 'Produktkonzepte'],
+                [String(total), 'Lösungen'],
                 ['4', 'Kategorien'],
                 ['1', 'Plattform in Entwicklung'],
                 ['1', 'Produkt bereits online'],
@@ -120,7 +120,7 @@ export default function SoftwareHome() {
         <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-8">
           <Reveal>
             <SwHead eyebrow="Produkt-Explorer" title={<>Sehen Sie, <span className="sw-grad-text">wie es gedacht ist.</span></>}>
-              Wählen Sie eine Kategorie und ein Produkt. Die Vorschau zeigt das Konzept mit Beispieldaten und lässt sich umschalten. Es ist keine Live-Software.
+              Wählen Sie eine Kategorie und ein Produkt. Die Vorschau zeigt, wie die Lösung für Sie aussehen könnte, mit Beispieldaten, und lässt sich umschalten.
             </SwHead>
           </Reveal>
           <Explorer />
@@ -144,7 +144,7 @@ export default function SoftwareHome() {
             <div>
               <p className="sw-eyebrow">Was es schon gibt</p>
               <h2 className="mt-4 text-[clamp(1.8rem,1.2rem+2vw,2.8rem)] font-semibold leading-[1.05] tracking-[-0.04em]">Woran wir bereits bauen.</h2>
-              <p className="mt-4 text-[1rem] leading-relaxed text-sw-mute">Neben den Konzepten entwickelt MONVEX zwei eigene Produkte. Sie haben eigene Seiten auf der MONVEX-Hauptseite.</p>
+              <p className="mt-4 text-[1rem] leading-relaxed text-sw-mute">Neben Lösungen für Ihr Unternehmen entwickelt MONVEX zwei eigene Produkte. Sie haben eigene Seiten auf der MONVEX-Hauptseite.</p>
             </div>
             <ul className="grid-cols-1 grid gap-4 sm:grid-cols-2">
               {existingProducts.map((e) => (
@@ -204,7 +204,7 @@ export default function SoftwareHome() {
       <section className="mx-auto w-full max-w-[1320px] px-5 py-20 sm:px-8 lg:py-28">
         <Reveal>
           <SwHead eyebrow="So entsteht Ihre Lösung" title={<>Vom Gespräch <span className="sw-grad-text">zur Software.</span></>}>
-            Ob ein Konzept aus dem Katalog oder eine ganz eigene Idee: Der Weg ist derselbe, schrittweise und mit Abnahmen.
+            Ob eine Lösung aus dem Katalog oder eine ganz eigene Idee: Der Weg ist derselbe, schrittweise und mit Abnahmen.
           </SwHead>
         </Reveal>
         <ol className="grid-cols-1 mt-12 grid gap-5 md:grid-cols-4">
@@ -232,7 +232,7 @@ export default function SoftwareHome() {
       <section className="mx-auto w-full max-w-[1320px] px-5 sm:px-8">
         <div className="relative isolate overflow-hidden rounded-[36px] bg-sw-ink px-7 py-16 text-center text-white sm:px-14 sm:py-24">
           <div aria-hidden className="absolute inset-0 -z-10 opacity-70" style={{ background: 'radial-gradient(60% 80% at 20% 0%, rgba(79,70,255,.55), transparent 70%), radial-gradient(50% 70% at 90% 100%, rgba(34,211,238,.35), transparent 70%)' }} />
-          <h2 className="mx-auto max-w-3xl text-[clamp(2rem,1.2rem+3.4vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em] !text-white">Ihre Software gibt es noch nicht? Dann bauen wir sie.</h2>
+          <h2 className="mx-auto max-w-3xl text-[clamp(2rem,1.2rem+3.4vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em] !text-white">Ihre Software fehlt noch? Wir bauen sie für Ihr Unternehmen.</h2>
           <p className="mx-auto mt-6 max-w-xl text-[1.05rem] leading-relaxed text-white/70">Schildern Sie uns Ihr Vorhaben. Wir antworten persönlich, ehrlich und ohne Verkaufsdruck.</p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <SwButton href={requestHref('individuell')} variant="secondary" size="lg" className="!border-transparent">

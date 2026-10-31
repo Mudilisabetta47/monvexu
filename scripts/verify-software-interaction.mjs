@@ -31,7 +31,7 @@ const ok = (c, m) => { n++; if (!c) fails.push(m); };
   await page.fill('#sw-search', 'ki agent');
   ok((await page.locator('article h3').allTextContents()).some((t) => /AI Agent/.test(t)), 'Suche „ki agent“ findet AI Agent nicht');
   await page.fill('#sw-search', 'zzzzqq');
-  ok(await page.getByText('Dazu gibt es noch kein Konzept').isVisible(), 'Leerzustand fehlt');
+  ok(await page.getByText('Nichts Passendes gefunden').isVisible(), 'Leerzustand fehlt');
   await page.fill('#sw-search', '');
   await page.getByRole('button', { name: 'Personal', exact: true }).click();
   ok((await page.locator('article').count()) === 4, 'Kategorie Personal sollte 4 Karten zeigen');
@@ -67,13 +67,13 @@ const ok = (c, m) => { n++; if (!c) fails.push(m); };
   ok(sent.length === 1, 'Genau ein Versand erwartet');
   const p = sent[0] ?? {};
   ok(p.topic === 'Software: Angebot erhalten · MONVEX Fleet Management', `Topic falsch: ${p.topic}`);
-  ok(/Art der Anfrage: Angebot erhalten/.test(p.message ?? '') && /Produkt \(Konzept\): MONVEX Fleet Management/.test(p.message ?? ''), 'Nachricht enthält Art/Produkt nicht');
+  ok(/Art der Anfrage: Angebot erhalten/.test(p.message ?? '') && /Produkt: MONVEX Fleet Management/.test(p.message ?? ''), 'Nachricht enthält Art/Produkt nicht');
   ok(p.consent === 'yes' && !p.website, 'Consent/Honeypot im Payload falsch');
 
   // Produktseite: Tabs, Anker, Kennzeichnung
   await page.goto(`${BASE}/software/analytics`, { waitUntil: 'networkidle' });
-  ok(await page.getByText('Konzept-Vorschau · Beispieldaten').first().isVisible(), 'Kennzeichnung Konzept-Vorschau fehlt');
-  ok(await page.getByText('Konzeptstatus:').isVisible(), 'Konzeptstatus-Hinweis fehlt');
+  ok(await page.getByText('Vorschau · Beispieldaten').first().isVisible(), 'Kennzeichnung Vorschau · Beispieldaten fehlt');
+  ok(await page.getByText('So bekommen Sie MONVEX Analytics:').isVisible(), 'Hinweis zur individuellen Umsetzung fehlt');
   const before = await page.locator('.sw-win .sw-panel-title').first().textContent();
   await page.getByRole('tab', { name: 'Warnungen' }).click();
   const after = await page.locator('.sw-win .sw-panel-title').first().textContent();

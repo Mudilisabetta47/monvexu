@@ -6,7 +6,7 @@ import { requestHref, softwareProducts } from '@/data/software';
 import { breadcrumbSchema, catalogSchema, swMetadata, webPageSchema } from '@/lib/software-seo';
 
 const TITLE = 'Software-Katalog: suchen, filtern und vergleichen';
-const DESC = `Alle ${softwareProducts.length} Software-Konzepte von MONVEX im Katalog: nach Stichwort suchen, nach Kategorie und Zielgruppe filtern und bis zu drei Konzepte vergleichen.`;
+const DESC = `Alle ${softwareProducts.length} Software-Lösungen von MONVEX im Katalog: suchen, nach Kategorie und Zielgruppe filtern und bis zu drei Lösungen vergleichen.`;
 export const metadata = swMetadata({ title: TITLE, description: DESC, path: '/software/katalog' });
 
 export default function CatalogPage() {
@@ -18,7 +18,7 @@ export default function CatalogPage() {
         <div className="sw-mesh pointer-events-none absolute inset-0 -z-10 opacity-80" />
         <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-8">
           <SwHead eyebrow="Software-Katalog" h1 title={<>Finden, vergleichen, <span className="sw-grad-text">anfragen.</span></>}>
-            Alle Konzepte an einem Ort. Suchen Sie nach einem Stichwort, filtern Sie nach Kategorie oder Zielgruppe und stellen Sie bis zu drei Produkte nebeneinander. Alle Einträge sind Konzepte ohne Live-Version.
+            Alle Lösungen an einem Ort. Suchen Sie nach einem Stichwort, filtern Sie nach Kategorie oder Zielgruppe und stellen Sie bis zu drei Produkte nebeneinander. Wir bereiten jede Lösung individuell für Ihr Unternehmen vor.
           </SwHead>
         </div>
       </section>
