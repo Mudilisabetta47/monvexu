@@ -2,8 +2,8 @@
  * Datenmodell des MONVEX-Softwarebereichs.
  *
  * WAHRHEITSREGEL: Außer MONVEX BusOS (in Entwicklung, siehe src/data/products.ts) und EasyKFZ24 (live, extern)
- * existiert keines dieser Produkte als lauffähige Software. Alle Produkte hier sind KONZEPTE und werden überall
- * so gekennzeichnet. Es gibt keine Preise, keine Kundenzahlen, keine Bewertungen, keine Verfügbarkeitstermine.
+ * existiert keines dieser Produkte als fertige Software. Sie werden als individuelle Lösung dargestellt, die MONVEX
+ * für das Unternehmen des Kunden vorbereitet und baut (Status 'concept' im Datenmodell). Nie als sofort verfügbar. Es gibt keine Preise, keine Kundenzahlen, keine Bewertungen, keine Verfügbarkeitstermine.
  * Mockups zeigen Beispieldaten und sind als „Konzept-Vorschau“ beschriftet.
  */
 

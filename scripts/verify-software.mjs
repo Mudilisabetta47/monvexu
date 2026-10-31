@@ -55,13 +55,14 @@ const banned = [
   [/vertrauen (bereits|uns)\s+\d+|über \d+\s+(Kunden|Unternehmen)/i, 'Kundenzahl'],
   [/DSGVO-konform|ISO\s?27001-zertifiziert|BSI-zertifiziert|TÜV-zertifiziert/i, 'Zertifizierungsbehauptung'],
   [/garantiert|100\s?%\s?(sicher|fehlerfrei)/i, 'Garantieversprechen'],
+  [/sofort (verfügbar|startklar|einsatzbereit)|jetzt (kaufen|bestellen)|fertige(s|r)? (Software|Programm)|sofort nutzen/i, 'Verfügbarkeitsbehauptung (nur „individuell für Sie gebaut“ erlaubt)'],
 ];
 for (const [re, label] of banned) ok(!re.test(all), `Verbotene Aussage gefunden (${label}): ${re}`);
 
 // UI-Texte
 const ui = ['src/components/software/Mock.tsx', 'src/components/software/SwFooter.tsx', 'src/app/software/page.tsx', 'src/app/software/[slug]/page.tsx'].map((f) => fs.readFileSync(path.join(root, f), 'utf8')).join('\n');
-ok(/Konzept-Vorschau · Beispieldaten/.test(ui), 'Mock-Kennzeichnung „Konzept-Vorschau · Beispieldaten“ fehlt');
-ok(/Konzeptstatus/.test(ui), 'Konzeptstatus-Hinweis auf Produktseite fehlt');
+ok(/Vorschau · Beispieldaten/.test(ui), 'Mock-Kennzeichnung „Vorschau · Beispieldaten“ fehlt');
+ok(/So bekommen Sie/.test(ui), 'Hinweis „So bekommen Sie …“ (individuelle Umsetzung) auf Produktseite fehlt');
 
 if (errors.length) {
   console.error(`✗ ${errors.length} Fehler:\n- ${errors.join('\n- ')}`);

@@ -18,10 +18,11 @@ Kategorie-Akzente) und eigenen Komponenten. Die MONVEX-Hauptseiten-Hülle (Nav, 
 | `/software/anfrage` | Anfrageformular (Demo / Beratung / Angebot / individuelle Lösung), Vorbelegung per `?art=…&produkt=…`; sendet über das bestehende `/api/contact` |
 
 ## Wahrheitsregeln (nicht verhandelbar)
-- **Alle 18 Produkte sind Konzepte** (`status: 'concept'`). Es gibt keine Live-Version, keine Preise, keine Starttermine,
-  keine Kundenreferenzen, keine Bewertungen. Jede Produktseite trägt den Hinweis „Konzeptstatus“, jede Vorschau die Beschriftung
-  „Konzept-Vorschau · Beispieldaten“.
-- „Demo anfragen“ bedeutet Konzept-Walkthrough bzw. Gespräch zum Stand. Das steht auf der Seite und im Formular.
+- **Alle 18 Produkte werden individuell für das Unternehmen des Kunden vorbereitet und gebaut** (Datenmodell: `status: 'concept'`).
+  Tonalität: „Wir bereiten das für Ihr Unternehmen vor“, nicht „ist nicht live“. Trotzdem nie als sofort verfügbar, fertig kaufbar oder
+  mit Preis/Starttermin/Referenzen/Bewertungen darstellen. Jede Produktseite trägt den Hinweis „So bekommen Sie …“, jede Vorschau die
+  Beschriftung „Vorschau · Beispieldaten“.
+- „Demo anfragen“ bedeutet: Wir zeigen, wie die Lösung für das Unternehmen aussehen würde. Das steht auf der Seite und im Formular.
 - Benefits sind als *Entwurfsziele* formuliert, Anwendungsfälle als *Beispiel-Szenarien*. Integrationen sind „geplant“.
 - Keine Zertifizierungsbehauptungen (DSGVO-konform, ISO …), keine Garantien. `npm run verify:software` bricht bei solchen Texten ab.
 - Real sind nur **MONVEX BusOS** (in Entwicklung) und **EasyKFZ24** (online). Sie erscheinen als „Woran wir bereits bauen“ und als

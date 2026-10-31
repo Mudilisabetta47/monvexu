@@ -1,6 +1,6 @@
 import type { SoftwareProduct } from './types';
 
-/** Enterprise Solutions – alle Einträge sind Konzepte. */
+/** Enterprise Solutions – alle Einträge werden individuell für Kunden gebaut. */
 export const enterprise: SoftwareProduct[] = [
   {
     slug: 'analytics',
@@ -8,7 +8,7 @@ export const enterprise: SoftwareProduct[] = [
     category: 'enterprise-loesungen',
     icon: 'BarChart3',
     tagline: 'Kennzahlen aus allen Systemen in einem verlässlichen Bild.',
-    summary: 'Ein Analytics-Konzept: Daten aus verschiedenen Quellen zusammenführen, als Dashboards darstellen und bei Abweichungen informieren.',
+    summary: 'Eine Analytics-Lösung: Daten aus verschiedenen Quellen zusammenführen, als Dashboards darstellen und bei Abweichungen informieren.',
     audience: ['Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Entscheidungen auf Basis', 'von Zahlen, die stimmen.'],
@@ -34,7 +34,7 @@ export const enterprise: SoftwareProduct[] = [
     integrations: ['SQL-Datenbanken', 'CSV und Excel', 'REST-API', 'MONVEX Integration Hub', 'MONVEX CRM', 'MONVEX Finance', 'Webhooks'],
     faq: [
       { q: 'Ersetzt Analytics ein Data Warehouse?', a: 'Nein. Für kleine und mittlere Datenmengen ist ein schlanker Weg denkbar. Bei großen Datenbeständen planen wir die Anbindung an ein bestehendes Warehouse.' },
-      { q: 'Kann ich eigene Kennzahlen definieren?', a: 'Ja, ein gemeinsames Kennzahlenmodell ist Kern des Konzepts.' },
+      { q: 'Kann ich eigene Kennzahlen definieren?', a: 'Ja, ein gemeinsames Kennzahlenmodell ist Kern der Lösung.' },
     ],
     related: ['integration-hub', 'finance', 'enterprise-ai'],
     mock: {
@@ -62,7 +62,7 @@ export const enterprise: SoftwareProduct[] = [
     category: 'enterprise-loesungen',
     icon: 'Network',
     tagline: 'Systeme verbinden, statt Daten von Hand zu verschieben.',
-    summary: 'Ein Integrationsplattform-Konzept: Schnittstellen, Datenabgleich und Ereignisse zwischen ERP, CRM, Portalen und Fachsystemen an einem Ort verwalten.',
+    summary: 'Eine Integrationsplattform: Schnittstellen, Datenabgleich und Ereignisse zwischen ERP, CRM, Portalen und Fachsystemen an einem Ort verwalten.',
     audience: ['Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Ein Knotenpunkt', 'für alle Ihre Systeme.'],
@@ -85,9 +85,9 @@ export const enterprise: SoftwareProduct[] = [
       { t: 'Austauschbare Systeme', d: 'Ein System lässt sich ersetzen, ohne alle Verbindungen neu zu bauen.' },
       { t: 'Klare Verantwortung', d: 'Zentrale Stelle für Schnittstellen statt Einzellösungen.' },
     ],
-    integrations: ['REST und SOAP', 'Webhooks', 'SFTP', 'SQL', 'CSV und XML', 'EDI-Formate (geplant)', 'MONVEX-Produkte', 'Drittsysteme nach Bedarf'],
+    integrations: ['REST und SOAP', 'Webhooks', 'SFTP', 'SQL', 'CSV und XML', 'EDI-Formate (optional)', 'MONVEX-Produkte', 'Drittsysteme nach Bedarf'],
     faq: [
-      { q: 'Welche Systeme sind bereits angebunden?', a: 'Noch keine, da das Produkt sich in Konzeption befindet. Anbindungen entstehen projektbezogen nach Ihren Systemen.' },
+      { q: 'Welche Systeme sind bereits angebunden?', a: 'Wir binden die Systeme an, die Sie nutzen. Anbindungen entstehen projektbezogen nach Ihrer Systemlandschaft.' },
       { q: 'Wer betreibt den Hub?', a: 'Betrieb bei Ihnen, bei uns oder gemeinsam: Das Betriebsmodell legen wir im Projekt fest.' },
     ],
     related: ['workflow-automation', 'analytics', 'supplier-portal'],
@@ -116,7 +116,7 @@ export const enterprise: SoftwareProduct[] = [
     category: 'enterprise-loesungen',
     icon: 'LifeBuoy',
     tagline: 'Anfragen, Störungen und Aufgaben sauber abarbeiten.',
-    summary: 'Ein Ticketing-Konzept für interne IT, Kundenservice oder Facility: Anfragen erfassen, zuweisen, nachverfolgen und auswerten.',
+    summary: 'Ein Ticketsystem für interne IT, Kundenservice oder Facility: Anfragen erfassen, zuweisen, nachverfolgen und auswerten.',
     audience: ['Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Jede Anfrage', 'bekommt einen Verantwortlichen.'],
@@ -141,7 +141,7 @@ export const enterprise: SoftwareProduct[] = [
     ],
     integrations: ['E-Mail', 'Kundenportal', 'MONVEX AI Concierge', 'MONVEX Workforce', 'MONVEX Integration Hub', 'SSO (SAML/OIDC)', 'REST-API'],
     faq: [
-      { q: 'Ist das nur für IT-Abteilungen?', a: 'Nein. Das Konzept ist allgemein für strukturierte Anfragen gedacht, etwa Service, Facility oder Personal.' },
+      { q: 'Ist das nur für IT-Abteilungen?', a: 'Nein. Die Lösung ist allgemein für strukturierte Anfragen gedacht, etwa Service, Facility oder Personal.' },
       { q: 'Unterstützt es ITIL-Prozesse?', a: 'Prozessmodelle wie ITIL können abgebildet werden. Wie weit das gehen soll, entscheiden wir mit Ihnen.' },
     ],
     related: ['ai-concierge', 'workforce', 'fleet-management'],
@@ -170,7 +170,7 @@ export const enterprise: SoftwareProduct[] = [
     category: 'enterprise-loesungen',
     icon: 'Store',
     tagline: 'Lieferanten einbinden, Bestellungen und Dokumente zentral steuern.',
-    summary: 'Ein Portal-Konzept für Unternehmen, die Lieferanten strukturiert onboarden, Bestellungen abstimmen und Nachweise einsammeln wollen.',
+    summary: 'Ein Portal für Unternehmen, die Lieferanten strukturiert onboarden, Bestellungen abstimmen und Nachweise einsammeln wollen.',
     audience: ['Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Lieferanten', 'auf einer gemeinsamen Plattform.'],
@@ -193,7 +193,7 @@ export const enterprise: SoftwareProduct[] = [
       { t: 'Schnellerer Abgleich', d: 'Differenzen bei Rechnung und Lieferung sofort sichtbar.' },
       { t: 'Klare Zugriffe', d: 'Lieferanten sehen nur ihre eigenen Vorgänge.' },
     ],
-    integrations: ['ERP-Anbindung über den Integration Hub', 'EDI-Formate (geplant)', 'E-Mail', 'SSO für Mitarbeitende', 'MONVEX Document Cloud', 'REST-API'],
+    integrations: ['ERP-Anbindung über den Integration Hub', 'EDI-Formate (optional)', 'E-Mail', 'SSO für Mitarbeitende', 'MONVEX Document Cloud', 'REST-API'],
     faq: [
       { q: 'Müssen Lieferanten etwas installieren?', a: 'Nein, das Portal soll im Browser laufen. Zusätzlich sind Schnittstellen für größere Lieferanten vorgesehen.' },
       { q: 'Wird mein ERP unterstützt?', a: 'Die Anbindung erfolgt über den Integration Hub und wird projektbezogen für Ihr System konzipiert.' },
@@ -224,7 +224,7 @@ export const enterprise: SoftwareProduct[] = [
     category: 'enterprise-loesungen',
     icon: 'Truck',
     tagline: 'Fahrzeuge, Fahrten, Fristen und Kosten zentral steuern.',
-    summary: 'Ein Fuhrpark-Konzept: Fahrzeugakten, Wartungsfristen, Einsatzplanung und Kosten für Betriebe mit mehreren Fahrzeugen.',
+    summary: 'Eine Fuhrparklösung: Fahrzeugakten, Wartungsfristen, Einsatzplanung und Kosten für Betriebe mit mehreren Fahrzeugen.',
     audience: ['Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Jedes Fahrzeug,', 'jede Frist im Griff.'],
@@ -247,9 +247,9 @@ export const enterprise: SoftwareProduct[] = [
       { t: 'Kosten verstehen', d: 'Transparenz über Werkstatt, Kraftstoff und Ausfallzeiten.' },
       { t: 'Ein Ort für Nachweise', d: 'Dokumente je Fahrzeug jederzeit auffindbar.' },
     ],
-    integrations: ['Telematik-Anbindung (geplant)', 'Kraftstoffkarten (CSV)', 'MONVEX Workforce', 'MONVEX Document Cloud', 'MONVEX Analytics', 'REST-API'],
+    integrations: ['Telematik-Anbindung (optional)', 'Kraftstoffkarten (CSV)', 'MONVEX Workforce', 'MONVEX Document Cloud', 'MONVEX Analytics', 'REST-API'],
     faq: [
-      { q: 'Besteht ein Bezug zu MONVEX BusOS?', a: 'BusOS ist unsere Betriebssoftware für Busunternehmen und in Entwicklung. Fleet Management ist ein eigenständiges, branchenübergreifendes Konzept. Wie beides sinnvoll zusammenspielt, ist offen.' },
+      { q: 'Besteht ein Bezug zu MONVEX BusOS?', a: 'BusOS ist unsere Betriebssoftware für Busunternehmen und in Entwicklung. Fleet Management ist ein eigenständiges, branchenübergreifende Lösung. Wie beides sinnvoll zusammenspielt, ist offen.' },
       { q: 'Werden Telematik-Daten unterstützt?', a: 'Eine optionale Anbindung ist vorgesehen. Welche Anbieter, entscheidet sich nach Ihrem Bestand.' },
     ],
     related: ['workforce', 'analytics', 'booking'],

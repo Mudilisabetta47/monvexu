@@ -1,6 +1,6 @@
 import type { SoftwareProduct } from './types';
 
-/** Personal Software – alle Einträge sind Konzepte. Keine Aussagen zu Finanz-, Rechts- oder Gesundheitsberatung. */
+/** Personal Software – alle Einträge werden individuell für Kunden gebaut. Keine Aussagen zu Finanz-, Rechts- oder Gesundheitsberatung. */
 export const personal: SoftwareProduct[] = [
   {
     slug: 'money',
@@ -8,7 +8,7 @@ export const personal: SoftwareProduct[] = [
     category: 'persoenliche-software',
     icon: 'PiggyBank',
     tagline: 'Einnahmen, Ausgaben und Sparziele ohne Tabellenfrust.',
-    summary: 'Ein Haushaltsbuch-Konzept für Privatpersonen: Geld sortieren, Fixkosten erkennen und Ziele planen. Datenschutz steht an erster Stelle.',
+    summary: 'Ein Haushaltsbuch für Privatpersonen: Geld sortieren, Fixkosten erkennen und Ziele planen. Datenschutz steht an erster Stelle.',
     audience: ['Privat'],
     status: 'concept',
     headline: ['Wissen, wohin', 'das Geld fließt.'],
@@ -33,7 +33,7 @@ export const personal: SoftwareProduct[] = [
     ],
     integrations: ['CSV-Import von Kontoauszügen', 'Export (CSV, PDF)', 'Erinnerungen per Push und Mail', 'MONVEX Life', 'MONVEX Family'],
     faq: [
-      { q: 'Ist das eine Finanzberatung?', a: 'Nein. Das Konzept hilft beim Ordnen und Planen. Anlage- oder Steuerberatung gehört nicht dazu.' },
+      { q: 'Ist das eine Finanzberatung?', a: 'Nein. Die Lösung hilft beim Ordnen und Planen. Anlage- oder Steuerberatung gehört nicht dazu.' },
       { q: 'Greift die App auf mein Bankkonto zu?', a: 'Eine Kontoanbindung ist nicht vorgesehen. Daten werden per Import oder Eingabe erfasst.' },
     ],
     related: ['life', 'family', 'garage'],
@@ -62,7 +62,7 @@ export const personal: SoftwareProduct[] = [
     category: 'persoenliche-software',
     icon: 'Car',
     tagline: 'Alles rund ums eigene Fahrzeug an einem Ort.',
-    summary: 'Ein Fahrzeug-Konzept für Privatpersonen: Unterlagen, Termine, Kosten und Erinnerungen für Auto, Motorrad oder Wohnmobil.',
+    summary: 'Eine Fahrzeugverwaltung für Privatpersonen: Unterlagen, Termine, Kosten und Erinnerungen für Auto, Motorrad oder Wohnmobil.',
     audience: ['Privat'],
     status: 'concept',
     headline: ['Alles ums Auto,', 'an einem Ort.'],
@@ -87,8 +87,8 @@ export const personal: SoftwareProduct[] = [
     ],
     integrations: ['Dokumenten-Upload (PDF, Foto)', 'Kalender (ICS)', 'Erinnerungen per Push und Mail', 'Export (PDF, CSV)', 'MONVEX Money', 'MONVEX Family'],
     faq: [
-      { q: 'Besteht ein Zusammenhang mit EasyKFZ24?', a: 'EasyKFZ24 ist ein eigenständiger Zulassungsservice mit eigener Website. MONVEX Garage ist ein Konzept zur Verwaltung rund ums Fahrzeug. Ob und wie beide zusammenspielen könnten, ist offen.' },
-      { q: 'Gibt es eine App für das Handy?', a: 'Ja, eine mobile Nutzung steht im Konzept an erster Stelle. Ob native App oder Web-App, entscheiden wir später.' },
+      { q: 'Besteht ein Zusammenhang mit EasyKFZ24?', a: 'EasyKFZ24 ist ein eigenständiger Zulassungsservice mit eigener Website. MONVEX Garage ist eine Lösung zur Verwaltung rund ums Fahrzeug. Ob und wie beide zusammenspielen könnten, ist offen.' },
+      { q: 'Gibt es eine App für das Handy?', a: 'Ja, eine mobile Nutzung steht an erster Stelle. Ob native App oder Web-App, entscheiden wir später.' },
     ],
     related: ['money', 'family', 'life'],
     relatedExisting: { label: 'EasyKFZ24', href: '/produkte/easykfz24', note: 'Digitaler Zulassungsservice, eigenständig und online verfügbar.' },
@@ -117,7 +117,7 @@ export const personal: SoftwareProduct[] = [
     category: 'persoenliche-software',
     icon: 'Sparkles',
     tagline: 'Aufgaben, Termine, Dokumente und Gewohnheiten in einer ruhigen App.',
-    summary: 'Ein Alltagsorganisations-Konzept: eine persönliche Zentrale für To-dos, Termine, wichtige Dokumente und Routinen.',
+    summary: 'Eine Alltagsorganisation: eine persönliche Zentrale für To-dos, Termine, wichtige Dokumente und Routinen.',
     audience: ['Privat'],
     status: 'concept',
     headline: ['Der Alltag,', 'endlich sortiert.'],
@@ -171,7 +171,7 @@ export const personal: SoftwareProduct[] = [
     category: 'persoenliche-software',
     icon: 'Home',
     tagline: 'Termine, Aufgaben und Einkauf für die ganze Familie.',
-    summary: 'Ein Familienplaner-Konzept mit geteiltem Kalender, Listen und Zuständigkeiten, bewusst datensparsam und ohne Werbung geplant.',
+    summary: 'Ein Familienplaner mit geteiltem Kalender, Listen und Zuständigkeiten, bewusst datensparsam und ohne Werbung.',
     audience: ['Privat'],
     status: 'concept',
     headline: ['Familie organisieren,', 'ohne Dauer-Chat.'],
@@ -196,7 +196,7 @@ export const personal: SoftwareProduct[] = [
     ],
     integrations: ['Kalender (ICS)', 'Erinnerungen per Push und Mail', 'MONVEX Life', 'MONVEX Money', 'MONVEX Garage'],
     faq: [
-      { q: 'Werden Familiendaten ausgewertet oder verkauft?', a: 'Nein, das schließen wir im Konzept aus: kein Verkauf, keine Werbung. Das gilt für das Konzept. Verbindlich wird es mit der Datenschutzerklärung zum Produktstart.' },
+      { q: 'Werden Familiendaten ausgewertet oder verkauft?', a: 'Nein, das schließen wir aus: kein Verkauf, keine Werbung. Verbindlich festgehalten wird das in der Datenschutzerklärung zum Start.' },
       { q: 'Ab welchem Alter sind Kinderprofile gedacht?', a: 'Das ist offen und hängt von Datenschutz- und Jugendschutzanforderungen ab. Wir klären es vor einer Umsetzung.' },
     ],
     related: ['life', 'money', 'garage'],

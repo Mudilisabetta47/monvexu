@@ -1,6 +1,6 @@
 import type { SoftwareProduct } from './types';
 
-/** Artificial Intelligence – alle Einträge sind Konzepte. Keine Aussagen über Modellqualität, Genauigkeit oder Zertifizierungen. */
+/** Artificial Intelligence – alle Einträge werden individuell für Kunden gebaut. Keine Aussagen über Modellqualität, Genauigkeit oder Zertifizierungen. */
 export const ai: SoftwareProduct[] = [
   {
     slug: 'ai-agent',
@@ -8,7 +8,7 @@ export const ai: SoftwareProduct[] = [
     category: 'kuenstliche-intelligenz',
     icon: 'Bot',
     tagline: 'Ein digitaler Mitarbeiter für wiederkehrende Aufgaben.',
-    summary: 'Ein Agenten-Konzept: Aufgaben formulieren, Werkzeuge freigeben und den Agenten Schritt für Schritt arbeiten lassen, mit Freigabe an den entscheidenden Stellen.',
+    summary: 'Ein KI-Agent: Aufgaben formulieren, Werkzeuge freigeben und den Agenten Schritt für Schritt arbeiten lassen, mit Freigabe an den entscheidenden Stellen.',
     audience: ['Kleinunternehmen', 'Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Aufgaben abgeben,', 'Kontrolle behalten.'],
@@ -33,7 +33,7 @@ export const ai: SoftwareProduct[] = [
     ],
     integrations: ['E-Mail', 'Kalender', 'Dokumentenablage', 'MONVEX CRM', 'MONVEX Workflow Automation', 'REST-API', 'Webhooks'],
     faq: [
-      { q: 'Kann der Agent Fehler machen?', a: 'Ja, KI-Systeme können sich irren. Deshalb sind Freigaben, Protokoll und eng gefasste Rechte zentrale Bestandteile des Konzepts.' },
+      { q: 'Kann der Agent Fehler machen?', a: 'Ja, KI-Systeme können sich irren. Deshalb sind Freigaben, Protokoll und eng gefasste Rechte zentrale Bestandteile der Lösung.' },
       { q: 'Welches KI-Modell wird genutzt?', a: 'Die Modellwahl hängt von Aufgabe, Datenschutzanforderungen und Budget ab und wird im Projekt festgelegt.' },
     ],
     related: ['workflow-automation', 'enterprise-ai', 'ai-concierge'],
@@ -62,7 +62,7 @@ export const ai: SoftwareProduct[] = [
     category: 'kuenstliche-intelligenz',
     icon: 'MessagesSquare',
     tagline: 'Ein Ansprechpartner für Ihre Kunden, rund um die Uhr.',
-    summary: 'Ein Concierge-Konzept: Ein KI-Assistent beantwortet Fragen, qualifiziert Anfragen und übergibt an Ihr Team, wenn ein Mensch gefragt ist.',
+    summary: 'Ein Concierge: Ein KI-Assistent beantwortet Fragen, qualifiziert Anfragen und übergibt an Ihr Team, wenn ein Mensch gefragt ist.',
     audience: ['Kleinunternehmen', 'Mittelstand'],
     status: 'concept',
     headline: ['Kunden bekommen Antworten,', 'Ihr Team die guten Gespräche.'],
@@ -85,10 +85,10 @@ export const ai: SoftwareProduct[] = [
       { t: 'Verlässliche Grenzen', d: 'Antworten nur aus freigegebenen Quellen, sonst Übergabe.' },
       { t: 'Eigene Tonalität', d: 'Auftreten und Ansprache im Stil Ihrer Marke.' },
     ],
-    integrations: ['Website-Widget', 'E-Mail', 'WhatsApp und Messenger (geplant)', 'MONVEX Booking', 'MONVEX CRM', 'REST-API'],
+    integrations: ['Website-Widget', 'E-Mail', 'WhatsApp und Messenger (optional)', 'MONVEX Booking', 'MONVEX CRM', 'REST-API'],
     faq: [
-      { q: 'Erfindet der Concierge Antworten?', a: 'Das Konzept begrenzt Antworten auf freigegebene Quellen und schreibt eine Übergabe an Menschen vor, wenn eine Information fehlt. Fehler sind trotzdem nie ganz auszuschließen.' },
-      { q: 'Wie wird auf den Einsatz von KI hingewiesen?', a: 'Der Hinweis, dass ein KI-System antwortet, ist Standard im Konzept und kann nicht abgeschaltet werden.' },
+      { q: 'Erfindet der Concierge Antworten?', a: 'Die Lösung begrenzt Antworten auf freigegebene Quellen und schreibt eine Übergabe an Menschen vor, wenn eine Information fehlt. Fehler sind trotzdem nie ganz auszuschließen.' },
+      { q: 'Wie wird auf den Einsatz von KI hingewiesen?', a: 'Der Hinweis, dass ein KI-System antwortet, ist Standard und kann nicht abgeschaltet werden.' },
     ],
     related: ['ai-agent', 'booking', 'service-desk'],
     mock: {
@@ -116,7 +116,7 @@ export const ai: SoftwareProduct[] = [
     category: 'kuenstliche-intelligenz',
     icon: 'Brain',
     tagline: 'Unternehmenswissen durchsuchbar machen, unter eigener Kontrolle.',
-    summary: 'Ein Konzept für eine KI-Arbeitsumgebung auf Ihren eigenen Daten, mit Rechten, Quellenangaben und Betriebsmodell nach Ihren Vorgaben.',
+    summary: 'Eine KI-Arbeitsumgebung auf Ihren eigenen Daten, mit Rechten, Quellenangaben und Betriebsmodell nach Ihren Vorgaben.',
     audience: ['Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Das Wissen Ihres Unternehmens,', 'jetzt befragbar.'],
@@ -142,7 +142,7 @@ export const ai: SoftwareProduct[] = [
     integrations: ['Dokumentenablagen', 'Wikis und Intranet', 'SSO (SAML/OIDC)', 'MONVEX Document Cloud', 'MONVEX Integration Hub', 'REST-API'],
     faq: [
       { q: 'Werden meine Daten zum Training fremder Modelle genutzt?', a: 'Das schließen wir als Anforderung aus. Die technische Umsetzung und der Nachweis dazu werden im Projekt vertraglich festgelegt.' },
-      { q: 'Ist ein Betrieb im eigenen Rechenzentrum möglich?', a: 'Das Konzept sieht verschiedene Betriebsmodelle vor. Was machbar ist, hängt von Ihrer Infrastruktur ab und wird im Konzeptgespräch geprüft.' },
+      { q: 'Ist ein Betrieb im eigenen Rechenzentrum möglich?', a: 'Die Lösung lässt verschiedene Betriebsmodelle zu. Was machbar ist, hängt von Ihrer Infrastruktur ab und wird im ersten Gespräch geprüft.' },
     ],
     related: ['ai-agent', 'document-cloud', 'integration-hub'],
     mock: {
@@ -170,7 +170,7 @@ export const ai: SoftwareProduct[] = [
     category: 'kuenstliche-intelligenz',
     icon: 'Workflow',
     tagline: 'Prozesse automatisch ausführen, von der Anfrage bis zur Ablage.',
-    summary: 'Ein Automatisierungs-Konzept mit visuellem Editor: Auslöser, Bedingungen und Aktionen verbinden Ihre Systeme, optional mit KI-Schritten.',
+    summary: 'Eine Automatisierung mit visuellem Editor: Auslöser, Bedingungen und Aktionen verbinden Ihre Systeme, optional mit KI-Schritten.',
     audience: ['Kleinunternehmen', 'Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Aus Handarbeit', 'wird ein Ablauf.'],
@@ -191,12 +191,12 @@ export const ai: SoftwareProduct[] = [
       { t: 'Zeit zurückgewinnen', d: 'Routineschritte laufen automatisch.' },
       { t: 'Gleiche Qualität', d: 'Abläufe laufen jedes Mal gleich ab.' },
       { t: 'Transparent', d: 'Die Historie zeigt, was wann passiert ist.' },
-      { t: 'Ohne Programmierung startbar', d: 'Das Konzept richtet sich auch an Fachabteilungen.' },
+      { t: 'Ohne Programmierung startbar', d: 'Die Lösung richtet sich auch an Fachabteilungen.' },
     ],
     integrations: ['Webhooks', 'REST-API', 'E-Mail', 'Kalender', 'MONVEX CRM', 'MONVEX Finance', 'MONVEX Integration Hub', 'MONVEX AI Agent'],
     faq: [
-      { q: 'Muss ich programmieren können?', a: 'Nein, die Bedienung ist visuell geplant. Für Sonderfälle ist optionaler Code in einzelnen Schritten vorgesehen.' },
-      { q: 'Was passiert bei Fehlern?', a: 'Fehlerpfade, Wiederholungen und Benachrichtigungen sind Teil der Konzeption, damit Läufe nicht unbemerkt scheitern.' },
+      { q: 'Muss ich programmieren können?', a: 'Nein, die Bedienung ist visuell aufgebaut. Für Sonderfälle ist optionaler Code in einzelnen Schritten vorgesehen.' },
+      { q: 'Was passiert bei Fehlern?', a: 'Fehlerpfade, Wiederholungen und Benachrichtigungen sind Teil der Lösung, damit Läufe nicht unbemerkt scheitern.' },
     ],
     related: ['integration-hub', 'ai-agent', 'crm'],
     mock: {

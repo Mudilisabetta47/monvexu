@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   const { slug } = await params;
   const p = productBySlug(slug);
   if (!p) return {};
-  return swMetadata({ title: `${p.name}: Software-Konzept`, description: clip(p.summary, 158), path: swPath.product(p.slug) });
+  return swMetadata({ title: `${p.name}: Individuelle Software`, description: clip(p.summary, 158), path: swPath.product(p.slug) });
 }
 
 const anchors = [
@@ -99,7 +99,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
                 <SwButton href={requestHref('angebot', p.slug)} variant="ghost" size="lg" arrow={false}>Angebot erhalten</SwButton>
               </div>
               <p className="mt-6 max-w-xl rounded-xl border border-sw-line bg-white/80 p-4 text-[.84rem] leading-relaxed text-sw-mute">
-                <strong className="font-semibold text-sw-ink">Konzeptstatus:</strong> {p.name} gibt es noch nicht als Live-Software. Die Vorschau rechts zeigt das Konzept mit Beispieldaten. Eine „Demo“ ist ein Konzept-Walkthrough, ohne Preise und ohne Starttermin.
+                <strong className="font-semibold text-sw-ink">So bekommen Sie {p.name}:</strong> Wir bereiten die Lösung individuell für Ihr Unternehmen vor und bauen sie nach Ihren Anforderungen. Die Vorschau rechts zeigt Beispieldaten, Preis und Zeitplan richten sich nach Ihrem Vorhaben.
               </p>
             </div>
             <Tilt max={4} glare={false}>
@@ -127,9 +127,9 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         <dl className="grid-cols-1 grid gap-px overflow-hidden rounded-3xl border border-sw-line bg-sw-line sm:grid-cols-2 lg:grid-cols-4">
           {[
             ['Kategorie', c.name],
-            ['Status', 'Konzept, keine Live-Version'],
+            ['Umsetzung', 'Individuell für Ihr Unternehmen'],
             ['Zielgruppe', p.audience.join(' · ')],
-            ['Umsetzung', 'Als Auftragsentwicklung möglich'],
+            ['Start', 'Nach Gespräch und Angebot'],
           ].map(([k, v]) => (
             <div key={k} className="bg-white p-6">
               <dt className="sw-eyebrow">{k}</dt>
@@ -143,7 +143,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       <section id="funktionen" className="mx-auto w-full max-w-[1320px] scroll-mt-32 px-5 py-20 sm:px-8 lg:py-28">
         <Reveal>
           <SwHead eyebrow="Funktionen" title={<>Was {p.name.replace('MONVEX ', '')} <span className="sw-grad-text">können soll.</span></>}>
-            Der geplante Funktionsumfang des Konzepts. Er wird im Gespräch auf Ihren Bedarf zugeschnitten.
+            Der Funktionsumfang, den wir für Sie aufbauen. Er wird im Gespräch auf Ihren Bedarf zugeschnitten.
           </SwHead>
         </Reveal>
         <div className="grid-cols-1 mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -164,7 +164,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-8">
           <Reveal>
             <SwHead eyebrow="Anwendungsfälle und Zielgruppen" title={<>Wer davon <span className="sw-grad-text">profitieren soll.</span></>}>
-              Beispielhafte Szenarien. Sie beschreiben, wofür das Konzept gedacht ist, nicht Erfahrungen realer Kunden.
+              Beispielhafte Szenarien. Sie beschreiben, wofür die Lösung gedacht ist, nicht Erfahrungen realer Kunden.
             </SwHead>
           </Reveal>
           <div className="grid-cols-1 mt-12 grid gap-5 lg:grid-cols-3">
@@ -187,7 +187,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       {/* ---------- Vorteile ---------- */}
       <section id="nutzen" className="grid-cols-1 mx-auto grid w-full max-w-[1320px] scroll-mt-32 gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1.3fr] lg:py-28">
         <Reveal>
-          <SwHead eyebrow="Vorteile für Unternehmen" title={<>Nutzen, auf den das Konzept <span className="sw-grad-text">zielt.</span></>}>
+          <SwHead eyebrow="Vorteile für Unternehmen" title={<>Nutzen, auf den wir <span className="sw-grad-text">hinarbeiten.</span></>}>
             Das sind Entwurfsziele, keine gemessenen Ergebnisse. Ob und wie stark sie in Ihrem Betrieb greifen, besprechen wir realistisch.
           </SwHead>
         </Reveal>
@@ -209,7 +209,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
         <div className="grid-cols-1 mx-auto grid w-full max-w-[1320px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr]">
           <Reveal>
             <SwHead eyebrow="Technische Integration" title={<>Verbunden mit dem, <span className="sw-grad-text">was Sie schon nutzen.</span></>}>
-              Die Anbindungen sind Teil der Konzeption. Keine davon existiert bereits, jede wird projektbezogen umgesetzt.
+              Wir binden Ihre Systeme projektbezogen an. Diese Anbindungen sind typisch und werden für Sie umgesetzt.
             </SwHead>
             <ul className="mt-8 flex flex-wrap gap-2">
               {p.integrations.map((i) => (
@@ -255,7 +255,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       {/* ---------- Verwandt ---------- */}
       <section className="mx-auto w-full max-w-[1320px] px-5 pb-20 sm:px-8 lg:pb-28">
         <Reveal>
-          <SwHead eyebrow="Passt dazu" title="Weitere Konzepte der Produktfamilie" />
+          <SwHead eyebrow="Passt dazu" title="Weitere Lösungen der Produktfamilie" />
         </Reveal>
         <div className="grid-cols-1 mt-10 grid gap-5 md:grid-cols-3">
           {related.map((r) => (
@@ -283,7 +283,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <h2 className="mx-auto max-w-3xl text-[clamp(1.9rem,1.2rem+3vw,3.6rem)] font-semibold leading-[1.04] tracking-[-0.045em] !text-white">
             Interesse an {p.name.replace('MONVEX ', '')}? Lassen Sie uns darüber sprechen.
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-[1.02rem] leading-relaxed text-white/70">Wir sagen Ihnen offen, was es heute gibt, was Konzept ist und wie wir es für Sie umsetzen könnten.</p>
+          <p className="mx-auto mt-5 max-w-xl text-[1.02rem] leading-relaxed text-white/70">Wir sagen Ihnen offen, was möglich ist, wie wir vorgehen und was es kostet, bevor Sie sich entscheiden.</p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <SwButton href={requestHref('demo', p.slug)} variant="secondary" size="lg" className="!border-transparent">Demo anfragen</SwButton>
             <SwButton href={requestHref('beratung', p.slug)} variant="ghost" size="lg" arrow={false} className="!text-white hover:!bg-white/10">Beratung vereinbaren</SwButton>

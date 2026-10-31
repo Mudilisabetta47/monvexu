@@ -19,7 +19,7 @@ export function SwFooter({ mainUrl }: { mainUrl: string }) {
               Software aus Bremen: eigene Produkte und individuelle Lösungen für kleine Unternehmen, den Mittelstand und Konzerne.
             </p>
             <p className="mt-4 max-w-sm rounded-xl border border-sw-line bg-sw-soft p-4 text-[.82rem] leading-relaxed text-sw-mute">
-              <strong className="font-semibold text-sw-ink">Ehrlicher Hinweis:</strong> Die gezeigten Produkte sind Konzepte in Planung. Vorschauen zeigen Beispieldaten. Preise, Starttermine und Verfügbarkeit gibt es derzeit nicht.
+              <strong className="font-semibold text-sw-ink">So arbeiten wir:</strong> Wir bereiten jede Lösung individuell für Ihr Unternehmen vor und bauen sie nach Ihren Anforderungen. Vorschauen zeigen Beispieldaten, Preis und Zeitplan richten sich nach Ihrem Vorhaben.
             </p>
             <Link href={requestHref('beratung')} className="mt-6 inline-block text-[.95rem] font-semibold text-sw-indigo hover:underline">
               Beratung vereinbaren

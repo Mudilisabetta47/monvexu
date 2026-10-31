@@ -19,7 +19,7 @@ export function SwHead({ eyebrow, title, children, center, className, h1 }: { ey
 export function StatusBadge({ className, light }: { className?: string; light?: boolean }) {
   return (
     <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[.66rem] font-semibold uppercase tracking-[.1em]', light ? 'border-white/30 bg-white/15 text-white' : 'border-sw-line bg-white text-sw-mute', className)} title={statusInfo.concept.detail}>
-      <i className="h-1.5 w-1.5 rounded-full bg-amber-400" aria-hidden />
+      <i className="h-1.5 w-1.5 rounded-full bg-sw-indigo" aria-hidden />
       {statusInfo.concept.label}
     </span>
   );

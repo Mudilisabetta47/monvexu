@@ -111,7 +111,7 @@ export function Catalog() {
       </div>
 
       <p className="mt-6 text-[.9rem] text-sw-mute" role="status" aria-live="polite">
-        {results.length} von {softwareProducts.length} Konzepten
+        {results.length} von {softwareProducts.length} Lösungen
         {(q || cat !== 'all' || aud !== 'all') && (
           <button type="button" onClick={reset} className="ml-3 font-semibold text-sw-indigo hover:underline">
             Filter zurücksetzen
@@ -119,10 +119,10 @@ export function Catalog() {
         )}
       </p>
 
-      <h2 className="sr-only">Software-Konzepte</h2>
+      <h2 className="sr-only">Software-Lösungen</h2>
       {results.length === 0 ? (
         <div className="sw-card mt-5 p-10 text-center">
-          <h2 className="text-[1.4rem] font-semibold tracking-tight">Dazu gibt es noch kein Konzept.</h2>
+          <h2 className="text-[1.4rem] font-semibold tracking-tight">Nichts Passendes gefunden.</h2>
           <p className="mx-auto mt-3 max-w-md text-sw-mute">Vielleicht ist genau das Ihr Vorhaben? Wir entwickeln Software auch individuell.</p>
           <div className="mt-6 flex justify-center">
             <SwButton href={requestHref('individuell')}>Individuelle Lösung anfragen</SwButton>
@@ -163,7 +163,7 @@ export function Catalog() {
           </div>
           <div className="sw-card mt-5 overflow-x-auto">
             <table className="w-full min-w-[720px] border-collapse text-left text-[.92rem]">
-              <caption className="sr-only">Vergleich der ausgewählten Software-Konzepte</caption>
+              <caption className="sr-only">Vergleich der ausgewählten Software-Lösungen</caption>
               <thead>
                 <tr className="border-b border-sw-line">
                   <th scope="col" className="w-[150px] p-5 text-[.75rem] font-semibold uppercase tracking-[.1em] text-sw-mute">
@@ -202,7 +202,7 @@ export function Catalog() {
                     </ul>
                   ))}
                 />
-                <Row label="Geplante Anbindungen" cells={picked.map((p) => p.integrations.slice(0, 5).join(', '))} />
+                <Row label="Typische Anbindungen" cells={picked.map((p) => p.integrations.slice(0, 5).join(', '))} />
                 <Row label="Typischer Einsatz" cells={picked.map((p) => p.useCases[0].who)} />
                 <Row
                   label="Nächster Schritt"

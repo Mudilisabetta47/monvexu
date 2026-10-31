@@ -56,7 +56,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
       </section>
       <section className="mx-auto w-full max-w-[1320px] px-5 pb-28 sm:px-8">
         <Reveal>
-          <SwHead eyebrow={`${list.length} Konzepte`} title={`Produkte in ${c.name}`} />
+          <SwHead eyebrow={`${list.length} Lösungen`} title={`Produkte in ${c.name}`} />
         </Reveal>
         <ul className="grid-cols-1 mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((p) => (

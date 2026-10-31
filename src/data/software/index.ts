@@ -29,17 +29,17 @@ export const requestHref = (kind: RequestKind, product?: string) =>
 
 export type RequestKind = 'demo' | 'beratung' | 'angebot' | 'individuell';
 export const requestKinds: { id: RequestKind; label: string; hint: string }[] = [
-  { id: 'demo', label: 'Demo anfragen', hint: 'Konzept-Walkthrough, ein Prototyp oder ein Gespräch zum Stand' },
+  { id: 'demo', label: 'Demo anfragen', hint: 'Wir zeigen Ihnen, wie die Lösung für Ihr Unternehmen aussehen würde' },
   { id: 'beratung', label: 'Beratung vereinbaren', hint: 'Persönliches Gespräch zu Ihrem Vorhaben' },
   { id: 'angebot', label: 'Angebot erhalten', hint: 'Einschätzung zu Aufwand und Vorgehen für Ihre Umsetzung' },
-  { id: 'individuell', label: 'Individuelle Lösung', hint: 'Software, die es noch nicht gibt: wir entwickeln sie mit Ihnen' },
+  { id: 'individuell', label: 'Individuelle Lösung', hint: 'Ihre eigene Idee oder ein Produkt aus dem Katalog: wir entwickeln es mit Ihnen' },
 ];
 
 export const statusInfo = {
   concept: {
-    label: 'Konzept',
-    short: 'Konzept',
-    detail: 'In Konzeption. Es gibt noch keine Live-Version. Vorschauen zeigen Beispieldaten.',
+    label: 'Für Sie gebaut',
+    short: 'Für Sie gebaut',
+    detail: 'Wir bereiten diese Lösung individuell für Ihr Unternehmen vor und bauen sie nach Ihren Anforderungen. Vorschauen zeigen Beispieldaten.',
   },
 } as const;
 
@@ -48,8 +48,8 @@ export const audiences: Audience[] = ['Kleinunternehmen', 'Mittelstand', 'Konzer
 /** Gemeinsame Fragen jeder Produktseite. Ehrlich zum Status. */
 export const commonFaq = (p: SoftwareProduct): Faq[] => [
   {
-    q: `Gibt es ${p.name} schon zu kaufen?`,
-    a: `Nein. ${p.name} ist ein Produktkonzept. Es gibt keine Live-Version, keine Preise und keinen Starttermin. Sie können eine Demo anfragen: Das ist dann ein Konzept-Walkthrough, keine Live-Software.`,
+    q: `Kann ich ${p.name} für mein Unternehmen bekommen?`,
+    a: `Ja. Wir bereiten ${p.name} individuell für Ihr Unternehmen vor und bauen es nach Ihren Anforderungen auf. Ablauf: Gespräch, Konzept, Prototyp, Umsetzung. Preis und Zeitplan hängen vom Umfang ab, ein Angebot erhalten Sie nach dem ersten Gespräch.`,
   },
   {
     q: 'Kann MONVEX die Lösung individuell für mich umsetzen?',

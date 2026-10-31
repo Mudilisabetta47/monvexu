@@ -23,7 +23,7 @@ export default function RequestPage() {
             </SwHead>
             <ul className="mt-10 space-y-5">
               {[
-                ['ShieldCheck', 'Ehrlich zum Stand', 'Wir sagen offen, was Konzept ist und was es schon gibt.'],
+                ['ShieldCheck', 'Klar im Vorgehen', 'Wir sagen Ihnen offen, was möglich ist, wie wir vorgehen und was es kostet, bevor Sie sich entscheiden.'],
                 ['Handshake', 'Persönlich statt automatisch', 'Eine Person aus dem Team meldet sich, kein Verkaufsautomat.'],
                 ['Lock', 'Ihre Daten bleiben bei uns', 'Wir nutzen Ihre Angaben nur zur Bearbeitung Ihrer Anfrage.'],
               ].map(([i, t, d]) => (

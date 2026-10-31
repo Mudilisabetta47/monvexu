@@ -1,6 +1,6 @@
 import type { SoftwareProduct } from './types';
 
-/** Business Software – alle Einträge sind Konzepte (siehe types.ts). */
+/** Business Software – alle Einträge werden individuell für Kunden gebaut, es gibt kein fertiges Produkt (siehe types.ts). */
 export const business: SoftwareProduct[] = [
   {
     slug: 'crm',
@@ -8,7 +8,7 @@ export const business: SoftwareProduct[] = [
     category: 'business-software',
     icon: 'Contact',
     tagline: 'Kunden verstehen und Abschlüsse sauber steuern.',
-    summary: 'Ein CRM-Konzept für Teams, die Anfragen, Gespräche und Angebote an einem Ort führen wollen, ohne Excel und Zettelwirtschaft.',
+    summary: 'Ein CRM für Teams, die Anfragen, Gespräche und Angebote an einem Ort führen wollen, ohne Excel und Zettelwirtschaft.',
     audience: ['Kleinunternehmen', 'Mittelstand'],
     status: 'concept',
     headline: ['Jeden Kunden im Blick.', 'Jeden Abschluss im Griff.'],
@@ -33,8 +33,8 @@ export const business: SoftwareProduct[] = [
     ],
     integrations: ['E-Mail (IMAP/SMTP)', 'Kalender (ICS/CalDAV)', 'CSV- und Excel-Import', 'Webhooks', 'REST-API', 'Website-Formulare', 'MONVEX Finance', 'MONVEX Document Cloud'],
     faq: [
-      { q: 'Kann ich Daten aus meinem bisherigen CRM übernehmen?', a: 'Ein Import über CSV oder Excel ist als Grundfunktion vorgesehen. Wie Ihr Datenbestand abgebildet wird, klären wir im Konzeptgespräch.' },
-      { q: 'Ist das CRM für Einzelunternehmer zu groß?', a: 'Das Konzept ist modular gedacht: schlank starten und nur die Bereiche nutzen, die Sie brauchen.' },
+      { q: 'Kann ich Daten aus meinem bisherigen CRM übernehmen?', a: 'Ein Import über CSV oder Excel ist als Grundfunktion vorgesehen. Wie Ihr Datenbestand abgebildet wird, klären wir im ersten Gespräch.' },
+      { q: 'Ist das CRM für Einzelunternehmer zu groß?', a: 'Die Lösung ist modular aufgebaut: schlank starten und nur die Bereiche nutzen, die Sie brauchen.' },
     ],
     related: ['finance', 'document-cloud', 'workflow-automation'],
     mock: {
@@ -62,7 +62,7 @@ export const business: SoftwareProduct[] = [
     category: 'business-software',
     icon: 'Wallet',
     tagline: 'Rechnungen, Ausgaben und Liquidität übersichtlich im Griff.',
-    summary: 'Ein Finanz-Konzept für Unternehmen, die Rechnungen, Belege und Zahlungsflüsse ohne Tabellenchaos steuern wollen.',
+    summary: 'Eine Finanzlösung für Unternehmen, die Rechnungen, Belege und Zahlungsflüsse ohne Tabellenchaos steuern wollen.',
     audience: ['Kleinunternehmen', 'Mittelstand'],
     status: 'concept',
     headline: ['Zahlen, die man', 'auf einen Blick versteht.'],
@@ -87,7 +87,7 @@ export const business: SoftwareProduct[] = [
     ],
     integrations: ['Bank-Import (CSV)', 'DATEV-nahe Exporte', 'MONVEX CRM', 'MONVEX Document Cloud', 'E-Rechnung (Format-Export)', 'REST-API', 'Webhooks'],
     faq: [
-      { q: 'Ersetzt MONVEX Finance die Steuerberatung?', a: 'Nein. Das Konzept bereitet Daten sauber auf. Steuerliche Beurteilung und Abschlüsse bleiben bei Fachleuten.' },
+      { q: 'Ersetzt MONVEX Finance die Steuerberatung?', a: 'Nein. Die Lösung bereitet Daten sauber auf. Steuerliche Beurteilung und Abschlüsse bleiben bei Fachleuten.' },
       { q: 'Wird die E-Rechnungspflicht berücksichtigt?', a: 'Formate für E-Rechnungen gehören zu den Anforderungen. Den genauen Umfang legen wir fest, sobald das Produkt in die Umsetzung geht.' },
     ],
     related: ['crm', 'document-cloud', 'analytics'],
@@ -116,7 +116,7 @@ export const business: SoftwareProduct[] = [
     category: 'business-software',
     icon: 'Users',
     tagline: 'Dienstpläne, Zeiten und Abwesenheiten für Teams.',
-    summary: 'Ein Personal- und Einsatzplanungs-Konzept für Betriebe mit Schichten, wechselnden Einsatzorten und vielen Abwesenheiten.',
+    summary: 'Eine Personal- und Einsatzplanung für Betriebe mit Schichten, wechselnden Einsatzorten und vielen Abwesenheiten.',
     audience: ['Kleinunternehmen', 'Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Teams planen,', 'ohne Chat-Chaos.'],
@@ -141,8 +141,8 @@ export const business: SoftwareProduct[] = [
     ],
     integrations: ['Kalender (ICS)', 'Lohn-Export (CSV)', 'Push- und E-Mail-Benachrichtigung', 'MONVEX Fleet Management', 'REST-API', 'Webhooks'],
     faq: [
-      { q: 'Werden arbeitsrechtliche Regeln abgebildet?', a: 'Regelprüfungen wie Ruhezeiten sind Teil des Konzepts. Welche Regelwerke Sie benötigen, definieren wir gemeinsam, die rechtliche Prüfung bleibt bei Ihnen.' },
-      { q: 'Braucht jede Person ein Smartphone?', a: 'Nein. Das Konzept sieht auch Terminals und Papierausdrucke vor.' },
+      { q: 'Werden arbeitsrechtliche Regeln abgebildet?', a: 'Regelprüfungen wie Ruhezeiten sind Teil der Lösung. Welche Regelwerke Sie benötigen, definieren wir gemeinsam, die rechtliche Prüfung bleibt bei Ihnen.' },
+      { q: 'Braucht jede Person ein Smartphone?', a: 'Nein. Die Lösung sieht auch Terminals und Papierausdrucke vor.' },
     ],
     related: ['booking', 'fleet-management', 'service-desk'],
     mock: {
@@ -170,7 +170,7 @@ export const business: SoftwareProduct[] = [
     category: 'business-software',
     icon: 'CalendarCheck',
     tagline: 'Termine, Ressourcen und Buchungen ohne Hin und Her.',
-    summary: 'Ein Buchungs-Konzept für Betriebe, die Termine, Räume oder Fahrzeuge online anbieten und intern sauber disponieren wollen.',
+    summary: 'Ein Buchungssystem für Betriebe, die Termine, Räume oder Fahrzeuge online anbieten und intern sauber disponieren wollen.',
     audience: ['Kleinunternehmen', 'Mittelstand'],
     status: 'concept',
     headline: ['Buchen lassen,', 'statt hinterherzutelefonieren.'],
@@ -193,9 +193,9 @@ export const business: SoftwareProduct[] = [
       { t: 'Klare Regeln', d: 'Vorlaufzeiten, Pausen und Kapazitäten zentral festlegen.' },
       { t: 'Eigenes Erscheinungsbild', d: 'Buchungsseite im Look Ihres Unternehmens.' },
     ],
-    integrations: ['Kalender (ICS/CalDAV)', 'E-Mail- und SMS-Versand', 'Zahlungsanbieter (geplant)', 'MONVEX CRM', 'MONVEX Workforce', 'Website-Einbettung', 'REST-API'],
+    integrations: ['Kalender (ICS/CalDAV)', 'E-Mail- und SMS-Versand', 'Zahlungsanbieter (optional)', 'MONVEX CRM', 'MONVEX Workforce', 'Website-Einbettung', 'REST-API'],
     faq: [
-      { q: 'Kann ich Buchungen auf meiner eigenen Website einbetten?', a: 'Ja, das Einbetten als Widget ist Teil des Konzepts. Technische Details klären wir im Gespräch.' },
+      { q: 'Kann ich Buchungen auf meiner eigenen Website einbetten?', a: 'Ja, das Einbetten als Widget ist Teil der Lösung. Technische Details klären wir im Gespräch.' },
       { q: 'Sind Zahlungen enthalten?', a: 'Eine Anbindung an Zahlungsanbieter ist optional vorgesehen. Welcher Anbieter passt, besprechen wir anhand Ihres Bedarfs.' },
     ],
     related: ['workforce', 'crm', 'fleet-management'],
@@ -224,7 +224,7 @@ export const business: SoftwareProduct[] = [
     category: 'business-software',
     icon: 'FolderLock',
     tagline: 'Dokumente sicher ablegen, finden, freigeben und signieren lassen.',
-    summary: 'Ein Dokumenten-Konzept mit Struktur, Rechten und Freigaben, damit Verträge und Unterlagen nicht in Postfächern verschwinden.',
+    summary: 'Eine Dokumentenablage mit Struktur, Rechten und Freigaben, damit Verträge und Unterlagen nicht in Postfächern verschwinden.',
     audience: ['Kleinunternehmen', 'Mittelstand', 'Konzern'],
     status: 'concept',
     headline: ['Jedes Dokument', 'dort, wo man es sucht.'],
@@ -247,7 +247,7 @@ export const business: SoftwareProduct[] = [
       { t: 'Nachweisbare Freigaben', d: 'Wer wann welche Version freigegeben hat, ist dokumentiert.' },
       { t: 'Datenschutz als Ausgangspunkt', d: 'Rollen, Löschfristen und Protokoll gehören zur Basis.' },
     ],
-    integrations: ['E-Mail-Ablage', 'Office-Formate (PDF, DOCX, XLSX)', 'Signaturdienste (geplant)', 'MONVEX CRM', 'MONVEX Finance', 'REST-API', 'Webhooks'],
+    integrations: ['E-Mail-Ablage', 'Office-Formate (PDF, DOCX, XLSX)', 'Signaturdienste (optional)', 'MONVEX CRM', 'MONVEX Finance', 'REST-API', 'Webhooks'],
     faq: [
       { q: 'Wo werden die Daten gespeichert?', a: 'Der Speicherort ist eine Entscheidung im Projekt. Für Kundenlösungen planen wir Hosting in Deutschland oder der EU ein, sofern Sie das wünschen.' },
       { q: 'Sind qualifizierte elektronische Signaturen enthalten?', a: 'Signaturen sollen über Partnerdienste angebunden werden. Welche Signaturstufe möglich ist, hängt vom Anbieter ab.' },
