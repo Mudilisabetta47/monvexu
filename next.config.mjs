@@ -13,12 +13,15 @@ const nextConfig = {
    * Auf der Hauptdomain hat die Regel keine Wirkung. Kanonische URLs zeigen immer auf die Hauptdomain.
    */
   async rewrites() {
-    const host = process.env.SOFTWARE_HOST || 'software.monvex-group.de';
-    const has = [{ type: 'host', value: host }];
+    // Subdomain-Betrieb: Host → Bereich. Pfade unter dem Bereich selbst, /api, /_next und Dateien mit Endung bleiben unverändert.
+    const area = (host, base) => [
+      { source: '/', has: [{ type: 'host', value: host }], destination: base },
+      { source: `/:path((?!${base.slice(1)}|api|_next)(?!.*\\.).*)`, has: [{ type: 'host', value: host }], destination: `${base}/:path` },
+    ];
     return {
       beforeFiles: [
-        { source: '/', has, destination: '/software' },
-        { source: '/:path((?!software|api|_next)(?!.*\\.).*)', has, destination: '/software/:path' },
+        ...area(process.env.SOFTWARE_HOST || 'software.monvex-group.de', '/software'),
+        ...area(process.env.SHOPS_HOST || 'shops.monvex-group.de', '/shops'),
       ],
     };
   },

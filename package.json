@@ -18,7 +18,8 @@
     "signatur": "node scripts/email-signature.mjs",
     "verify:software": "node scripts/verify-software.mjs",
     "verify:software-layout": "node scripts/verify-software-layout.mjs",
-    "verify:software-ui": "node scripts/verify-software-interaction.mjs"
+    "verify:software-ui": "node scripts/verify-software-interaction.mjs",
+    "verify:shops": "node scripts/verify-shops.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
