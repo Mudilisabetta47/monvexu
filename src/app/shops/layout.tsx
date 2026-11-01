@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { MonvexLogo } from '@/components/ui/Logo';
-import { SITE_URL } from '@/data/site';
+import { SITE_URL, company } from '@/data/site';
 import { SHOPS } from '@/data/shops';
 
 /** Eigener Rahmen für Shop-Start: Hinweisleiste, schlanker Kopf, schlanker Fuß. Die MONVEX-Hauptnavigation wird über SiteChrome ausgeblendet. */
@@ -18,10 +18,10 @@ export default function ShopsLayout({ children }: { children: ReactNode }) {
       </div>
       <header className="border-b border-line bg-paper/90 backdrop-blur">
         <div className="shell flex h-[68px] items-center justify-between gap-4">
-          <Link href="/shops" className="flex items-center gap-3" aria-label={`${SHOPS.name}, Startseite`}>
+          <div className="flex items-center gap-3">
             <MonvexLogo className="h-5" />
             <span className="hidden rounded-full bg-ink px-2.5 py-1 font-mono text-[.62rem] uppercase tracking-[.14em] text-white min-[400px]:inline">Shop-Start</span>
-          </Link>
+          </div>
           <nav aria-label="Shop-Start" className="flex items-center gap-1 text-[.9rem]">
             <Link href="/shops#faq" className="hidden rounded-full px-3.5 py-2 text-graphite hover:text-ink sm:block">Fragen</Link>
             <a href={main('/')} className="hidden rounded-full px-3.5 py-2 text-graphite hover:text-ink sm:block">MONVEX</a>
@@ -34,7 +34,7 @@ export default function ShopsLayout({ children }: { children: ReactNode }) {
         <div className="shell flex flex-col gap-8 text-[.9rem] text-graphite sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-md">
             <MonvexLogo className="h-5" />
-            <p className="mt-4 leading-relaxed">{SHOPS.name} ist ein Angebot der MONVEX UG (haftungsbeschränkt), Bremen. Wir bauen Shopify-Shops, wir sind nicht Shopify. Keine Rechtsberatung, keine Umsatzgarantie.</p>
+            <p className="mt-4 leading-relaxed">{SHOPS.name} ist ein Angebot der {company.legalName}, Bremen. Wir bauen Shopify-Shops, wir sind nicht Shopify. Keine Rechtsberatung, keine Umsatzgarantie.</p>
           </div>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li><a href={main('/impressum')} className="hover:text-ink">Impressum</a></li>
