@@ -32,7 +32,7 @@ const wait = async (port) => { for (let i = 0; i < 60; i++) { try { await fetch(
 const fails = []; let n = 0;
 const ok = (c, m) => { n++; if (!c) fails.push(m); };
 const post = (port, body, headers = {}) => fetch(`http://localhost:${port}/api/shops/checkout`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-forwarded-for': `10.0.${Math.floor(Math.random() * 250)}.${Math.floor(Math.random() * 250)}`, ...headers }, body: JSON.stringify(body) });
-const order = { paket: 'plus', nische: 'beauty', shopname: 'Test Shop', name: 'Test Person', email: 'kunde@example.com', consent: 'yes', terms: 'yes', legal: 'yes', message: 'Hallo' };
+const order = { paket: 'plus', nische: 'beauty', shopname: 'Test Shop', name: 'Test Person', email: 'kunde@example.com', consent: 'yes', terms: 'yes', legal: 'yes', startnow: 'yes', message: 'Hallo' };
 
 try {
   await Promise.all([wait(ON), wait(OFF)]);
@@ -54,8 +54,23 @@ try {
   ok(/\/shops\/danke\?session_id=\{CHECKOUT_SESSION_ID\}/.test(f.success_url ?? ''), 'success_url falsch');
   ok(calls.resend.some((m) => /noch nicht bezahlt/.test(m.subject)), 'Lead-Mail „noch nicht bezahlt“ fehlt');
 
+  // Einstiegspaket „Start“: 49 € (4900 Cent), ebenfalls vom Server
+  r = await post(ON, { ...order, paket: 'start' }); j = await r.json();
+  ok(r.status === 200 && j.mode === 'pay', `Start-Paket: Pay-Antwort falsch: ${JSON.stringify(j)}`);
+  ok(calls.stripe.at(-1)?.form?.['line_items[0][price_data][unit_amount]'] === '4900', `Start-Betrag falsch: ${calls.stripe.at(-1)?.form?.['line_items[0][price_data][unit_amount]']}`);
+  calls.stripe.pop(); calls.resend.pop();
+
+  // Online-Widerruf: Mail an uns und Eingangsbestätigung an den Kunden
+  const mailsBefore = calls.resend.length;
+  const wd = await fetch(`http://localhost:${ON}/api/shops/widerruf`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-forwarded-for': '10.9.9.9' }, body: JSON.stringify({ name: 'Test Person', email: 'kunde@example.com', order: 'SS-1', note: 'bitte stornieren' }) });
+  const wdj = await wd.json();
+  ok(wd.status === 200 && wdj.ok && /20\d\d/.test(wdj.receivedAt ?? ''), `Widerruf-Antwort falsch: ${JSON.stringify(wdj)}`);
+  ok(calls.resend.length === mailsBefore + 2 && calls.resend.some((m) => /WIDERRUF/.test(m.subject)) && calls.resend.some((m) => /Eingangsbestätigung/.test(m.subject) && (m.to ?? []).includes('kunde@example.com')), 'Widerruf: Mail an uns und Bestätigung an den Kunden fehlen');
+  ok((await fetch(`http://localhost:${ON}/api/shops/widerruf`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-forwarded-for': '10.9.9.8' }, body: JSON.stringify({ name: '', email: 'kaputt' }) })).status === 400, 'Widerruf ohne gültige Angaben muss 400 geben');
+
   // Validierung
   ok((await post(ON, { ...order, legal: undefined })).status === 400, 'Ohne AGB-Bestätigung muss 400 kommen');
+  ok((await post(ON, { ...order, startnow: undefined })).status === 400, 'Ohne Zustimmung zum Ausführungsbeginn muss 400 kommen');
   ok((await post(ON, { ...order, paket: 'gratis' })).status === 400, 'Unbekanntes Paket muss 400 geben');
   ok((await post(ON, { ...order, email: 'kaputt' })).status === 400, 'Ungültige E-Mail muss 400 geben');
   ok((await post(ON, { ...order, terms: undefined })).status === 400, 'Ohne Leistungsumfang-Bestätigung muss 400 kommen');

@@ -5,7 +5,7 @@ Branch `feature/shops-landing`. Seiten: `/shops` (Landingpage, Pakete, Branchen,
 Subdomain: `shops.monvex-group.de` (Host über `SHOPS_HOST`) bildet `/` auf `/shops` ab, siehe `next.config.mjs`.
 
 ## Vor dem Start zu entscheiden (alles Platzhalter in `src/data/shops.ts`)
-- Preise und Leistungsumfang (hier 99 / 199 / 349 €, inkl. MwSt. angenommen), Lieferzeit-Ziel (3–5 Werktage), Markenname
+- Preise und Leistungsumfang (hier 49 / 199 / 349 €, inkl. MwSt. angenommen), Lieferzeit-Ziel (3–5 Werktage), Markenname
 - **Branchenvorlagen müssen existieren**, bevor sie beworben werden: je Branche ein Muster-Shop (Shopify-Partner-Entwicklungsshop mit Theme, Kategorien, Seiten)
 - AGB, Widerrufsbelehrung für digitale Dienstleistungen, Datenschutz-Ergänzung, Impressum-Hinweis; Rechtstexte der Kunden NICHT als „rechtssicher“ versprechen
 - Shopify-Partner-Bedingungen und Theme-Lizenzen prüfen (Übergabe des Shops auf den Kunden, Weiterverkauf von Themes)
@@ -41,3 +41,10 @@ Der Betrag kommt immer aus `src/data/shops.ts`, nie vom Browser. Stripe erzeugt 
 
 Ohne diese Variablen bleibt es bei der Anfrage per Formular (Rechnung nach Bestätigung). Test des Codes: `npm run verify:shops-pay` (Mock-Server, keine echten Zahlungen).
 Offen: Umsatzsteuer-Einstellungen (Preise sind als Bruttopreise angesetzt), Stripe Tax optional, Stornos/Erstattungen im Stripe-Dashboard.
+
+## Rechtstexte (Entwurf, Branch `feature/shops-rechtstexte`)
+Als Dienstleistung aufgebaut (Aufbau eines Shops, kein Warenverkauf): `/shops/agb` (AGB), `/shops/widerruf` (Widerrufsbelehrung nach gesetzlichem Muster für Dienstleistungen, Muster-Widerrufsformular, **Online-Widerruf** mit Eingangsbestätigung per E-Mail). Footer-Link „Vertrag widerrufen“ in jedem Shop-Start-Fuß.
+- Im Bestellformular (nur bei aktiver Bezahlung) gibt es zusätzlich zur AGB-Checkbox die **ausdrückliche Zustimmung zum Beginn der Ausführung vor Ablauf der Widerrufsfrist** samt Hinweis auf das Erlöschen des Widerrufsrechts (§ 356 Abs. 4 BGB). Der Server verlangt sie, sie wird in Stripe-Metadaten und der „BEZAHLT“-Mail festgehalten.
+- Die Texte sind **nicht anwaltlich geprüft**. `LEGAL_REVIEWED` in `src/data/shops.ts` steht auf `false`: Hinweis-Banner und noindex. Erst nach Prüfung auf `true` setzen.
+- `SHOPS_AGB_URL` / `SHOPS_WIDERRUF_URL` sind jetzt optional (Standard: `<SITE_URL>/shops/agb` und `/shops/widerruf`). Weiter nötig: `SHOPS_LEGAL_CONFIRMED=true`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`.
+- Vom Anwalt zu klären: Umsatzsteuer-Satz/Kleinunternehmer-Hinweis in § 5, Streitbeilegungs-Erklärung in § 13, Haftungsklausel, Wertersatz-Formulierung, EU-Widerrufsfunktion (gilt nach der EU-Richtlinie 2023/2673 ab 19.06.2026, Umsetzung in Deutschland prüfen lassen).

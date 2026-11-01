@@ -16,8 +16,8 @@ export const stripeBase = () => (process.env.STRIPE_API_BASE || 'https://api.str
 export function paymentConfig() {
   const key = process.env.STRIPE_SECRET_KEY?.trim();
   const legal = process.env.SHOPS_LEGAL_CONFIRMED === 'true';
-  const agbUrl = process.env.SHOPS_AGB_URL?.trim() || '';
-  const widerrufUrl = process.env.SHOPS_WIDERRUF_URL?.trim() || '';
+  const agbUrl = process.env.SHOPS_AGB_URL?.trim() || `${SITE_URL}/shops/agb`;
+  const widerrufUrl = process.env.SHOPS_WIDERRUF_URL?.trim() || `${SITE_URL}/shops/widerruf`;
   const enabled = !!key && legal && !!agbUrl && !!widerrufUrl;
   return { enabled, key, agbUrl, widerrufUrl };
 }
@@ -38,8 +38,12 @@ export function originOf(req: Request) {
 
 /** Mail an uns über Resend (gleiche Variablen wie das Kontaktformular). */
 export async function sendOrderMail(subject: string, text: string, replyTo?: string) {
+  return sendMailTo(process.env.CONTACT_TO_EMAIL, subject, text, replyTo);
+}
+
+/** Mail an eine beliebige Adresse (z. B. Eingangsbestätigung an den Kunden), Absender wie beim Kontaktformular. */
+export async function sendMailTo(to: string | undefined, subject: string, text: string, replyTo?: string) {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL;
   if (!apiKey || !to || !from) {
     console.error('[shops] RESEND_API_KEY / CONTACT_TO_EMAIL / CONTACT_FROM_EMAIL nicht gesetzt – Mail nicht gesendet.');

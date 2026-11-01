@@ -8,8 +8,8 @@ import { ShopPreview } from '@/components/shops/ShopPreview';
 import { buyingHelp, comparison, niches, notIncluded, packages, shopFaq, shopSteps, SHOPS } from '@/data/shops';
 import { agencyMetadata, breadcrumbSchema, faqSchema, webPageSchema } from '@/lib/agency-seo';
 
-const TITLE = 'Fertiger Shopify-Shop ab 99 €: Aufbau nach Branchenvorlage';
-const DESC = 'MONVEX baut deinen Shopify-Shop nach Branchenvorlage auf und übergibt ihn auf deinen Namen. Festpreis-Pakete ab 99 €, Anleitung inklusive. Shopify-Tarif extra.';
+const TITLE = 'Fertiger Shopify-Shop ab 49 €: Aufbau nach Branchenvorlage';
+const DESC = 'MONVEX baut deinen Shopify-Shop nach Branchenvorlage auf und übergibt ihn auf deinen Namen. Festpreis-Pakete ab 49 €, Anleitung inklusive. Shopify-Tarif extra.';
 // ENTWURF: bis zur Freigabe nicht indexieren und nicht in die Sitemap aufnehmen.
 export const metadata: Metadata = { ...agencyMetadata({ title: TITLE, description: DESC, path: '/shops' }), robots: { index: false, follow: false } };
 

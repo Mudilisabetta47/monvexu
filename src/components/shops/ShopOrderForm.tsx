@@ -44,13 +44,14 @@ export function ShopOrderForm() {
     if (!fd.terms) next.terms = 'Bitte bestätige, dass du den Leistungsumfang gelesen hast.';
     const willPay = pay.payments && packages.find((x) => x.id === pkg)?.price != null;
     if (willPay && !fd.legal) next.legal = 'Bitte bestätige AGB und Widerrufsbelehrung.';
+    if (willPay && !fd.startnow) next.startnow = 'Bitte bestätige den Beginn der Ausführung vor Ablauf der Widerrufsfrist.';
     setErrors(next);
     if (Object.keys(next).length) return;
 
     const p = packages.find((x) => x.id === pkg)!;
     const body = {
       paket: pkg, nische: niche, shopname: fd.shopname, name: fd.name, company: fd.company, email: fd.email, phone: fd.phone,
-      products: fd.products, existing: fd.existing, message: fd.message, website: fd.website, consent: fd.consent, terms: fd.terms, legal: fd.legal,
+      products: fd.products, existing: fd.existing, message: fd.message, website: fd.website, consent: fd.consent, terms: fd.terms, legal: fd.legal, startnow: fd.startnow,
     };
     setStatus('sending');
     setServerMsg('');
@@ -161,6 +162,11 @@ export function ShopOrderForm() {
               <span>Ich habe die <a href={pay.agbUrl} target="_blank" rel="noopener" className="font-medium text-ink underline underline-offset-2">AGB</a> und die <a href={pay.widerrufUrl} target="_blank" rel="noopener" className="font-medium text-ink underline underline-offset-2">Widerrufsbelehrung</a> gelesen und akzeptiere sie.</span>
             </label>
             {errors.legal && <p role="alert" className="text-[.82rem] text-ember-deep">{errors.legal}</p>}
+            <label className="flex cursor-pointer items-start gap-3">
+              <input type="checkbox" name="startnow" value="yes" aria-invalid={!!errors.startnow} className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#FF4A1C]" />
+              <span>Ich verlange ausdrücklich, dass MONVEX vor Ablauf der Widerrufsfrist mit der Ausführung beginnt. Mir ist bekannt, dass ich mein Widerrufsrecht bei vollständiger Vertragserfüllung durch MONVEX verliere.</span>
+            </label>
+            {errors.startnow && <p role="alert" className="text-[.82rem] text-ember-deep">{errors.startnow}</p>}
           </>
         )}
         <label className="flex cursor-pointer items-start gap-3">

@@ -37,6 +37,9 @@ export default function ShopsLayout({ children }: { children: ReactNode }) {
             <p className="mt-4 leading-relaxed">{SHOPS.name} ist ein Angebot der {company.legalName}, Bremen. Wir bauen Shopify-Shops, wir sind nicht Shopify. Keine Rechtsberatung, keine Umsatzgarantie.</p>
           </div>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            <li><Link href="/shops/agb" className="hover:text-ink">AGB</Link></li>
+            <li><Link href="/shops/widerruf" className="hover:text-ink">Widerruf</Link></li>
+            <li><Link href="/shops/widerruf#online" className="font-medium text-ink hover:text-ember">Vertrag widerrufen</Link></li>
             <li><a href={main('/impressum')} className="hover:text-ink">Impressum</a></li>
             <li><a href={main('/datenschutz')} className="hover:text-ink">Datenschutz</a></li>
             <li><a href={main('/')} className="hover:text-ink">MONVEX</a></li>
