@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Check, Loader2 } from 'lucide-react';
 import { niches, packages, priceLabel } from '@/data/shops';
 import { cn } from '@/lib/cn';
+import { usePayments } from './usePayments';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 const input = 'w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-[1rem] outline-none transition-colors focus:border-ink focus:ring-4 focus:ring-ink/5';
@@ -18,11 +19,15 @@ export function ShopOrderForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverMsg, setServerMsg] = useState('');
+  const [cancelled, setCancelled] = useState(false);
+  const [inquiryPkg, setInquiryPkg] = useState('');
+  const pay = usePayments();
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const p = q.get('paket');
     const n = q.get('nische');
+    if (q.get('abgebrochen')) setCancelled(true);
     if (p && packages.some((x) => x.id === p)) setPkg(p);
     if (n && niches.some((x) => x.id === n)) setNiche(n);
   }, []);
@@ -37,34 +42,28 @@ export function ShopOrderForm() {
     if (!fd.shopname?.trim()) next.shopname = 'Wie soll dein Shop heißen (auch ein Arbeitstitel)?';
     if (!fd.consent) next.consent = 'Bitte stimme der Verarbeitung deiner Angaben zu.';
     if (!fd.terms) next.terms = 'Bitte bestätige, dass du den Leistungsumfang gelesen hast.';
+    const willPay = pay.payments && packages.find((x) => x.id === pkg)?.price != null;
+    if (willPay && !fd.legal) next.legal = 'Bitte bestätige AGB und Widerrufsbelehrung.';
     setErrors(next);
     if (Object.keys(next).length) return;
 
     const p = packages.find((x) => x.id === pkg)!;
-    const n = niches.find((x) => x.id === niche)!;
     const body = {
-      name: fd.name, company: fd.company, email: fd.email, phone: fd.phone, website: fd.website, consent: fd.consent,
-      topic: `Shop-Start: ${p.name} · ${n.name}`,
-      message: [
-        `Paket: ${p.name} (${priceLabel(p)})`,
-        `Branche: ${n.name}`,
-        `Shopname: ${fd.shopname}`,
-        `Produkte liegen als Tabelle vor: ${fd.products || 'keine Angabe'}`,
-        `Vorhandene Website/Social: ${fd.existing || '–'}`,
-        '',
-        fd.message || '(keine weitere Nachricht)',
-      ].join('\n'),
+      paket: pkg, nische: niche, shopname: fd.shopname, name: fd.name, company: fd.company, email: fd.email, phone: fd.phone,
+      products: fd.products, existing: fd.existing, message: fd.message, website: fd.website, consent: fd.consent, terms: fd.terms, legal: fd.legal,
     };
     setStatus('sending');
     setServerMsg('');
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-      const json = (await res.json().catch(() => ({}))) as { message?: string };
-      if (!res.ok) { setServerMsg(json.message ?? 'Das hat leider nicht geklappt. Bitte versuchen Sie es später erneut.'); setStatus('error'); return; }
+      const res = await fetch('/api/shops/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const json = (await res.json().catch(() => ({}))) as { message?: string; mode?: 'pay' | 'inquiry'; url?: string };
+      if (!res.ok) { setServerMsg(json.message ?? 'Das hat leider nicht geklappt. Bitte versuche es später erneut.'); setStatus('error'); return; }
+      if (json.mode === 'pay' && json.url) { window.location.assign(json.url); return; }
+      setInquiryPkg(p.name);
       setStatus('success');
       form.reset();
     } catch {
-      setServerMsg('Keine Verbindung. Bitte prüfen Sie Ihr Netz und versuchen Sie es erneut.');
+      setServerMsg('Keine Verbindung. Bitte prüfe dein Netz und versuche es erneut.');
       setStatus('error');
     }
   }
@@ -73,14 +72,15 @@ export function ShopOrderForm() {
     return (
       <div role="status" className="rounded-3xl border border-line bg-white p-8 sm:p-12">
         <span className="grid h-14 w-14 place-items-center rounded-full bg-ink text-white"><Check size={26} /></span>
-        <h2 className="mt-7 text-[1.8rem] font-semibold tracking-tight">Danke, deine Bestellung ist angekommen.</h2>
-        <p className="mt-3 max-w-md text-graphite">Wir melden uns per E-Mail mit Bestätigung, Rechnung und offenen Fragen. Erst danach beginnt der Aufbau.</p>
+        <h2 className="mt-7 text-[1.8rem] font-semibold tracking-tight">Danke, deine Anfrage ist angekommen.</h2>
+        <p className="mt-3 max-w-md text-graphite">Wir melden uns per E-Mail mit Bestätigung, Rechnung und offenen Fragen. Erst nach Bestätigung und Zahlung beginnt der Aufbau.</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={onSubmit} noValidate aria-busy={status === 'sending'} className="relative space-y-8 rounded-3xl border border-line bg-white p-6 sm:p-9">
+      {cancelled && <p role="status" className="rounded-xl bg-paper p-4 text-[.92rem]">Die Bezahlung wurde abgebrochen. Deine Angaben sind noch da, du kannst es jederzeit erneut versuchen.</p>}
       <fieldset>
         <legend className="mb-3 text-[.85rem] font-medium">Paket</legend>
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
@@ -154,6 +154,15 @@ export function ShopOrderForm() {
           <span>Ich habe gelesen, was enthalten ist und was nicht: Shopify-Tarif, Rechtstexte, Produkte und Domain sind nicht Teil des Pakets, und es gibt keine Umsatzgarantie.</span>
         </label>
         {errors.terms && <p role="alert" className="text-[.82rem] text-ember-deep">{errors.terms}</p>}
+        {pay.payments && packages.find((x) => x.id === pkg)?.price != null && (
+          <>
+            <label className="flex cursor-pointer items-start gap-3">
+              <input type="checkbox" name="legal" value="yes" aria-invalid={!!errors.legal} className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#FF4A1C]" />
+              <span>Ich habe die <a href={pay.agbUrl} target="_blank" rel="noopener" className="font-medium text-ink underline underline-offset-2">AGB</a> und die <a href={pay.widerrufUrl} target="_blank" rel="noopener" className="font-medium text-ink underline underline-offset-2">Widerrufsbelehrung</a> gelesen und akzeptiere sie.</span>
+            </label>
+            {errors.legal && <p role="alert" className="text-[.82rem] text-ember-deep">{errors.legal}</p>}
+          </>
+        )}
         <label className="flex cursor-pointer items-start gap-3">
           <input type="checkbox" name="consent" value="yes" aria-invalid={!!errors.consent} className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#FF4A1C]" />
           <span>Ich habe die <Link href="/datenschutz" target="_blank" className="font-medium text-ink underline underline-offset-2">Datenschutzerklärung</Link> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Bestellung einverstanden.</span>
@@ -164,7 +173,7 @@ export function ShopOrderForm() {
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         <button type="submit" disabled={status === 'sending'} className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 font-medium text-white transition-colors hover:bg-ember disabled:opacity-60">
           {status === 'sending' && <Loader2 size={18} className="animate-spin" aria-hidden />}
-          {status === 'sending' ? 'Wird gesendet …' : 'Bestellung absenden'}
+          {status === 'sending' ? 'Einen Moment …' : pay.payments && packages.find((x) => x.id === pkg)?.price != null ? `Jetzt bezahlen · ${priceLabel(packages.find((x) => x.id === pkg)!)}` : 'Anfrage absenden'}
         </button>
         {status === 'error' && <p role="alert" className="text-[.9rem] text-ember-deep">{serverMsg}</p>}
       </div>

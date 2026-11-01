@@ -6,11 +6,13 @@ import { Check } from 'lucide-react';
 import { ShopPreview } from './ShopPreview';
 import { niches, packages, priceLabel } from '@/data/shops';
 import { cn } from '@/lib/cn';
+import { usePayments } from './usePayments';
 
 /** Produkt-Konfigurator: Paket wählen, Branche wählen, Zusammenfassung, Bestell-Link (Bestellung läuft über das Formular). */
 export function ShopConfigurator() {
   const [pkgId, setPkgId] = useState<string>('plus');
   const [nicheId, setNicheId] = useState<string>('beauty');
+  const pay = usePayments();
   const pkg = packages.find((p) => p.id === pkgId)!;
   const niche = niches.find((n) => n.id === nicheId)!;
   const href = `/shops/bestellen?paket=${pkg.id}&nische=${niche.id}`;
@@ -95,7 +97,7 @@ export function ShopConfigurator() {
             <div className="flex justify-between"><dt className="text-graphite">Branche</dt><dd className="font-semibold">{niche.emoji} {niche.name}</dd></div>
             <div className="flex justify-between border-t border-line pt-3 text-[1.1rem]"><dt className="font-semibold">Gesamt</dt><dd className="font-semibold">{priceLabel(pkg)}</dd></div>
           </dl>
-          <p className="mt-3 text-[.8rem] leading-relaxed text-mute">{pkg.price == null ? 'Preis nach Gespräch.' : 'Einmalzahlung, inkl. MwSt.'} Der Shopify-Tarif ist nicht enthalten. Bezahlt wird nach unserer Bestätigung per Rechnung.</p>
+          <p className="mt-3 text-[.8rem] leading-relaxed text-mute">{pkg.price == null ? 'Preis nach Gespräch.' : 'Einmalzahlung, inkl. MwSt.'} Der Shopify-Tarif ist nicht enthalten. {pay.payments && pkg.price != null ? 'Du bezahlst sicher online über Stripe, die Rechnung kommt per E-Mail.' : 'Bezahlt wird nach unserer Bestätigung per Rechnung.'}</p>
           <Link href={href} className="mt-5 block rounded-full bg-ink px-6 py-4 text-center text-[1rem] font-medium text-white transition-colors hover:bg-ember">{cta}</Link>
         </div>
       </div>
