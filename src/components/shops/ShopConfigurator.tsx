@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { ShopPreview } from './ShopPreview';
-import { niches, packages, priceLabel, upgradeNote } from '@/data/shops';
+import { SHOPIFY_OFFER, niches, packages, priceLabel, upgradeNote } from '@/data/shops';
 import { cn } from '@/lib/cn';
 import { usePayments } from './usePayments';
 
@@ -46,10 +46,11 @@ export function ShopConfigurator() {
         </h1>
         <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-graphite">Wir bauen deinen Shop nach der Vorlage deiner Branche und übergeben ihn auf deinen Namen, mit Anleitung für die nächsten Schritte.</p>
         <ul className="mt-6 space-y-2.5 text-[.98rem]">
-          {['Einmal zahlen für den Aufbau, kein Abo bei uns', 'Der Shop gehört dir, voller Admin-Zugriff', 'Keine Shopify-Erfahrung nötig'].map((t) => (
+          {['Einmal zahlen für den Aufbau, kein Abo bei uns', 'Der Shop gehört dir, voller Admin-Zugriff', 'Keine Shopify-Erfahrung nötig', SHOPIFY_OFFER.short].map((t) => (
             <li key={t} className="flex items-center gap-2.5"><Check size={18} className="text-ember" aria-hidden /> {t}</li>
           ))}
         </ul>
+        <p className="mt-3 max-w-xl text-[.78rem] leading-relaxed text-mute">{SHOPIFY_OFFER.note}</p>
 
         <fieldset className="mt-10">
           <legend className="text-[1.15rem] font-semibold tracking-tight"><span className="mr-2 font-mono text-[.8rem] text-ember">1</span>Paket wählen</legend>

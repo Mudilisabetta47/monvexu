@@ -23,6 +23,15 @@ export const SHOPS = {
 export const LEGAL_REVIEWED = false;
 export const LEGAL_STAND = 'November 2026';
 
+/**
+ * Hinweis auf das Neukunden-Angebot von SHOPIFY (nicht von MONVEX). Nur anzeigen, solange Shopify es anbietet; vor dem Start auf shopify.de prüfen
+ * (Stand der Recherche: 3 Tage kostenlos testen, danach 3 Monate für 1 € pro Monat für neue Shopify-Konten). Keine Zusage von MONVEX.
+ */
+export const SHOPIFY_OFFER = {
+  short: 'Für neue Shopify-Konten aktuell: 3 Monate für 1 € pro Monat',
+  note: 'Das ist ein Angebot von Shopify, nicht von MONVEX. Es gilt für neue Shopify-Konten und kann sich ändern; die aktuellen Bedingungen stehen bei Shopify. Wir zeigen dir in der Anleitung, wie du es beim Anlegen deines Shops nutzt.',
+} as const;
+
 export type ShopPackage = {
   id: 'start' | 'plus' | 'premium' | 'individuell';
   name: string;
@@ -110,7 +119,7 @@ export const shopSteps = [
 ];
 
 export const notIncluded = [
-  { t: 'Shopify-Tarif', d: 'Den Vertrag mit Shopify schließt du selbst. Die laufenden Kosten richten sich nach dem gewählten Tarif.' },
+  { t: 'Shopify-Tarif', d: 'Den Vertrag mit Shopify schließt du selbst. Die laufenden Kosten richten sich nach dem gewählten Tarif. Neue Shopify-Konten starten aktuell mit 3 Monaten für 1 € pro Monat (Angebot von Shopify, kann sich ändern).' },
   { t: 'Rechtstexte', d: 'Impressum, Datenschutz, AGB und Widerruf müssen zu deinem Geschäft passen. Wir richten die Seiten ein, die Texte kommen von dir oder einem Rechtstext-Anbieter. Wir geben keine Rechtsberatung.' },
   { t: 'Produkte, Bilder, Lieferanten', d: 'Sortiment, Bilder und Bezugsquellen bringst du mit. Wir importieren deine Daten, wir liefern keine Ware.' },
   { t: 'Domain und Zahlungsanbieter', d: 'Eigene Domain und Auszahlung (Identitätsprüfung) richtest du mit der Anleitung ein, bei Premium gemeinsam mit uns.' },
@@ -120,7 +129,7 @@ export const notIncluded = [
 export const shopFaq = [
   { q: 'Was bekomme ich genau?', a: 'Einen Shopify-Shop, der nach der Vorlage deiner Branche aufgebaut und je nach Paket an deine Marke und Produkte angepasst ist. Er wird auf deinen Namen übergeben, du hast vollen Zugriff.' },
   { q: 'Brauche ich Shopify-Erfahrung?', a: 'Nein. Du bekommst eine Schritt-für-Schritt-Anleitung für alles, was nach der Übergabe kommt. Bei Premium richten wir Versand und Zahlungsarten gemeinsam mit dir ein.' },
-  { q: 'Ist Shopify im Preis enthalten?', a: 'Nein. Du schließt den Shopify-Tarif selbst ab und zahlst ihn direkt an Shopify. Der Paketpreis ist eine Einmalzahlung an MONVEX für den Aufbau.' },
+  { q: 'Ist Shopify im Preis enthalten?', a: 'Nein. Du schließt den Shopify-Tarif selbst ab und zahlst ihn direkt an Shopify. Neue Shopify-Konten starten aktuell mit 3 Monaten für 1 € pro Monat (Angebot von Shopify, nicht von uns, Bedingungen können sich ändern). Der Paketpreis ist eine Einmalzahlung an MONVEX für den Aufbau.' },
   { q: 'Wie schnell bekomme ich meinen Shop?', a: 'Unser Ziel sind 3 bis 5 Werktage nach vollständigen Angaben. Das ist kein Festtermin. Wenn etwas fehlt, melden wir uns.' },
   { q: 'Sind Produkte enthalten?', a: 'Wir importieren die Produkte, die du uns lieferst (Tabelle mit Titeln, Preisen, Beschreibungen, Bildern). Wir liefern keine Produkte und vermitteln keine Lieferanten.' },
   { q: 'Sind die Rechtstexte dabei?', a: 'Wir richten die Seiten ein. Die Texte müssen zu deinem Geschäft passen und kommen von dir oder einem Rechtstext-Anbieter. Das ist keine Rechtsberatung.' },
