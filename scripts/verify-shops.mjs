@@ -7,7 +7,7 @@ const bad = []; let n = 0;
 for (const w of [360, 390, 768, 1024, 1440, 1920]) {
   const page = await (await b.newContext({ viewport: { width: w, height: 900 } })).newPage();
   const errs = []; page.on('console', (m) => m.type() === 'error' && errs.push(m.text())); page.on('pageerror', (e) => errs.push(String(e)));
-  for (const p of ['/shops', '/shops/bestellen']) {
+  for (const p of ['/shops', '/shops/bestellen', '/shops/agb', '/shops/widerruf']) {
     await page.goto(BASE + p, { waitUntil: 'networkidle' }); n++;
     const r = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth, h1: document.querySelectorAll('h1').length }));
     if (r.sw > r.iw) bad.push(`${w} ${p} Überlauf ${r.sw}>${r.iw}`);
@@ -48,10 +48,12 @@ if (s.shopname !== 'Café Test') bad.push('Payload ohne Shopname');
   await pg.locator('input[name=terms]').check(); await pg.locator('input[name=consent]').check();
   await pg.getByRole('button', { name: /Jetzt bezahlen/ }).click();
   if (posted.length) bad.push('Ohne AGB-Bestätigung darf nichts gesendet werden');
+  if (!(await pg.locator('input[name=startnow]').isVisible())) bad.push('Checkbox „Ausführungsbeginn vor Ablauf der Widerrufsfrist“ fehlt bei aktiver Bezahlung');
   await pg.locator('input[name=legal]').check();
+  await pg.locator('input[name=startnow]').check();
   await pg.getByRole('button', { name: /Jetzt bezahlen/ }).click();
   await pg.waitForURL('https://checkout.stripe.test/**', { timeout: 8000 }).catch(() => bad.push('Keine Weiterleitung zur Bezahlseite'));
-  if (posted[0]?.legal !== 'yes' || posted[0]?.paket !== 'premium') bad.push('Payload bei Bezahlung falsch: ' + JSON.stringify(posted[0]));
+  if (posted[0]?.legal !== 'yes' || posted[0]?.startnow !== 'yes' || posted[0]?.paket !== 'premium') bad.push('Payload bei Bezahlung falsch: ' + JSON.stringify(posted[0]));
   if ('price' in (posted[0] ?? {})) bad.push('Browser darf keinen Preis senden');
 }
 await b.close();

@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       `Name: ${m.name ?? '–'} · Unternehmen: ${m.company || '–'}`,
       `E-Mail: ${String((s.customer_details as { email?: string } | undefined)?.email ?? s.customer_email ?? '–')} · Telefon: ${m.phone || '–'}`,
       `Produkte als Tabelle: ${m.products || '–'} · Website/Social: ${m.existing || '–'}`,
-      `AGB/Widerruf bestätigt: ${m.legal_accepted ?? '–'}`,
+      `AGB/Widerruf bestätigt: ${m.legal_accepted ?? '–'} · Beginn vor Ablauf der Widerrufsfrist verlangt: ${m.startnow_accepted ?? '–'}`,
       '',
       m.message || '(keine weitere Nachricht)',
       '',

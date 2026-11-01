@@ -15,6 +15,14 @@ export const SHOPS = {
   deliveryTarget: '3 bis 5 Werktage',
 } as const;
 
+/**
+ * Rechtstexte (/shops/agb, /shops/widerruf): ENTWÜRFE, nicht anwaltlich geprüft.
+ * Erst auf true setzen, wenn die Geschäftsführung die Texte (nach Prüfung durch Anwalt oder Rechtstext-Anbieter) freigibt.
+ * Solange false: Hinweis-Banner auf den Seiten und noindex.
+ */
+export const LEGAL_REVIEWED = false;
+export const LEGAL_STAND = 'November 2026';
+
 export type ShopPackage = {
   id: 'start' | 'plus' | 'premium' | 'individuell';
   name: string;

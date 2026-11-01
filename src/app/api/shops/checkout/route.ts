@@ -54,6 +54,9 @@ export async function POST(req: Request) {
   if (payMode && body.legal !== 'yes') {
     return NextResponse.json({ error: 'legal', message: 'Bitte bestätige AGB und Widerrufsbelehrung.' }, { status: 400 });
   }
+  if (payMode && body.startnow !== 'yes') {
+    return NextResponse.json({ error: 'startnow', message: 'Bitte bestätige, dass wir vor Ablauf der Widerrufsfrist mit der Ausführung beginnen sollen.' }, { status: 400 });
+  }
 
   const orderId = `SS-${Date.now().toString(36).toUpperCase()}-${randomBytes(2).toString('hex').toUpperCase()}`;
   const details = [
@@ -95,7 +98,7 @@ export async function POST(req: Request) {
   params.set('line_items[0][price_data][product_data][name]', `MONVEX Shop-Start: ${pkg.name} (${niche.name})`);
   params.set('line_items[0][price_data][product_data][description]', 'Aufbau deines Shopify-Shops nach Branchenvorlage, Übergabe auf deinen Namen. Shopify-Tarif nicht enthalten.');
   const meta: Record<string, string> = {
-    order_id: orderId, paket: pkg.id, nische: niche.id, shopname, name, company, phone, products, existing, message: message.slice(0, 450), legal_accepted: 'yes',
+    order_id: orderId, paket: pkg.id, nische: niche.id, shopname, name, company, phone, products, existing, message: message.slice(0, 450), legal_accepted: 'yes', startnow_accepted: 'yes',
   };
   for (const [k, v] of Object.entries(meta)) params.set(`metadata[${k}]`, v.slice(0, 500));
 
