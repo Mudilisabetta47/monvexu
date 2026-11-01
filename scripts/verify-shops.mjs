@@ -42,7 +42,7 @@ if (s.shopname !== 'Café Test') bad.push('Payload ohne Shopname');
   });
   await pg.route('https://checkout.stripe.test/**', (r) => r.fulfill({ status: 200, contentType: 'text/html', body: '<h1>Stripe-Mock</h1>' }));
   await pg.goto(BASE + '/shops/bestellen?paket=premium&nische=mode', { waitUntil: 'networkidle' });
-  if (!(await pg.getByRole('button', { name: /Jetzt bezahlen · 349 €/ }).isVisible())) bad.push('Bezahl-Button fehlt');
+  if (!(await pg.getByRole('button', { name: /Jetzt bezahlen · 299 €/ }).isVisible())) bad.push('Bezahl-Button fehlt');
   if (!(await pg.locator('input[name=legal]').isVisible())) bad.push('AGB-Checkbox fehlt bei aktiver Bezahlung');
   await pg.fill('#sh-shopname', 'Pay Test'); await pg.fill('#sh-name', 'Pay Person'); await pg.fill('#sh-email', 'pay@example.com');
   await pg.locator('input[name=terms]').check(); await pg.locator('input[name=consent]').check();

@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/ui/JsonLd';
 import { Reveal } from '@/components/ui/Reveal';
 import { ShopConfigurator } from '@/components/shops/ShopConfigurator';
 import { ShopPreview } from '@/components/shops/ShopPreview';
-import { buyingHelp, comparison, niches, notIncluded, packages, shopFaq, shopSteps, SHOPS } from '@/data/shops';
+import { buyingHelp, comparison, niches, notIncluded, packages, shopFaq, shopSteps, SHOPS, upgradeNote } from '@/data/shops';
 import { agencyMetadata, breadcrumbSchema, faqSchema, webPageSchema } from '@/lib/agency-seo';
 
 const TITLE = 'Fertiger Shopify-Shop ab 49 €: Aufbau nach Branchenvorlage';
@@ -42,6 +42,7 @@ export default function ShopsPage() {
                     <th key={p.id} scope="col" className="p-5">
                       <span className="block text-[1.1rem] font-semibold tracking-tight">{p.name}</span>
                       <span className="block font-normal text-graphite">{p.price} € einmalig</span>
+                      {upgradeNote(p) && <span className="block text-[.8rem] font-medium text-ember-deep">{upgradeNote(p)}</span>}
                     </th>
                   ))}
                 </tr>
