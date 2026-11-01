@@ -5,21 +5,29 @@ import { niches, packages, type ShopPackage } from '@/data/shops';
  * Online-Bezahlung für MONVEX Shop-Start (Stripe Checkout, gehostete Bezahlseite – wir sehen keine Kartendaten).
  *
  * Aktiv NUR wenn beides gesetzt ist:
- *   STRIPE_SECRET_KEY       – geheimer Schlüssel (sk_live_… oder sk_test_… zum Testen), nur serverseitig
+ *   MOLLIE_API_KEY          – Mollie-API-Schlüssel (live_… oder test_… zum Testen), nur serverseitig; ODER
+ *   STRIPE_SECRET_KEY       – geheimer Schlüssel (sk_live_… oder sk_test_… zum Testen), nur serverseitig (Mollie hat Vorrang)
  *   SHOPS_LEGAL_CONFIRMED   – "true": AGB + Widerrufsbelehrung liegen vor und sind unter SHOPS_AGB_URL / SHOPS_WIDERRUF_URL abrufbar
  * Sonst bleibt es bei der Anfrage per Formular (Rechnung nach Bestätigung). Preise kommen IMMER aus src/data/shops.ts, nie vom Browser.
  * Webhook (empfohlen): STRIPE_WEBHOOK_SECRET, Endpunkt /api/shops/stripe-webhook, Ereignis checkout.session.completed.
  * Test: STRIPE_API_BASE / RESEND_API_BASE überschreiben die API-Adressen (Mock-Server, siehe scripts/verify-shops-pay.mjs).
  */
 export const stripeBase = () => (process.env.STRIPE_API_BASE || 'https://api.stripe.com').replace(/\/$/, '');
+export const mollieBase = () => (process.env.MOLLIE_API_BASE || 'https://api.mollie.com').replace(/\/$/, '');
+
+export type Provider = 'mollie' | 'stripe';
 
 export function paymentConfig() {
-  const key = process.env.STRIPE_SECRET_KEY?.trim();
+  const mollieKey = process.env.MOLLIE_API_KEY?.trim();
+  const stripeKey = process.env.STRIPE_SECRET_KEY?.trim();
+  /** Mollie hat Vorrang, wenn beide Schlüssel gesetzt sind. */
+  const provider: Provider | null = mollieKey ? 'mollie' : stripeKey ? 'stripe' : null;
+  const key = provider === 'mollie' ? mollieKey : stripeKey;
   const legal = process.env.SHOPS_LEGAL_CONFIRMED === 'true';
   const agbUrl = process.env.SHOPS_AGB_URL?.trim() || `${SITE_URL}/shops/agb`;
   const widerrufUrl = process.env.SHOPS_WIDERRUF_URL?.trim() || `${SITE_URL}/shops/widerruf`;
-  const enabled = !!key && legal && !!agbUrl && !!widerrufUrl;
-  return { enabled, key, agbUrl, widerrufUrl };
+  const enabled = !!provider && legal && !!agbUrl && !!widerrufUrl;
+  return { enabled, provider, key, stripeKey, mollieKey, agbUrl, widerrufUrl };
 }
 
 export const findPackage = (id: unknown): ShopPackage | undefined => packages.find((p) => p.id === id);

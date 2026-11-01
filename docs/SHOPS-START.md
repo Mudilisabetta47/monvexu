@@ -51,3 +51,15 @@ Als Dienstleistung aufgebaut (Aufbau eines Shops, kein Warenverkauf): `/shops/ag
 
 ## Preis-Darstellung
 Stufen 49 / 79 / 299 € (Endziffer 9, Plus als „Unser Tipp“). Auf den Karten und im Vergleich steht der Aufpreis zur nächsten Stufe („+100 € zu Start“) und „einmalig, kein Abo“. Bewusst NICHT verwendet: Streichpreise („statt …“), erfundene Rabatte, Zeitdruck, Verknappung, Verkaufszahlen. Das wäre unwahr und in Deutschland abmahnbar (UWG, PAngV).
+
+## Bezahlung mit Mollie (bevorzugt, Branch `feature/shops-mollie`)
+Wenn `MOLLIE_API_KEY` gesetzt ist, läuft die Bezahlung über Mollie (hat Vorrang vor Stripe; Stripe bleibt als Alternative erhalten).
+Ablauf: Formular → `POST /api/shops/checkout` → Mollie-Bezahlseite (gehostet, wir sehen keine Kartendaten) → `/shops/danke?order=…`.
+Der Betrag kommt immer vom Server. **Die Zahlung wird per Webhook bestätigt**: Mollie ruft `/api/shops/mollie-webhook` mit der Zahlungs-ID auf, wir fragen den Status selbst bei Mollie ab (keine Signatur nötig, wir vertrauen dem Aufruf nicht). Bei „paid“ gehen zwei Mails raus: „BEZAHLT“ an uns (mit Warnung, falls der Betrag nicht zum Paketpreis passt) und eine Bestätigung der Bestellung an den Kunden.
+**Wichtig: Mollie erstellt KEINE Rechnung.** Die Rechnung kommt von euch (Buchhaltungs-Tool); die BEZAHLT-Mail erinnert daran.
+
+Aktivierung (Inhaber):
+1. Mollie-Konto anlegen, Firmendaten und Identitätsprüfung abschließen, Zahlungsmethoden aktivieren (Karte, PayPal, Klarna, SEPA …).
+2. In Vercel: `MOLLIE_API_KEY` (zuerst `test_…`, später `live_…`) und `SHOPS_LEGAL_CONFIRMED=true`. AGB-/Widerruf-Adressen sind optional (Standard `/shops/agb`, `/shops/widerruf`). `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` müssen vorhanden sein. Kein Webhook-Secret nötig.
+3. Neu deployen, Testbestellung im Testmodus durchspielen (Mollie zeigt dann eine Test-Bezahlseite), erst dann Live-Schlüssel.
+Test des Codes: `npm run verify:shops-pay` (Mock-Server, keine echten Zahlungen).

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { randomBytes } from 'node:crypto';
-import { field, findNiche, findPackage, longField, originOf, paymentConfig, sendOrderMail, stripeBase } from '@/lib/shops-pay';
+import { field, findNiche, findPackage, longField, mollieBase, originOf, paymentConfig, sendOrderMail, stripeBase } from '@/lib/shops-pay';
 
 export const runtime = 'nodejs';
 
@@ -19,7 +19,7 @@ function limited(ip: string) {
 /** Ob Online-Bezahlung aktiv ist (für das Formular). Keine Geheimnisse in der Antwort. */
 export async function GET() {
   const c = paymentConfig();
-  return NextResponse.json({ payments: c.enabled, agbUrl: c.enabled ? c.agbUrl : '', widerrufUrl: c.enabled ? c.widerrufUrl : '' });
+  return NextResponse.json({ payments: c.enabled, provider: c.enabled ? c.provider : null, agbUrl: c.enabled ? c.agbUrl : '', widerrufUrl: c.enabled ? c.widerrufUrl : '' });
 }
 
 export async function POST(req: Request) {
@@ -81,8 +81,43 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, mode: 'inquiry', orderId });
   }
 
-  // Stripe Checkout (Preis serverseitig aus den Paketdaten)
   const origin = originOf(req);
+
+  // Mollie (Preis serverseitig aus den Paketdaten; Zahlungsbestätigung kommt über den Webhook)
+  if (cfg.provider === 'mollie') {
+    const clip = (v: string, n: number) => v.slice(0, n);
+    const meta: Record<string, string> = {
+      order_id: orderId, paket: pkg.id, nische: niche.id, shopname: clip(shopname, 60), name: clip(name, 60), email: clip(email, 90), company: clip(company, 60),
+      phone: clip(phone, 30), products: clip(products, 20), existing: clip(existing, 80), message: clip(message, 160), legal_accepted: 'yes', startnow_accepted: 'yes',
+    };
+    while (JSON.stringify(meta).length > 960 && meta.message.length > 0) meta.message = meta.message.slice(0, Math.max(0, meta.message.length - 30)); // Mollie erlaubt 1 KB Metadaten
+    const body: Record<string, unknown> = {
+      amount: { currency: 'EUR', value: (pkg.price as number).toFixed(2) },
+      description: `MONVEX Shop-Start: ${pkg.name} (${niche.name}) ${orderId}`,
+      redirectUrl: `${origin}/shops/danke?order=${orderId}`,
+      cancelUrl: `${origin}/shops/bestellen?paket=${pkg.id}&nische=${niche.id}&abgebrochen=1`,
+      locale: 'de_DE',
+      metadata: meta,
+    };
+    if (!/^https?:\/\/(localhost|127\.0\.0\.1)/.test(origin)) body.webhookUrl = `${origin}/api/shops/mollie-webhook`; // Mollie lehnt lokale Adressen ab
+    let url = '';
+    try {
+      const res = await fetch(`${mollieBase()}/v2/payments`, { method: 'POST', headers: { Authorization: `Bearer ${cfg.key}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const payment = (await res.json()) as { _links?: { checkout?: { href?: string } }; detail?: string };
+      url = payment._links?.checkout?.href ?? '';
+      if (!res.ok || !url) {
+        console.error('[shops] Mollie-Fehler', res.status, payment.detail);
+        return NextResponse.json({ error: 'mollie', message: 'Die Bezahlung konnte nicht gestartet werden. Bitte versuche es später erneut oder schreib uns.' }, { status: 502 });
+      }
+    } catch (e) {
+      console.error('[shops] Mollie nicht erreichbar', e);
+      return NextResponse.json({ error: 'mollie', message: 'Keine Verbindung zur Bezahlseite. Bitte versuche es später erneut.' }, { status: 502 });
+    }
+    await sendOrderMail(`Shop-Start: Bezahlung gestartet (noch nicht bezahlt) ${orderId}`, `Der Kunde wurde zu Mollie weitergeleitet. Der Zahlungseingang folgt als eigene Mail (Webhook) bzw. im Mollie-Dashboard.\n\n${details}`, email);
+    return NextResponse.json({ ok: true, mode: 'pay', url, orderId });
+  }
+
+  // Stripe Checkout (Preis serverseitig aus den Paketdaten)
   const params = new URLSearchParams();
   params.set('mode', 'payment');
   params.set('locale', 'de');
