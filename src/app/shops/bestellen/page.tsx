@@ -13,7 +13,7 @@ export default function OrderPage() {
         <h1 className="mt-6 text-[clamp(2.2rem,1.2rem+4vw,4.4rem)] font-semibold leading-[.95] tracking-[-0.05em]">
           Erzähl uns von <span className="serif-i text-ember">Ihrem Shop.</span>
         </h1>
-        <p className="mt-6 max-w-xl text-lead text-graphite">Wir bestätigen deine Bestellung per E-Mail und melden uns mit der Rechnung und den Fragen, die noch offen sind. Bezahlt wird nach unserer Bestätigung.</p>
+        <p className="mt-6 max-w-xl text-lead text-graphite">Wähle Paket und Branche und erzähl uns kurz von deinem Shop. Wir melden uns per E-Mail mit der Bestätigung und den Fragen, die noch offen sind.</p>
         <div className="mt-12">
           <ShopOrderForm />
         </div>

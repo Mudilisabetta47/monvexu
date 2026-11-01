@@ -19,7 +19,8 @@
     "verify:software": "node scripts/verify-software.mjs",
     "verify:software-layout": "node scripts/verify-software-layout.mjs",
     "verify:software-ui": "node scripts/verify-software-interaction.mjs",
-    "verify:shops": "node scripts/verify-shops.mjs"
+    "verify:shops": "node scripts/verify-shops.mjs",
+    "verify:shops-pay": "node scripts/verify-shops-pay.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
