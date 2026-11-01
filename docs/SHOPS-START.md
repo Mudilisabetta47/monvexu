@@ -5,7 +5,7 @@ Branch `feature/shops-landing`. Seiten: `/shops` (Landingpage, Pakete, Branchen,
 Subdomain: `shops.monvex-group.de` (Host über `SHOPS_HOST`) bildet `/` auf `/shops` ab, siehe `next.config.mjs`.
 
 ## Vor dem Start zu entscheiden (alles Platzhalter in `src/data/shops.ts`)
-- Preise und Leistungsumfang (hier 49 / 199 / 349 €, inkl. MwSt. angenommen), Lieferzeit-Ziel (3–5 Werktage), Markenname
+- Preise und Leistungsumfang (hier 49 / 149 / 299 €, inkl. MwSt. angenommen), Lieferzeit-Ziel (3–5 Werktage), Markenname
 - **Branchenvorlagen müssen existieren**, bevor sie beworben werden: je Branche ein Muster-Shop (Shopify-Partner-Entwicklungsshop mit Theme, Kategorien, Seiten)
 - AGB, Widerrufsbelehrung für digitale Dienstleistungen, Datenschutz-Ergänzung, Impressum-Hinweis; Rechtstexte der Kunden NICHT als „rechtssicher“ versprechen
 - Shopify-Partner-Bedingungen und Theme-Lizenzen prüfen (Übergabe des Shops auf den Kunden, Weiterverkauf von Themes)
@@ -48,3 +48,6 @@ Als Dienstleistung aufgebaut (Aufbau eines Shops, kein Warenverkauf): `/shops/ag
 - Die Texte sind **nicht anwaltlich geprüft**. `LEGAL_REVIEWED` in `src/data/shops.ts` steht auf `false`: Hinweis-Banner und noindex. Erst nach Prüfung auf `true` setzen.
 - `SHOPS_AGB_URL` / `SHOPS_WIDERRUF_URL` sind jetzt optional (Standard: `<SITE_URL>/shops/agb` und `/shops/widerruf`). Weiter nötig: `SHOPS_LEGAL_CONFIRMED=true`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`.
 - Vom Anwalt zu klären: Umsatzsteuer-Satz/Kleinunternehmer-Hinweis in § 5, Streitbeilegungs-Erklärung in § 13, Haftungsklausel, Wertersatz-Formulierung, EU-Widerrufsfunktion (gilt nach der EU-Richtlinie 2023/2673 ab 19.06.2026, Umsetzung in Deutschland prüfen lassen).
+
+## Preis-Darstellung
+Stufen 49 / 149 / 299 € (Endziffer 9, Plus als „Unser Tipp“). Auf den Karten und im Vergleich steht der Aufpreis zur nächsten Stufe („+100 € zu Start“) und „einmalig, kein Abo“. Bewusst NICHT verwendet: Streichpreise („statt …“), erfundene Rabatte, Zeitdruck, Verknappung, Verkaufszahlen. Das wäre unwahr und in Deutschland abmahnbar (UWG, PAngV).

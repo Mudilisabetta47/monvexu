@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { ShopPreview } from './ShopPreview';
-import { niches, packages, priceLabel } from '@/data/shops';
+import { niches, packages, priceLabel, upgradeNote } from '@/data/shops';
 import { cn } from '@/lib/cn';
 import { usePayments } from './usePayments';
 
@@ -63,7 +63,8 @@ export function ShopConfigurator() {
                 </span>
                 <span className="text-right">
                   <span className="block text-[1.25rem] font-semibold tracking-tight">{priceLabel(p)}</span>
-                  <span className="block text-[.7rem] text-mute">{p.price == null ? 'nach Gespräch' : 'einmalig'}</span>
+                  <span className="block text-[.7rem] text-mute">{p.price == null ? 'nach Gespräch' : 'einmalig, kein Abo'}</span>
+                  {upgradeNote(p) && <span className="block text-[.72rem] font-medium text-ember-deep">{upgradeNote(p)}</span>}
                 </span>
               </label>
             ))}

@@ -2,7 +2,7 @@
  * MONVEX Shop-Start: fertig aufgebaute Shopify-Shops als Festpreis-Paket.  ENTWURF – nicht veröffentlicht.
  *
  * PLATZHALTER, die vor dem Start von der Geschäftsführung festgelegt werden müssen:
- *  - Preise (hier: 49 / 199 / 349 €, inkl. MwSt. angenommen), Leistungsumfang je Paket, Lieferzeit-Ziel
+ *  - Preise (hier: 49 / 149 / 299 €, inkl. MwSt. angenommen), Leistungsumfang je Paket, Lieferzeit-Ziel
  *  - Markenname (hier: „MONVEX Shop-Start“)
  *  - Die Branchenvorlagen (Muster-Shops) müssen existieren, bevor sie beworben werden
  *  - AGB, Widerrufsbelehrung für digitale Dienstleistungen, Datenschutz-Ergänzung
@@ -52,7 +52,7 @@ export const packages: ShopPackage[] = [
     id: 'plus',
     name: 'Plus',
     tagline: 'Mit deinem Auftritt',
-    price: 199,
+    price: 149,
     highlight: true,
     forWho: 'Für Shops, die von Anfang an nach deiner Marke aussehen sollen.',
     includes: [
@@ -67,7 +67,7 @@ export const packages: ShopPackage[] = [
     id: 'premium',
     name: 'Premium',
     tagline: 'Startklar mit Begleitung',
-    price: 349,
+    price: 299,
     forWho: 'Für alle, die möglichst wenig selbst einrichten wollen.',
     includes: [
       'Alles aus Plus',
@@ -152,6 +152,17 @@ export const nichePreview: Record<string, { bg: string; ink: string; accent: str
   handwerk: { bg: '#EFEFEA', ink: '#1E1F1A', accent: '#E0701B', headline: 'Qualität vom Profi.', cats: ['Leistungen', 'Material', 'Pakete', 'Kontakt'] },
   allgemein: { bg: '#F1F1EF', ink: '#161616', accent: '#FF4A1C', headline: 'Deine Produkte. Dein Shop.', cats: ['Neu', 'Highlights', 'Sets', 'Sale'] },
 };
+
+/**
+ * Preis-Darstellung (nur Wahres): Aufpreis zur nächstkleineren Stufe („+100 € zu Start“) zeigt, wie wenig der nächste Schritt kostet.
+ * Keine Streichpreise, keine erfundenen Rabatte, kein Zeitdruck (Wahrheitsregel).
+ */
+export function upgradeNote(p: ShopPackage): string | null {
+  const i = packages.findIndex((x) => x.id === p.id);
+  const prev = packages[i - 1];
+  if (p.price == null || !prev || prev.price == null) return null;
+  return `+${p.price - prev.price} € zu ${prev.name}`;
+}
 
 export const priceLabel = (p: ShopPackage) => (p.price == null ? 'auf Anfrage' : `${p.price} €`);
 
