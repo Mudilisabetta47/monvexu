@@ -8,8 +8,8 @@ import http from 'node:http';
 import { spawn } from 'node:child_process';
 import { createHmac } from 'node:crypto';
 
-const MOCK = 3198, ON = 3191, OFF = 3192;
-const calls = { stripe: [], resend: [] };
+const MOCK = 3198, ON = 3191, OFF = 3192, MOL = 3193;
+const calls = { stripe: [], resend: [], mollie: [] };
 const mock = http.createServer((req, res) => {
   let body = '';
   req.on('data', (c) => (body += c));
@@ -18,6 +18,14 @@ const mock = http.createServer((req, res) => {
     if (req.url === '/v1/checkout/sessions' && req.method === 'POST') { calls.stripe.push({ auth: req.headers.authorization, form: Object.fromEntries(new URLSearchParams(body)) }); return json({ id: 'cs_test_123', url: 'https://checkout.stripe.test/c/pay/cs_test_123' }); }
     if (req.url?.startsWith('/v1/checkout/sessions/cs_test_paid')) return json({ id: 'cs_test_paid', payment_status: 'paid' });
     if (req.url?.startsWith('/v1/checkout/sessions/cs_test_open')) return json({ id: 'cs_test_open', payment_status: 'unpaid' });
+    if (req.url === '/v2/payments' && req.method === 'POST') { calls.mollie.push({ auth: req.headers.authorization, json: JSON.parse(body) }); res.writeHead(201, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify({ id: 'tr_test1', status: 'open', _links: { checkout: { href: 'https://pay.mollie.test/checkout/tr_test1' } } })); }
+    if (req.url?.startsWith('/v2/payments/tr_')) {
+      const id = req.url.split('/').pop(); const meta = { order_id: 'SS-MOL', paket: 'plus', nische: 'beauty', shopname: 'Test Shop', name: 'Test Person', email: 'kunde@example.com', legal_accepted: 'yes', startnow_accepted: 'yes' };
+      if (id === 'tr_paid1') return json({ id, status: 'paid', amount: { value: '79.00', currency: 'EUR' }, metadata: meta });
+      if (id === 'tr_open1') return json({ id, status: 'open', amount: { value: '79.00', currency: 'EUR' }, metadata: meta });
+      if (id === 'tr_wrong1') return json({ id, status: 'paid', amount: { value: '10.00', currency: 'EUR' }, metadata: meta });
+      return json({ error: 'not found' }, 404);
+    }
     if (req.url === '/emails') { calls.resend.push(JSON.parse(body)); return json({ id: 'mail_1' }); }
     json({ error: 'not found' }, 404);
   });
@@ -25,8 +33,9 @@ const mock = http.createServer((req, res) => {
 
 const base = { ...process.env, RESEND_API_KEY: 're_test', CONTACT_TO_EMAIL: 'team@example.com', CONTACT_FROM_EMAIL: 'shop@example.com', RESEND_API_BASE: `http://localhost:${MOCK}`, STRIPE_API_BASE: `http://localhost:${MOCK}` };
 const pay = { ...base, STRIPE_SECRET_KEY: 'sk_test_x', SHOPS_LEGAL_CONFIRMED: 'true', SHOPS_AGB_URL: 'https://example.com/agb', SHOPS_WIDERRUF_URL: 'https://example.com/widerruf', STRIPE_WEBHOOK_SECRET: 'whsec_test' };
+const mollie = { ...base, MOLLIE_API_KEY: 'test_x', MOLLIE_API_BASE: `http://localhost:${MOCK}`, SHOPS_LEGAL_CONFIRMED: 'true', SHOPS_AGB_URL: 'https://example.com/agb', SHOPS_WIDERRUF_URL: 'https://example.com/widerruf' };
 const start = (port, env) => spawn('npx', ['next', 'start', '-p', String(port)], { env, stdio: 'ignore' });
-const servers = [start(ON, pay), start(OFF, base)];
+const servers = [start(ON, pay), start(OFF, base), start(MOL, mollie)];
 const wait = async (port) => { for (let i = 0; i < 60; i++) { try { await fetch(`http://localhost:${port}/api/shops/checkout`); return; } catch { await new Promise((r) => setTimeout(r, 500)); } } throw new Error('Server startet nicht'); };
 
 const fails = []; let n = 0;
@@ -35,7 +44,7 @@ const post = (port, body, headers = {}) => fetch(`http://localhost:${port}/api/s
 const order = { paket: 'plus', nische: 'beauty', shopname: 'Test Shop', name: 'Test Person', email: 'kunde@example.com', consent: 'yes', terms: 'yes', legal: 'yes', startnow: 'yes', message: 'Hallo' };
 
 try {
-  await Promise.all([wait(ON), wait(OFF)]);
+  await Promise.all([wait(ON), wait(OFF), wait(MOL)]);
 
   // Konfiguration
   ok((await (await fetch(`http://localhost:${ON}/api/shops/checkout`)).json()).payments === true, 'Zahlung sollte aktiv sein');
@@ -107,6 +116,32 @@ try {
   ok(/wird noch bestätigt/.test(open) && !/Deine Zahlung ist bei uns angekommen/.test(open), 'Danke-Seite muss offene Zahlung als „ausstehend“ zeigen');
   const bad = await (await fetch(`http://localhost:${ON}/shops/danke?session_id=../../etc`)).text();
   ok(!/Deine Zahlung ist bei uns angekommen/.test(bad), 'Ungültige Session-ID darf nicht als bezahlt gelten');
+
+  // ---------- Mollie ----------
+  const cfgM = await (await fetch(`http://localhost:${MOL}/api/shops/checkout`)).json();
+  ok(cfgM.payments === true && cfgM.provider === 'mollie', `Mollie sollte aktiv sein: ${JSON.stringify(cfgM)}`);
+  let rm = await post(MOL, { ...order, message: 'x'.repeat(2500) }); let jm = await rm.json();
+  ok(rm.status === 200 && jm.mode === 'pay' && jm.url === 'https://pay.mollie.test/checkout/tr_test1', `Mollie-Antwort falsch: ${JSON.stringify(jm)}`);
+  const mp = calls.mollie.at(-1);
+  ok(mp?.auth === 'Bearer test_x', 'Mollie-Auth fehlt');
+  ok(mp?.json.amount.value === '79.00' && mp?.json.amount.currency === 'EUR' && mp?.json.locale === 'de_DE', `Mollie-Betrag falsch: ${JSON.stringify(mp?.json.amount)}`);
+  ok(/\/shops\/danke\?order=SS-/.test(mp?.json.redirectUrl ?? '') && /\/api\/shops\/mollie-webhook$/.test(mp?.json.webhookUrl ?? '') && /abgebrochen=1/.test(mp?.json.cancelUrl ?? ''), 'Mollie-URLs falsch');
+  ok(JSON.stringify(mp?.json.metadata).length <= 1000 && mp?.json.metadata.paket === 'plus' && mp?.json.metadata.startnow_accepted === 'yes', `Mollie-Metadaten zu groß/falsch: ${JSON.stringify(mp?.json.metadata).length}`);
+  ok((await post(MOL, { ...order, price: 1, amount: 1 })).status === 200 && calls.mollie.at(-1).json.amount.value === '79.00', 'Mollie-Betrag darf nicht vom Browser kommen');
+  ok((await post(MOL, { ...order, startnow: undefined })).status === 400 && (await post(MOL, { ...order, legal: undefined })).status === 400, 'Mollie: ohne Zustimmungen muss 400 kommen');
+  ok(calls.resend.some((m) => /noch nicht bezahlt/.test(m.subject) && /Mollie/.test(m.text)), 'Mollie: Lead-Mail fehlt');
+  const hook = (id) => fetch(`http://localhost:${MOL}/api/shops/mollie-webhook`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `id=${id}` });
+  let mm = calls.resend.length;
+  ok((await hook('tr_open1')).status === 200 && calls.resend.length === mm, 'Mollie: offene Zahlung darf keine Mail auslösen');
+  ok((await hook('..%2Fetc')).status === 200 && calls.resend.length === mm, 'Mollie: ungültige ID muss ignoriert werden');
+  ok((await hook('tr_paid1')).status === 200 && calls.resend.length === mm + 2, `Mollie: bezahlt soll 2 Mails senden (uns + Kunde), war ${calls.resend.length - mm}`);
+  const mailTo = calls.resend.slice(mm);
+  ok(mailTo.some((x) => /BEZAHLT/.test(x.subject) && /79,00 €/.test(x.text) && !/ACHTUNG/.test(x.text)) && mailTo.some((x) => (x.to ?? []).includes('kunde@example.com') && /Deine Bestellung/.test(x.subject) && /widerruf/.test(x.text)), 'Mollie: Mails fehlen/falsch');
+  ok((await hook('tr_paid1')).status === 200 && calls.resend.length === mm + 2, 'Mollie: doppelter Webhook darf nicht doppelt mailen');
+  ok((await hook('tr_wrong1')).status === 200 && calls.resend.slice(mm + 2).some((x) => /ACHTUNG/.test(x.text)), 'Mollie: abweichender Betrag muss markiert werden');
+  ok((await fetch(`http://localhost:${ON}/api/shops/mollie-webhook`, { method: 'POST', body: 'id=tr_paid1' })).status === 503, 'Ohne Mollie-Schlüssel muss der Webhook 503 geben');
+  const dm = await (await fetch(`http://localhost:${MOL}/shops/danke?order=SS-MOL`)).text();
+  ok(/bestätigen dir die Zahlung per E-Mail/.test(dm) && !/Deine Zahlung ist bei uns angekommen/.test(dm), 'Mollie-Danke-Seite falsch');
 } catch (e) {
   fails.push(String(e));
 } finally {
@@ -114,4 +149,4 @@ try {
   mock.close();
 }
 if (fails.length) { console.error(`✗ ${fails.length} von ${n} Prüfungen fehlgeschlagen:\n- ${fails.join('\n- ')}`); process.exit(1); }
-console.log(`✓ Bezahlung ok (${n} Prüfungen): Betrag nur vom Server, AGB-Pflicht, Webhook-Signatur, Danke-Seite, Fallback ohne Schlüssel.`);
+console.log(`✓ Bezahlung ok (${n} Prüfungen): Betrag nur vom Server, AGB-Pflicht, Webhook-Signatur, Mollie (Betrag, Webhook, Mails), Danke-Seite, Fallback ohne Schlüssel.`);
