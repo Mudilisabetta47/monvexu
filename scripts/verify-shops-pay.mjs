@@ -41,12 +41,12 @@ try {
   ok((await (await fetch(`http://localhost:${ON}/api/shops/checkout`)).json()).payments === true, 'Zahlung sollte aktiv sein');
   ok((await (await fetch(`http://localhost:${OFF}/api/shops/checkout`)).json()).payments === false, 'Ohne Schlüssel darf Zahlung nicht aktiv sein');
 
-  // Bezahl-Bestellung: Preis kommt vom Server (149 €), nicht vom Browser
+  // Bezahl-Bestellung: Preis kommt vom Server (79 €), nicht vom Browser
   let r = await post(ON, { ...order, price: 1, unit_amount: 1 });
   let j = await r.json();
   ok(r.status === 200 && j.mode === 'pay' && /^https:\/\/checkout\.stripe\.test\//.test(j.url), `Pay-Antwort falsch: ${JSON.stringify(j)}`);
   const f = calls.stripe[0]?.form ?? {};
-  ok(f['line_items[0][price_data][unit_amount]'] === '14900', `Betrag falsch: ${f['line_items[0][price_data][unit_amount]']}`);
+  ok(f['line_items[0][price_data][unit_amount]'] === '7900', `Betrag falsch: ${f['line_items[0][price_data][unit_amount]']}`);
   ok(f['line_items[0][price_data][currency]'] === 'eur' && f.mode === 'payment' && f.locale === 'de', 'Stripe-Parameter falsch');
   ok(calls.stripe[0]?.auth === 'Bearer sk_test_x', 'Auth-Header fehlt');
   ok(f['metadata[paket]'] === 'plus' && f['metadata[shopname]'] === 'Test Shop' && f.customer_email === 'kunde@example.com', 'Metadaten fehlen');

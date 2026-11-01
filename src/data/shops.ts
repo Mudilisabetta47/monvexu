@@ -2,7 +2,7 @@
  * MONVEX Shop-Start: fertig aufgebaute Shopify-Shops als Festpreis-Paket.  ENTWURF – nicht veröffentlicht.
  *
  * PLATZHALTER, die vor dem Start von der Geschäftsführung festgelegt werden müssen:
- *  - Preise (hier: 49 / 149 / 299 €, inkl. MwSt. angenommen), Leistungsumfang je Paket, Lieferzeit-Ziel
+ *  - Preise (hier: 49 / 79 / 299 €, inkl. MwSt. angenommen), Leistungsumfang je Paket, Lieferzeit-Ziel
  *  - Markenname (hier: „MONVEX Shop-Start“)
  *  - Die Branchenvorlagen (Muster-Shops) müssen existieren, bevor sie beworben werden
  *  - AGB, Widerrufsbelehrung für digitale Dienstleistungen, Datenschutz-Ergänzung
@@ -52,7 +52,7 @@ export const packages: ShopPackage[] = [
     id: 'plus',
     name: 'Plus',
     tagline: 'Mit deinem Auftritt',
-    price: 149,
+    price: 79,
     highlight: true,
     forWho: 'Für Shops, die von Anfang an nach deiner Marke aussehen sollen.',
     includes: [
