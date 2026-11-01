@@ -54,6 +54,12 @@ try {
   ok(/\/shops\/danke\?session_id=\{CHECKOUT_SESSION_ID\}/.test(f.success_url ?? ''), 'success_url falsch');
   ok(calls.resend.some((m) => /noch nicht bezahlt/.test(m.subject)), 'Lead-Mail „noch nicht bezahlt“ fehlt');
 
+  // Einstiegspaket „Start“: 49 € (4900 Cent), ebenfalls vom Server
+  r = await post(ON, { ...order, paket: 'start' }); j = await r.json();
+  ok(r.status === 200 && j.mode === 'pay', `Start-Paket: Pay-Antwort falsch: ${JSON.stringify(j)}`);
+  ok(calls.stripe.at(-1)?.form?.['line_items[0][price_data][unit_amount]'] === '4900', `Start-Betrag falsch: ${calls.stripe.at(-1)?.form?.['line_items[0][price_data][unit_amount]']}`);
+  calls.stripe.pop(); calls.resend.pop();
+
   // Validierung
   ok((await post(ON, { ...order, legal: undefined })).status === 400, 'Ohne AGB-Bestätigung muss 400 kommen');
   ok((await post(ON, { ...order, paket: 'gratis' })).status === 400, 'Unbekanntes Paket muss 400 geben');

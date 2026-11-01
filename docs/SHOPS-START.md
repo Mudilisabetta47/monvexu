@@ -5,7 +5,7 @@ Branch `feature/shops-landing`. Seiten: `/shops` (Landingpage, Pakete, Branchen,
 Subdomain: `shops.monvex-group.de` (Host über `SHOPS_HOST`) bildet `/` auf `/shops` ab, siehe `next.config.mjs`.
 
 ## Vor dem Start zu entscheiden (alles Platzhalter in `src/data/shops.ts`)
-- Preise und Leistungsumfang (hier 99 / 199 / 349 €, inkl. MwSt. angenommen), Lieferzeit-Ziel (3–5 Werktage), Markenname
+- Preise und Leistungsumfang (hier 49 / 199 / 349 €, inkl. MwSt. angenommen), Lieferzeit-Ziel (3–5 Werktage), Markenname
 - **Branchenvorlagen müssen existieren**, bevor sie beworben werden: je Branche ein Muster-Shop (Shopify-Partner-Entwicklungsshop mit Theme, Kategorien, Seiten)
 - AGB, Widerrufsbelehrung für digitale Dienstleistungen, Datenschutz-Ergänzung, Impressum-Hinweis; Rechtstexte der Kunden NICHT als „rechtssicher“ versprechen
 - Shopify-Partner-Bedingungen und Theme-Lizenzen prüfen (Übergabe des Shops auf den Kunden, Weiterverkauf von Themes)
