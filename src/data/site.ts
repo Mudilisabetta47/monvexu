@@ -62,7 +62,7 @@ export const legal: {
   managingDirector: 'Mohammed Al Bakhit',
   representation: 'Der Geschäftsführer ist einzelvertretungsberechtigt.',
   registerCourt: 'Amtsgericht Bremen',
-  registerNumber: undefined,
+  registerNumber: 'HRB 43357 HB',
   registerPending: IN_FORMATION,
   vatId: undefined,
   email: 'mudi@monvex-group.de',
