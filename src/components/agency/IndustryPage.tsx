@@ -46,7 +46,7 @@ export function IndustryPage({ industry, parent }: { industry: Industry; parent?
         chips={industry.segments}
         secondary={{ label: 'Lösungen ansehen', href: '#loesungen' }}
         aside={
-          <div className="rounded-[28px] bg-ink p-7 text-white shadow-lift">
+          <div className="rounded-[28px] border border-white/15 bg-white/[.07] p-7 text-white shadow-lift backdrop-blur-sm">
             <p className="font-mono text-[.66rem] uppercase tracking-[.18em] text-white/50">Was wir für {industry.name} umsetzen</p>
             <ul className="mt-5 space-y-3">
               {industry.solutions.slice(0, 5).map((s) => (

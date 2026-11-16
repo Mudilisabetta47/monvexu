@@ -11,7 +11,7 @@ const facts = [
 /** Startseiten-Einstieg: links die Aussage, rechts die eigenen Produkte vor der MONVEX-Scheibe. Nur belegte Angaben. */
 export function BoldHero() {
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-paper pt-[7.4rem] sm:pt-[8.6rem]">
+    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-paper pt-[5.6rem] sm:pt-[6.4rem]">
       <div className="shell grid items-center gap-10 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:pb-24">
         <div className="min-w-0 pt-6 lg:pt-10">
           <p className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-4 py-2 text-[.8rem] font-semibold text-ink">

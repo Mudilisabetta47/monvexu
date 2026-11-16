@@ -44,7 +44,7 @@ export default async function ServicePage({ params }: P) {
         lead={s.lead}
         chips={s.covers}
         aside={
-          <div className="rounded-[28px] bg-ink p-7 text-white shadow-lift">
+          <div className="rounded-[28px] border border-white/15 bg-white/[.07] p-7 text-white shadow-lift backdrop-blur-sm">
             <p className="font-mono text-[.66rem] uppercase tracking-[.18em] text-white/50">Enthalten</p>
             <ul className="mt-5 space-y-3">
               {s.deliverables.slice(0, 5).map((d) => (
