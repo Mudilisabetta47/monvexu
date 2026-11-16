@@ -81,8 +81,8 @@ ok((await p.locator('#produkte #busos').count()) === 1 && (await p.locator('#pro
 ok((await p.locator('#easykfz24 a[href="https://easykfz24.de/"][target=_blank][rel="noopener noreferrer"]').count()) === 1, 'Startseite: „EasyKFZ24 besuchen“ → https://easykfz24.de/ (sicher)');
 ok((await p.locator('#busos a[href="/produkte/busos#demo"]').count()) === 1, 'Startseite: „Demo anfragen“ → /produkte/busos#demo');
 // Hero (Behörden-Layout): H1 nennt Software, Produkte und Werbeagentur; Link zu den Produkten und die Unternehmensdaten sind da
-ok((await p.locator('h1').filter({ hasText: /Software, digitale Produkte und Werbeagentur aus Bremen/ }).count()) === 1, 'Hero: H1 „Software, digitale Produkte und Werbeagentur aus Bremen.“');
-ok((await p.locator('aside[aria-label="Unternehmensdaten"]').count()) === 1 && !/i\.\s?G\./.test(await p.locator('body').innerText()), 'Hero: Unternehmensdaten da, kein „i. G.“ mehr auf der Startseite');
+ok((await p.locator('h1').filter({ hasText: /Software, Produkte und Marken aus Bremen/ }).count()) === 1, 'Hero: H1 „Wir bauen Software, Produkte und Marken aus Bremen.“');
+ok(!/i\.\s?G\./.test(await p.locator('body').innerText()) && (await p.locator('h1 .serif-i').count()) === 1, 'Hero: Akzentwort „aus Bremen.“ gesetzt, kein „i. G.“ mehr auf der Startseite');
 // Mobil
 const m = await (await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true })).newPage();
 await m.goto(BASE + '/', { waitUntil: 'networkidle' }); await m.waitForTimeout(1200);

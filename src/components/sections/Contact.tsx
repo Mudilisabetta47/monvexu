@@ -14,7 +14,7 @@ export function Contact() {
             Kontakt
           </p>
         </Reveal>
-        <SplitText text={"Haben Sie ein Anliegen?\nSprechen wir *darüber.*"} className="mt-6 text-h2 font-semibold" />
+        <SplitText text={"Haben Sie ein Anliegen?\nSprechen wir *darüber.*"} className="display-title mt-6 text-h2" />
         <Reveal delay={0.1}>
           <p className="mt-6 text-[clamp(1.2rem,1rem+1vw,1.8rem)] font-medium tracking-tight text-graphite">Schreiben oder rufen Sie uns an. Wir melden uns zeitnah zurück.</p>
         </Reveal>

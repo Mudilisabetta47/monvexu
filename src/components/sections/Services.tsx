@@ -147,7 +147,7 @@ function DesktopTrack() {
                 Leistungen
               </p>
             </Reveal>
-            <SplitText text={'Wir bauen nicht nur *Websites.*'} className="mt-6 text-[clamp(2.6rem,1rem+4.4vw,6rem)] font-semibold leading-[.92] tracking-[-0.05em]" />
+            <SplitText text={'Wir bauen nicht nur *Websites.*'} className="display-title mt-6 text-[clamp(2.6rem,1rem+4.4vw,6rem)] leading-[.92] tracking-[-0.05em]" />
             <Reveal delay={0.2}>
               <p className="mt-8 max-w-md text-lead text-graphite">
                 Sechs Felder, ein Ziel: Geschäftsmodelle, die funktionieren – technisch, gestalterisch und wirtschaftlich.

@@ -73,12 +73,12 @@ export function Nav() {
   return (
     <>
       <header className={cn('fixed inset-x-0 top-0 z-[100] transition-colors duration-300', dark ? 'bg-ink' : 'bg-white shadow-[0_1px_0_rgba(10,31,60,.14)]')}>
-        <div className="hidden bg-ink text-white/80 sm:block">
+        <div className="hidden bg-ink text-white/85 sm:block">
           <div className="mx-auto flex max-w-[1380px] items-center justify-between gap-6 px-5 py-1.5 text-[.78rem] sm:px-8">
             <p>{company.legalName} · {company.address.city}</p>
             <p className="flex items-center gap-5">
-              {legal.phone && <a href={`tel:${legal.phone.replace(/\s/g, '')}`} className="hover:text-white">Tel. {legal.phone}</a>}
-              {legal.email && <a href={`mailto:${legal.email}`} className="hover:text-white">{legal.email}</a>}
+              {legal.phone && <a href={`tel:${legal.phone.replace(/\s/g, '')}`} className="font-semibold text-white hover:text-ember">Tel. {legal.phone}</a>}
+              {legal.email && <a href={`mailto:${legal.email}`} className="font-semibold text-white hover:text-ember">{legal.email}</a>}
             </p>
           </div>
         </div>

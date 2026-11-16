@@ -24,6 +24,16 @@ const serif = localFont({
   display: 'swap',
 });
 
+const display = localFont({
+  src: [
+    { path: './fonts/Archivo-latin-wdth.woff2', weight: '100 900', style: 'normal' },
+    { path: './fonts/Archivo-latin-ext-wdth.woff2', weight: '100 900', style: 'normal' },
+  ],
+  declarations: [{ prop: 'font-stretch', value: '62% 125%' }],
+  variable: '--font-display',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: SEO.title, template: '%s | MONVEX' },
@@ -48,7 +58,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#F2F5F9',
+  themeColor: '#F6F5F1',
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
@@ -56,7 +66,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="de" className={`${GeistSans.variable} ${GeistMono.variable} ${serif.variable}`}>
+    <html lang="de" className={`${GeistSans.variable} ${GeistMono.variable} ${serif.variable} ${display.variable}`}>
       <body>
         <JsonLd data={organizationSchema()} />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[400] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-white">
