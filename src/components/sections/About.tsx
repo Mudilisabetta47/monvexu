@@ -25,7 +25,7 @@ export function About() {
             Über MONVEX
           </p>
         </Reveal>
-        <SplitText text={'Auf Dauer\n*angelegt.*'} className="mt-6 text-h2 font-semibold" />
+        <SplitText text={'Auf Dauer\n*angelegt.*'} className="display-title mt-6 text-h2" />
 
         <div className="mt-16 grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">

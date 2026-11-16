@@ -26,7 +26,7 @@ export function SectionHead({ index, label, title, children, aside, dark, classN
             {label}
           </p>
         </Reveal>
-        <SplitText text={title} className={cn('mt-6 font-semibold', titleClassName ?? 'text-h2', dark && 'text-white')} accentClassName={cn('serif-i', dark ? 'text-ember' : 'text-ember')} />
+        <SplitText text={title} className={cn('display-title mt-6', titleClassName ?? 'text-h2', dark && 'text-white')} accentClassName={cn('serif-i', dark ? 'text-ember' : 'text-ember')} />
       </div>
       {(children || aside) && (
         <div className="lg:col-span-4">

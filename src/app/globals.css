@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --paper: #f2f5f9;
-  --ink: #0a1f3c;
-  --ember: #1d5aa6;
+  --paper: #f6f5f1;
+  --ink: #0b0b0d;
+  --ember: #ff4a1c;
   color-scheme: light;
 }
 
@@ -49,14 +49,15 @@
   .eyebrow {
     @apply font-mono text-eyebrow uppercase text-graphite;
   }
-  /* Betonung im Titel: früher kursive Serife, jetzt ruhig im Akzentblau (gleiche Schrift, normale Stellung) */
+  /* Betonung im Titel: nur Akzentfarbe, keine Kursive */
   .serif-i {
     font-style: normal;
     font-weight: inherit;
     letter-spacing: inherit;
+    color: var(--ember) !important;
   }
   .hairline {
-    background: linear-gradient(90deg, transparent, rgba(10, 31, 60, 0.16), transparent);
+    background: linear-gradient(90deg, transparent, rgba(11, 11, 13, 0.16), transparent);
     height: 1px;
   }
   .glass {
@@ -67,8 +68,8 @@
   }
   .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(10, 31, 60, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(10, 31, 60, 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(11, 11, 13, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 11, 13, 0.055) 1px, transparent 1px);
     background-size: 64px 64px;
   }
   .grid-bg-dark {
@@ -225,3 +226,15 @@
 .mx-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(255,74,28,.3), 0 4px 14px rgba(255,74,28,.55); }
 
 @keyframes mx-fill { from { width: 0; } to { width: 100%; } }
+
+/* ---------- Kräftige Titel (Archivo ExtraBold, eng gesetzt) ---------- */
+.display-title,
+.text-h1,
+.text-h2,
+.display-h3,
+.text-h3 {
+  font-family: var(--font-display), var(--font-geist-sans), sans-serif;
+  font-weight: 800;
+  font-stretch: 100%;
+  letter-spacing: -0.035em;
+}
