@@ -6,7 +6,8 @@ import { company } from '@/data/site';
 /** Branchenspezifischer Abschluss mit Formular. `topic` erscheint in der eingehenden Mail. */
 export function AgencyCta({ headline, text, topic, id = 'anfrage' }: { headline: string; text: string; topic: string; id?: string }) {
   return (
-    <section id={id} className="relative py-20 sm:py-28">
+    <section id={id} className="relative isolate overflow-hidden bg-ink py-20 sm:py-28">
+      <div aria-hidden className="pointer-events-none absolute -bottom-[40%] -left-[10%] -z-10 aspect-square w-[min(48rem,90vw)] rounded-full bg-[radial-gradient(circle_at_30%_25%,#ff8a5c,#ff4a1c_55%,#c8340c)] opacity-80 blur-[2px]" />
       <div className="shell">
         <div className="overflow-hidden rounded-[36px] border border-line bg-white p-6 shadow-card sm:p-10 lg:p-14">
           <div className="grid gap-14 lg:grid-cols-12">
