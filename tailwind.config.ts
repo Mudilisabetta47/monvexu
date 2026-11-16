@@ -5,14 +5,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#F6F5F1',
+        paper: '#F2F5F9',
         snow: '#FFFFFF',
-        mist: '#ECEBE6',
-        ink: { DEFAULT: '#0B0B0D', 900: '#0B0B0D', 800: '#131316', 700: '#1B1C20', 600: '#2A2B31' },
-        graphite: '#55575D',
-        mute: '#8B8D93',
-        line: { DEFAULT: 'rgba(11,11,13,.10)', soft: 'rgba(11,11,13,.06)', dark: 'rgba(255,255,255,.12)' },
-        ember: { DEFAULT: '#FF4A1C', deep: '#C8340C', soft: 'rgba(255,74,28,.10)' },
+        mist: '#E4EAF1',
+        ink: { DEFAULT: '#0A1F3C', 900: '#0A1F3C', 800: '#0E2A4F', 700: '#143560', 600: '#1E4678' },
+        graphite: '#45536A',
+        mute: '#6F7C91',
+        line: { DEFAULT: 'rgba(10,31,60,.14)', soft: 'rgba(10,31,60,.07)', dark: 'rgba(255,255,255,.14)' },
+        // Akzent: ruhiges Blau (vorher Orange). Der Name „ember“ bleibt, damit alle Bauteile ohne Umbau mitziehen.
+        ember: { DEFAULT: '#1D5AA6', deep: '#154482', soft: 'rgba(29,90,166,.10)' },
         // Softwarebereich (/software): eigene Farbwelt, MONVEX-Ember bleibt als Markenakzent
         sw: {
           bg: '#FAFBFF',
@@ -35,9 +36,9 @@ const config: Config = {
       fontSize: {
         eyebrow: ['.72rem', { letterSpacing: '.2em', lineHeight: '1' }],
         lead: ['clamp(1.05rem,.98rem + .5vw,1.35rem)', { lineHeight: '1.55' }],
-        h3: ['clamp(1.3rem,1.1rem + .9vw,1.9rem)', { lineHeight: '1.12', letterSpacing: '-.025em' }],
-        h2: ['clamp(2.4rem,1.3rem + 5vw,6.25rem)', { lineHeight: '.92', letterSpacing: '-.045em' }],
-        h1: ['clamp(3.4rem,1.2rem + 11vw,12rem)', { lineHeight: '.86', letterSpacing: '-.06em' }],
+        h3: ['clamp(1.2rem,1.05rem + .7vw,1.6rem)', { lineHeight: '1.2', letterSpacing: '-.015em' }],
+        h2: ['clamp(1.9rem,1.2rem + 2.6vw,3.4rem)', { lineHeight: '1.06', letterSpacing: '-.028em' }],
+        h1: ['clamp(2.3rem,1.3rem + 4.4vw,5rem)', { lineHeight: '1.02', letterSpacing: '-.035em' }],
       },
       maxWidth: { shell: '1440px' },
       transitionTimingFunction: {

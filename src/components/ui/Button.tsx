@@ -28,7 +28,7 @@ const variants = {
 
 export function Button({ children, href, onClick, type = 'button', variant = 'primary', disabled, className, arrow = true, magnetic = true, tabIndex }: Props) {
   const cls = cn(
-    'group relative inline-flex items-center gap-3 rounded-full py-2 pl-6 pr-2 text-[.95rem] font-medium tracking-tight transition-colors duration-500 ease-out disabled:pointer-events-none disabled:opacity-50',
+    'group relative inline-flex items-center gap-3 rounded-md py-2 pl-6 pr-2 text-[.95rem] font-medium tracking-tight transition-colors duration-500 ease-out disabled:pointer-events-none disabled:opacity-50',
     !arrow && 'pr-6',
     variants[variant],
     className,
@@ -42,7 +42,7 @@ export function Button({ children, href, onClick, type = 'button', variant = 'pr
         </span>
       </span>
       {arrow && (
-        <span className="grid h-10 w-10 place-items-center rounded-full bg-white/15 transition-transform duration-500 ease-out group-hover:rotate-45 group-hover:bg-white/25">
+        <span className="grid h-10 w-10 place-items-center rounded bg-white/15 transition-transform duration-500 ease-out group-hover:rotate-45 group-hover:bg-white/25">
           <ArrowUpRight size={18} strokeWidth={1.8} className={variant === 'secondary' || variant === 'light' || variant === 'ghost' ? 'text-current' : ''} />
         </span>
       )}

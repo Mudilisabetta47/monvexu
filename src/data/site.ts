@@ -19,11 +19,11 @@ function resolveSiteUrl(raw: string | undefined) {
 export const SITE_URL = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 /**
- * true, solange die Gesellschaft nicht im Handelsregister eingetragen ist (Anmeldung vom 23.09.2026).
+ * true, solange die Gesellschaft nicht im Handelsregister eingetragen ist (Anmeldung vom 23.09.2026). Jetzt: eingetragen, daher false.
  * Dann führt der Firmenname den Zusatz "i. G." (in Gründung) – überall: Website, Impressum, Flyer, Visitenkarten.
  * NACH DER EINTRAGUNG: auf false setzen und `legal.registerNumber` eintragen.
  */
-export const IN_FORMATION = true;
+export const IN_FORMATION = false;
 
 const BASE_NAME = 'MONVEX UG (haftungsbeschränkt)';
 

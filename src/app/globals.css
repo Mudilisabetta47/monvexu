@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --paper: #f6f5f1;
-  --ink: #0b0b0d;
-  --ember: #ff4a1c;
+  --paper: #f2f5f9;
+  --ink: #0a1f3c;
+  --ember: #1d5aa6;
   color-scheme: light;
 }
 
@@ -49,12 +49,14 @@
   .eyebrow {
     @apply font-mono text-eyebrow uppercase text-graphite;
   }
+  /* Betonung im Titel: früher kursive Serife, jetzt ruhig im Akzentblau (gleiche Schrift, normale Stellung) */
   .serif-i {
-    @apply font-serif italic font-normal;
-    letter-spacing: -0.02em;
+    font-style: normal;
+    font-weight: inherit;
+    letter-spacing: inherit;
   }
   .hairline {
-    background: linear-gradient(90deg, transparent, rgba(11, 11, 13, 0.16), transparent);
+    background: linear-gradient(90deg, transparent, rgba(10, 31, 60, 0.16), transparent);
     height: 1px;
   }
   .glass {
@@ -65,8 +67,8 @@
   }
   .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(11, 11, 13, 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(11, 11, 13, 0.055) 1px, transparent 1px);
+      linear-gradient(to right, rgba(10, 31, 60, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 31, 60, 0.05) 1px, transparent 1px);
     background-size: 64px 64px;
   }
   .grid-bg-dark {

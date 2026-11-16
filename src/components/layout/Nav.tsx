@@ -13,7 +13,7 @@ import { getLenis } from './SmoothScroll';
 import { agencyServices, industries, industryPath, servicePath } from '@/data/agency';
 import { brands } from '@/data/brands';
 import { products } from '@/data/products';
-import { company, nav, type MegaId } from '@/data/site';
+import { company, legal, nav, type MegaId } from '@/data/site';
 import { EASE } from '@/lib/motion';
 import { cn } from '@/lib/cn';
 
@@ -21,16 +21,16 @@ export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [onDark, setOnDark] = useState(pathname === '/');
+  const [onDark, setOnDark] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, 'change', (v) => {
     setScrolled(v > 24);
-    setOnDark(pathname === '/' && v < window.innerHeight * 0.62);
+    setOnDark(false);
   });
 
   useEffect(() => {
     setOpen(false);
-    setOnDark(pathname === '/' && window.scrollY < window.innerHeight * 0.62);
+    setOnDark(false);
   }, [pathname]);
   const [mega, setMega] = useState<MegaId | null>(null);
   const [mobileSub, setMobileSub] = useState<MegaId | null>(null);
@@ -72,20 +72,22 @@ export function Nav() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[100] px-3 pt-3 sm:px-6 sm:pt-5">
-        <div className="relative mx-auto max-w-[1380px]" onMouseEnter={() => clearTimeout(closeTimer.current)} onMouseLeave={closeMegaSoon}>
+      <header className={cn('fixed inset-x-0 top-0 z-[100] transition-colors duration-300', dark ? 'bg-ink' : 'bg-white shadow-[0_1px_0_rgba(10,31,60,.14)]')}>
+        <div className="hidden bg-ink text-white/80 sm:block">
+          <div className="mx-auto flex max-w-[1380px] items-center justify-between gap-6 px-5 py-1.5 text-[.78rem] sm:px-8">
+            <p>{company.legalName} · {company.address.city}</p>
+            <p className="flex items-center gap-5">
+              {legal.phone && <a href={`tel:${legal.phone.replace(/\s/g, '')}`} className="hover:text-white">Tel. {legal.phone}</a>}
+              {legal.email && <a href={`mailto:${legal.email}`} className="hover:text-white">{legal.email}</a>}
+            </p>
+          </div>
+        </div>
+        <div className="relative mx-auto max-w-[1380px] px-5 sm:px-8" onMouseEnter={() => clearTimeout(closeTimer.current)} onMouseLeave={closeMegaSoon}>
         <m.div
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: EASE, delay: 0.2 }}
-          className={cn(
-            'flex w-full items-center justify-between rounded-full border py-2 pl-4 pr-2 transition-all duration-700 ease-out sm:pl-5',
-            dark
-              ? 'border-white/15 bg-white/[.07] shadow-[0_10px_40px_-14px_rgba(0,0,0,.6)] backdrop-blur-xl'
-              : scrolled || pathname !== '/'
-                ? 'glass border-white/80 shadow-card'
-                : 'border-transparent bg-transparent',
-          )}
+          className="flex w-full items-center justify-between py-3"
         >
           <Link href="/" aria-label="MONVEX – Startseite" data-cursor="Home">
             <MonvexLogo className="h-[26px]" invert={dark} />
@@ -169,7 +171,7 @@ export function Nav() {
               transition={{ duration: 0.45, ease: EASE }}
               className="absolute inset-x-0 top-full z-10 hidden origin-top pt-3 lg:block"
             >
-              <div className="rounded-[30px] border border-line bg-white p-6 text-ink shadow-[0_40px_100px_-30px_rgba(11,11,13,.5),0_6px_20px_rgba(11,11,13,.1)] xl:p-8">
+              <div className="rounded-lg border border-line bg-white p-6 text-ink shadow-[0_30px_80px_-30px_rgba(10,31,60,.45),0_4px_14px_rgba(10,31,60,.08)] xl:p-8">
                 <MegaPanel id={mega} onNavigate={closeMegaNow} />
               </div>
             </m.div>
