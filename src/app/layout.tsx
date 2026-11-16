@@ -8,7 +8,6 @@ import { Providers } from '@/components/layout/Providers';
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
-import { Cursor } from '@/components/layout/Cursor';
 import { ScrollProgress } from '@/components/layout/ScrollProgress';
 import { SiteChrome } from '@/components/layout/SiteChrome';
 import { JsonLd } from '@/components/ui/JsonLd';
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#F6F5F1',
+  themeColor: '#F2F5F9',
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
@@ -66,7 +65,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <SmoothScroll />
           <SiteChrome>
-            <Cursor />
             <ScrollProgress />
             <Nav />
           </SiteChrome>

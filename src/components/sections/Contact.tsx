@@ -14,9 +14,9 @@ export function Contact() {
             Kontakt
           </p>
         </Reveal>
-        <SplitText text={"Have an idea?\nLet's *build* it."} className="mt-6 text-h2 font-semibold" />
+        <SplitText text={"Haben Sie ein Anliegen?\nSprechen wir *darüber.*"} className="mt-6 text-h2 font-semibold" />
         <Reveal delay={0.1}>
-          <p className="mt-6 text-[clamp(1.2rem,1rem+1vw,1.8rem)] font-medium tracking-tight text-graphite">Lass uns etwas Großes bauen.</p>
+          <p className="mt-6 text-[clamp(1.2rem,1rem+1vw,1.8rem)] font-medium tracking-tight text-graphite">Schreiben oder rufen Sie uns an. Wir melden uns zeitnah zurück.</p>
         </Reveal>
 
         <Reveal className="mt-16 overflow-hidden rounded-[36px] border border-line bg-white p-6 shadow-card sm:p-10 lg:p-14">

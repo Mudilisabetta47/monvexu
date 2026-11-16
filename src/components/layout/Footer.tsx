@@ -1,20 +1,19 @@
 import Link from 'next/link';
 import { brands } from '@/data/brands';
-import { company, legalNav, nav } from '@/data/site';
+import { company, legal, legalNav, nav } from '@/data/site';
 import { products } from '@/data/products';
 import { AGENCY_BASE, agencyServices, servicePath } from '@/data/agency';
 import { MonvexLogo } from '@/components/ui/Logo';
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden rounded-t-[36px] bg-ink text-white sm:rounded-t-[56px]">
-      <div className="grid-bg-dark pointer-events-none absolute inset-0 opacity-50 [mask-image:linear-gradient(to_bottom,#000,transparent_70%)]" />
-      <div className="shell relative pt-20 sm:pt-28">
+    <footer className="relative overflow-hidden border-t-4 border-ember bg-ink text-white">
+      <div className="shell relative pt-14 sm:pt-20">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_repeat(5,1fr)]">
           <div>
             <MonvexLogo invert className="h-8" />
-            <p className="mt-8 max-w-xs text-[clamp(1.6rem,1.2rem+1.4vw,2.4rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
-              Build. <span className="serif-i text-ember">Brand.</span> Scale.
+            <p className="mt-6 max-w-xs text-[1.15rem] font-semibold leading-snug tracking-tight">
+              Software, digitale Produkte und Werbeagentur aus Bremen.
             </p>
             <address className="mt-8 text-[.95rem] not-italic leading-relaxed text-white/60">
               <span className="text-white">{company.legalName}</span>
@@ -24,6 +23,9 @@ export function Footer() {
               {company.address.zip} {company.address.city}
               <br />
               {company.address.country}
+              {(legal.phone || legal.email) && <br />}
+              {legal.phone && <><br /><a href={`tel:${legal.phone.replace(/\s/g, '')}`} className="hover:text-white">Tel. {legal.phone}</a></>}
+              {legal.email && <><br /><a href={`mailto:${legal.email}`} className="hover:text-white">{legal.email}</a></>}
             </address>
           </div>
 
@@ -77,13 +79,10 @@ export function Footer() {
 
         <div className="mt-20 flex flex-col gap-3 border-t border-white/12 py-6 text-[.8rem] text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {company.legalName}. Alle Rechte vorbehalten.</p>
-          <p className="font-mono uppercase tracking-[.18em]">{company.seat} · Est. {company.founded}</p>
+          <p>{legal.registerCourt ? `${legal.registerCourt}${legal.registerNumber ? `, ${legal.registerNumber}` : ''}` : company.seat}{legal.managingDirector ? ` · Geschäftsführung: ${legal.managingDirector}` : ''}</p>
         </div>
       </div>
 
-      <div aria-hidden className="pointer-events-none relative -mb-[.16em] select-none overflow-hidden text-center font-semibold leading-[.8] tracking-[-0.07em] text-white/[.07]" style={{ fontSize: 'clamp(5rem, 24.5vw, 26rem)' }}>
-        MONVEX
-      </div>
     </footer>
   );
 }
