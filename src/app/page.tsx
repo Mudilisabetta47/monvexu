@@ -1,6 +1,7 @@
 import { BoldHero } from '@/components/sections/BoldHero';
 import { Marquee } from '@/components/ui/Marquee';
 import { ServiceRows } from '@/components/sections/ServiceRows';
+import { References } from '@/components/sections/References';
 import { Workflow } from '@/components/sections/Workflow';
 import { ProductsSection } from '@/components/sections/ProductsSection';
 import { TechSection } from '@/components/sections/TechSection';
@@ -22,6 +23,7 @@ export default function Home() {
           items={['Softwareentwicklung', 'Digitale Produkte', 'Webdesign', 'SEO', 'Google Ads', 'Branding', 'Print', 'Bremen']}
         />
       </div>
+      <References />
       <ServiceRows />
       <ProductsSection />
       <BrandsPreview />
