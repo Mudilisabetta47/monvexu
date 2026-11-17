@@ -108,13 +108,62 @@ function Visual({ kind, active }: { kind: Slide['visual']; active: boolean }) {
   );
 }
 
+/** Film-Video: Standbild bleibt sichtbar, bis das Video wirklich läuft; Wiedergabe wird von außen gesteuert. */
+function FilmVideo({ src, play, className }: { src: string; play: boolean; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [on, setOn] = useState(false);
+  const [skip, setSkip] = useState(false);
+
+  useEffect(() => {
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } };
+    if (nav.connection?.saveData || /(^|-)2g$/.test(nav.connection?.effectiveType ?? '')) setSkip(true); // Datensparmodus: nur Standbild
+  }, []);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || skip) return;
+    // React setzt „muted“ nicht zuverlässig als Attribut; iOS Safari verlangt es für Autoplay
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    setOn(false);
+    v.src = src;
+    v.load();
+    const onPlaying = () => setOn(true);
+    v.addEventListener('playing', onPlaying);
+    return () => { v.removeEventListener('playing', onPlaying); v.pause(); v.removeAttribute('src'); v.load(); };
+  }, [src, skip]);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || skip) return;
+    if (!play) { v.pause(); return; }
+    const tryPlay = () => { void v.play().catch(() => undefined); };
+    tryPlay();
+    // Fallbacks, falls der Browser Autoplay erst nach Daten oder Berührung erlaubt (z. B. Stromsparmodus am iPhone)
+    v.addEventListener('canplay', tryPlay);
+    v.addEventListener('loadeddata', tryPlay);
+    const evs: Array<keyof WindowEventMap> = ['touchstart', 'pointerdown', 'scroll', 'keydown'];
+    const kick = () => { tryPlay(); evs.forEach((e) => window.removeEventListener(e, kick)); };
+    evs.forEach((e) => window.addEventListener(e, kick, { passive: true }));
+    return () => {
+      v.removeEventListener('canplay', tryPlay);
+      v.removeEventListener('loadeddata', tryPlay);
+      evs.forEach((e) => window.removeEventListener(e, kick));
+    };
+  }, [play, skip, on, src]);
+
+  return <video ref={ref} className={cn(className, 'transition-opacity duration-700', on ? 'opacity-100' : 'opacity-0')} muted loop playsInline preload="auto" disablePictureInPicture disableRemotePlayback aria-hidden />;
+}
+
 export function HeroSlider() {
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [hold, setHold] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [bar, setBar] = useState(0);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [inView, setInView] = useState(true);
+  const [tabVisible, setTabVisible] = useState(true);
+  const rootRef = useRef<HTMLElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const n = slides.length;
 
@@ -130,7 +179,7 @@ export function HeroSlider() {
 
   // Automatischer Wechsel mit Fortschrittsbalken; pausiert bei Hover, Fokus, Berührung, im Hintergrund-Tab und bei „weniger Bewegung“
   useEffect(() => {
-    if (!playing || hold || reduced) return;
+    if (!playing || hold || reduced || !tabVisible) return;
     const dur = slides[i].seconds * 1000;
     const start = performance.now() - bar * dur;
     let raf = 0;
@@ -144,21 +193,32 @@ export function HeroSlider() {
     return () => cancelAnimationFrame(raf);
     // bar bewusst nicht in den Abhängigkeiten: sie wird hier fortgeschrieben
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [i, playing, hold, reduced, go]);
-
-  // Video läuft nur, solange seine Folie sichtbar ist
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (i === 0 && !reduced && !hold) void v.play().catch(() => undefined);
-    else v.pause();
-  }, [i, reduced, hold]);
+  }, [i, playing, hold, reduced, tabVisible, go]);
 
   useEffect(() => {
-    const vis = () => setHold(document.hidden);
+    const mq = window.matchMedia('(max-width: 767px)');
+    const set = () => setIsMobile(mq.matches);
+    set();
+    mq.addEventListener('change', set);
+    return () => mq.removeEventListener('change', set);
+  }, []);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Video läuft nur, wenn Folie 1 sichtbar ist: Pause bei Folienwechsel, Hintergrund-Tab, außerhalb des Bildschirms, „weniger Bewegung“
+  useEffect(() => {
+    const vis = () => setTabVisible(!document.hidden);
     document.addEventListener('visibilitychange', vis);
     return () => document.removeEventListener('visibilitychange', vis);
   }, []);
+
+  const shouldPlay = i === 0 && inView && tabVisible && !reduced;
 
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight') { go(i + 1); setPlaying(false); }
@@ -167,6 +227,7 @@ export function HeroSlider() {
 
   return (
     <section
+      ref={rootRef}
       aria-roledescription="Karussell"
       aria-label="Highlights von MONVEX"
       className="relative isolate overflow-hidden bg-ink pt-[84px] text-white"
@@ -183,13 +244,15 @@ export function HeroSlider() {
         if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) { go(i + (dx < 0 ? 1 : -1)); setPlaying(false); }
       }}
     >
-      {/* Film (Folie 1) als Hintergrund; ab Folie 2 blendet er aus */}
+      {/* Film (Folie 1): ab Tablet als Hintergrund, am Handy als Karte unter dem Text; ab Folie 2 blendet er aus */}
       <div aria-hidden className={cn('absolute inset-0 -z-10 transition-opacity duration-1000', i === 0 ? 'opacity-100' : 'opacity-0')}>
-        <video ref={videoRef} className="h-full w-full object-cover" muted loop playsInline preload="metadata" poster="/hero/monvex-film-poster.jpg" autoPlay={!reduced}>
-          <source src="/hero/monvex-film-m.mp4" type="video/mp4" media="(max-width: 767px)" />
-          <source src="/hero/monvex-film.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,13,.92)_0%,rgba(11,11,13,.72)_42%,rgba(11,11,13,.25)_100%)] max-md:bg-[linear-gradient(180deg,rgba(11,11,13,.5),rgba(11,11,13,.88))]" />
+        <div className="absolute inset-0 hidden md:block">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/monvex-film-poster.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" decoding="async" />
+          {isMobile === false && <FilmVideo src="/hero/monvex-film.mp4" play={shouldPlay} className="absolute inset-0 h-full w-full object-cover" />}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,11,13,.92)_0%,rgba(11,11,13,.72)_42%,rgba(11,11,13,.25)_100%)]" />
+        </div>
+        <div className="absolute inset-0 md:hidden bg-[radial-gradient(120%_55%_at_85%_0%,rgba(255,74,28,.2),transparent_62%)]" />
       </div>
 
       <div className="grid">
@@ -237,6 +300,14 @@ export function HeroSlider() {
                         </div>
                       ))}
                     </dl>
+                  )}
+                  {k === 0 && (
+                    <div aria-hidden className="relative mt-10 aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-ink shadow-[0_30px_70px_-30px_rgba(0,0,0,.8)] ring-1 ring-white/15 md:hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/hero/monvex-film-portrait-poster.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+                      {isMobile === true && <FilmVideo src="/hero/monvex-film-portrait.mp4" play={shouldPlay} className="absolute inset-0 h-full w-full object-cover" />}
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(11,11,13,.55))]" />
+                    </div>
                   )}
                 </div>
                 <div className={cn(s.visual === 'film' && 'hidden lg:block')}>
