@@ -169,7 +169,7 @@ export function HeroSlider() {
     <section
       aria-roledescription="Karussell"
       aria-label="Highlights von MONVEX"
-      className="relative isolate overflow-hidden bg-ink pt-[68px] text-white"
+      className="relative isolate overflow-hidden bg-ink pt-[84px] text-white"
       onMouseEnter={() => setHold(true)}
       onMouseLeave={() => setHold(false)}
       onFocusCapture={() => setHold(true)}
@@ -208,11 +208,7 @@ export function HeroSlider() {
             >
               <div className="shell grid min-h-[32rem] items-center gap-10 py-10 sm:min-h-[36rem] lg:min-h-[33rem] lg:grid-cols-[1.15fr_1fr] lg:gap-6 lg:py-10">
                 <div className="min-w-0">
-                  <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[.8rem] font-semibold text-white backdrop-blur">
-                    <span aria-hidden className="h-2 w-2 rounded-full bg-ember" />
-                    {s.eyebrow}
-                  </p>
-                  <H id={k === 0 ? 'hero-title' : undefined} className="display-title mt-6 text-[clamp(2.3rem,1.1rem+3.3vw,4.3rem)] leading-[.98] text-white [overflow-wrap:anywhere]">
+                  <H id={k === 0 ? 'hero-title' : undefined} className="display-title text-[clamp(2.3rem,1.1rem+3.3vw,4.3rem)] leading-[.98] text-white [overflow-wrap:anywhere]">
                     {s.title}
                   </H>
                   <p className="mt-6 max-w-xl text-[1.08rem] leading-relaxed text-white/75">{s.text}</p>

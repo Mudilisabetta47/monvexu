@@ -72,13 +72,22 @@ export function Nav() {
 
   return (
     <>
-      <header className={cn('fixed inset-x-0 top-0 z-[100] transition-colors duration-300', dark ? 'bg-ink' : 'bg-white shadow-[0_1px_0_rgba(10,31,60,.14)]')}>
-        <div className="relative mx-auto max-w-[1380px] px-5 sm:px-8" onMouseEnter={() => clearTimeout(closeTimer.current)} onMouseLeave={closeMegaSoon}>
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-[100] px-3 pt-2.5 sm:px-5 sm:pt-3">
+        <div
+          className={cn(
+            'pointer-events-auto relative mx-auto max-w-[1240px] rounded-full pl-5 pr-1.5 ring-1 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow] duration-500 sm:pl-7',
+            dark
+              ? 'bg-ink ring-white/10'
+              : scrolled
+                ? 'bg-white/95 shadow-[0_14px_40px_-16px_rgba(10,10,15,.45)] ring-black/[.06]'
+                : 'bg-white/[.93] shadow-[0_10px_34px_-18px_rgba(10,10,15,.4)] ring-black/[.05]',
+          )}
+          onMouseEnter={() => clearTimeout(closeTimer.current)} onMouseLeave={closeMegaSoon}>
         <m.div
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: EASE, delay: 0.2 }}
-          className="flex w-full items-center justify-between py-3"
+          className="flex w-full items-center justify-between py-1.5"
         >
           <Link href="/" aria-label="MONVEX – Startseite" data-cursor="Home">
             <MonvexLogo className="h-[26px]" invert={dark} />
@@ -131,7 +140,7 @@ export function Nav() {
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block lg:hidden xl:block">
-              <Button href="/#kontakt" magnetic={false} variant={dark ? 'light' : 'primary'} className="!py-1.5 !pl-5 !pr-1.5 text-[.88rem] [&>span:last-child]:!h-9 [&>span:last-child]:!w-9">
+              <Button href="/#kontakt" magnetic={false} variant={dark ? 'light' : 'primary'} className="!rounded-full !py-1 !pl-5 !pr-1 text-[.88rem] [&>span:last-child]:!h-9 [&>span:last-child]:!w-9 [&>span:last-child]:!rounded-full">
                 Kontakt aufnehmen
               </Button>
             </div>
@@ -162,7 +171,7 @@ export function Nav() {
               transition={{ duration: 0.45, ease: EASE }}
               className="absolute inset-x-0 top-full z-10 hidden origin-top pt-3 lg:block"
             >
-              <div className="rounded-lg border border-line bg-white p-6 text-ink shadow-[0_30px_80px_-30px_rgba(10,31,60,.45),0_4px_14px_rgba(10,31,60,.08)] xl:p-8">
+              <div className="rounded-[1.75rem] border border-line bg-white p-6 text-ink shadow-[0_30px_80px_-30px_rgba(10,31,60,.45),0_4px_14px_rgba(10,31,60,.08)] xl:p-8">
                 <MegaPanel id={mega} onNavigate={closeMegaNow} />
               </div>
             </m.div>
