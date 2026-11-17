@@ -1,4 +1,4 @@
-import { BoldHero } from '@/components/sections/BoldHero';
+import { HeroSlider } from '@/components/sections/HeroSlider';
 import { Marquee } from '@/components/ui/Marquee';
 import { ServiceRows } from '@/components/sections/ServiceRows';
 import { References } from '@/components/sections/References';
@@ -15,7 +15,7 @@ import { Contact } from '@/components/sections/Contact';
 export default function Home() {
   return (
     <>
-      <BoldHero />
+      <HeroSlider />
       <div className="border-y border-line bg-white py-5 sm:py-6">
         <Marquee
           dotClassName="bg-ember rounded-full"
