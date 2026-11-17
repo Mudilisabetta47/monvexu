@@ -21,7 +21,7 @@ export const references: Ref[] = [
   { name: 'ING Gutachten', place: 'Hannover', logo: { src: '/referenzen/ing-gutachten.svg', w: 312, h: 120 }, dark: true },
   { name: 'SVZ Niedersachsen', place: 'Niedersachsen', logo: { src: '/referenzen/svz-niedersachsen.svg', w: 388, h: 85 } },
   { name: 'Fahrschule Metropol', place: 'Hannover, Garbsen & Bremen', logo: { src: '/referenzen/fahrschule-metropol.png', w: 520, h: 101 } },
-  { name: 'Metropol Tours', place: 'Hannover', logo: { src: '/referenzen/metropol-tours.png', w: 186, h: 180 } },
+  { name: 'Metropol Tours', place: 'Hannover', logo: { src: '/referenzen/metropol-tours.png', w: 395, h: 160 } },
   { name: 'Metropol Bildungszentrum', place: 'Niedersachsen', logo: { src: '/referenzen/metropol-bz.png', w: 520, h: 115 } },
   { name: 'Autokosmetik Lilienthal', place: 'Lilienthal', logo: { src: '/referenzen/autokosmetik-lilienthal.png', w: 520, h: 163 } },
   { name: 'DellenTechnik Lilienthal', place: 'Lilienthal', logo: { src: '/referenzen/dellentechnik-lilienthal.png', w: 355, h: 180 } },
